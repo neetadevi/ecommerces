@@ -122,3 +122,4 @@ export const Dashboard: React.FC<DashboardProps> = ({ user, onSignOut }) => {
     </div>
   );
 };
+
