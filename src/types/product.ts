@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  original_price?: number;
   category: string;
   image_url: string;
   rating: number;
@@ -13,4 +14,6 @@ export interface Product {
 export interface CartItem {
   product: Product;
   quantity: number;
+  size?: string;
 }
+
