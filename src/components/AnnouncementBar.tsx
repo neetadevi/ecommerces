@@ -83,3 +83,4 @@ export const AnnouncementBar: React.FC<AnnouncementBarProps> = ({ onCategorySele
     </div>
   );
 };
+

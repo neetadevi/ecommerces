@@ -69,3 +69,4 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onShopNow }) => {
     </div>
   );
 };
+
