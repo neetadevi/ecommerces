@@ -4,56 +4,49 @@ const girlsWear = [
   {
     name: "Embroidered Anarkali Flared Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80",
     description: "Georgette embroidered flared Anarkali kurti with intricate thread work and dupatta border."
   },
   {
     name: "Chanderi Silk Straight Floral Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4499,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
     description: "Pure Chanderi silk straight cut kurti with foil printed floral motifs and mandarin collar."
   },
   {
     name: "Chikankari Handcrafted Georgette Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80",
     description: "Authentic Lucknowi Chikankari hand-embroidered georgette pastel kurti with matching slip."
   },
   {
     name: "A-Line Block Printed Cotton Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 3999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80",
     description: "Breathable pure cotton Jaipur block print A-line kurti with wooden button detailing."
   },
   {
     name: "Angrakha Style Rayon Festive Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4799,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1596783074418-9759492167d5?w=800&auto=format&fit=crop&q=80",
     description: "Graceful Angrakha overlap side-tie kurti with mirror work lace and flared silhouette."
   },
   {
     name: "Kashmiri Aari Work Woolen Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&auto=format&fit=crop&q=80",
     description: "Warm winter woolen Kashmiri kurti adorned with traditional Aari floral neck embroidery."
   },
   {
     name: "Tiered Bandhani Print Festive Kurti",
     category: "Kurti",
-    price: 999,
-    original_price: 4299,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=80",
     description: "Multicolor festive Bandhani printed tiered kurti with gota patti borders on sleeves."
   },
@@ -62,48 +55,42 @@ const girlsWear = [
   {
     name: "Royal Velvet Embroidered Salwar Suit",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80",
     description: "Rich micro velvet salwar kameez set with zardozi embroidery and organza dupatta."
   },
   {
     name: "Punjabi Patiala Suit with Phulkari Dupatta",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80",
     description: "Traditional heavy pleated Patiala suit paired with vibrant embroidered Phulkari dupatta."
   },
   {
     name: "Chanderi Silk Straight Suit Set",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4699,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
     description: "Three-piece Chanderi silk suit set with cigarette pants and digital printed silk dupatta."
   },
   {
     name: "Sharara Suit with Sequin Work",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1596783074418-9759492167d5?w=800&auto=format&fit=crop&q=80",
     description: "Flared multi-tier sharara suit set with sparkling sequin embellishment for weddings."
   },
   {
     name: "Palazzo Suit Set with Mirror Lace",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4499,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80",
     description: "Comfortable wide-leg palazzo suit with geometric mirror lace work on kurti hem."
   },
   {
     name: "Organza Pastel Floral Suit Set",
     category: "Salwar Suit",
-    price: 999,
-    original_price: 4899,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&auto=format&fit=crop&q=80",
     description: "Breezy pastel organza suit with hand-painted floral motifs and scalloped borders."
   },
@@ -112,48 +99,42 @@ const girlsWear = [
   {
     name: "Designer Georgette Partywear Lehenga",
     category: "Lehenga",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&auto=format&fit=crop&q=80",
     description: "Semi-stitched georgette party lehenga with heavy thread embroidery and net dupatta."
   },
   {
     name: "Floral Printed Organza Festive Lehenga",
     category: "Lehenga",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=800&auto=format&fit=crop&q=80",
     description: "Voluminous organza lehenga skirt featuring romantic floral prints and designer blouse."
   },
   {
     name: "Banarasi Silk Brocade Traditional Lehenga",
     category: "Lehenga",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&auto=format&fit=crop&q=80",
     description: "Heritage Banarasi woven silk brocade lehenga with rich golden zari borders."
   },
   {
     name: "Mirror Work Navratri Chaniya Choli",
     category: "Lehenga",
-    price: 999,
-    original_price: 4799,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80",
     description: "Gujarati style mirror work festive chaniya choli set with colorful bandhani dupatta."
   },
   {
     name: "Sequin Embroidered Net Sangeet Lehenga",
     category: "Lehenga",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80",
     description: "Glittering sequin embroidered net lehenga perfect for sangeet and cocktail nights."
   },
   {
     name: "Velvet Bridal Touch Flare Lehenga",
     category: "Lehenga",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
     description: "Deep maroon velvet flared lehenga embellished with antique dori and cord work."
   },
@@ -162,48 +143,42 @@ const girlsWear = [
   {
     name: "Floral Chiffon Ruffle Peplum Top",
     category: "Top",
-    price: 999,
-    original_price: 3999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800&auto=format&fit=crop&q=80",
     description: "Chic floral printed chiffon peplum top with smocked waist and feminine flutter sleeves."
   },
   {
     name: "Embroidered Schiffli Lace Crop Top",
     category: "Top",
-    price: 999,
-    original_price: 4499,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80",
     description: "100% cotton Schiffli cutwork embroidery crop top with sweetheart neck."
   },
   {
     name: "Satin Wrap Front Formal Top",
     category: "Top",
-    price: 999,
-    original_price: 4299,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800&auto=format&fit=crop&q=80",
     description: "Lustrous emerald satin wrap top with side tie detail and bishop sleeves."
   },
   {
     name: "Smocked Square Neck Puff Sleeve Top",
     category: "Top",
-    price: 999,
-    original_price: 3899,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=800&auto=format&fit=crop&q=80",
     description: "Trendy gingham square neck top with elasticated puff sleeves and fitted bodice."
   },
   {
     name: "Boho Tassel Fringe Summer Blouse Top",
     category: "Top",
-    price: 999,
-    original_price: 3999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&auto=format&fit=crop&q=80",
     description: "Bohemian embroidery lightweight rayon top with neckline tie tassels."
   },
   {
     name: "Ribbed Knit High-Neck Fitted Top",
     category: "Top",
-    price: 999,
-    original_price: 3699,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80",
     description: "Versatile stretch ribbed knit turtleneck top, great for layering in style."
   }
@@ -216,8 +191,7 @@ const brandShoes = [
     name: "Nike Air Max Excee Running Shoes",
     brand: "Nike",
     category: "Shoes",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
     description: "Iconic Nike Air visible cushioning with breathable mesh upper and lightweight foam midsole."
   },
@@ -272,8 +246,7 @@ const brandShoes = [
     name: "Adidas Ultraboost Light Running Shoes",
     brand: "Adidas",
     category: "Shoes",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=800&auto=format&fit=crop&q=80",
     description: "Epic energy return with Light Boost cushioning and sock-like Primeknit textile upper."
   },
@@ -422,8 +395,7 @@ const brandShoes = [
     name: "New Balance 574 Core Sport Sneakers",
     brand: "New Balance",
     category: "Shoes",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=800&auto=format&fit=crop&q=80",
     description: "ENCAP midsole cushioning combines lightweight foam with durable polyurethane rim."
   },
@@ -431,8 +403,7 @@ const brandShoes = [
     name: "Air Jordan 1 Low Retro Street Sneakers",
     brand: "Jordan",
     category: "Shoes",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=800&auto=format&fit=crop&q=80",
     description: "Genuine leather construction with encapsulated Air-Sole unit and Wings logo on heel."
   },
@@ -631,16 +602,14 @@ const tshirtsAndWinter = [
   {
     name: "Lightweight Quilted Puffer Jacket",
     category: "Winter Wear",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1544923246-77307dd654cb?w=800&auto=format&fit=crop&q=80",
     description: "Windproof and water-resistant down-feel quilted jacket with zip pockets."
   },
   {
     name: "Vintage Sherpa Lined Denim Jacket",
     category: "Winter Wear",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=800&auto=format&fit=crop&q=80",
     description: "Heavyweight rugged denim jacket lined with ultra-warm faux sherpa shearling."
   },
@@ -743,8 +712,7 @@ const tshirtsAndWinter = [
   {
     name: "Suede Trim Faux Shearling Aviator Jacket",
     category: "Winter Wear",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop&q=80",
     description: "Vintage pilot biker style with buckle collar and plush warm shearling lapels."
   },
@@ -767,11 +735,11 @@ const tshirtsAndWinter = [
   {
     name: "Teddy Borg Fleece Oversized Coat",
     category: "Winter Wear",
-    price: 999,
-    original_price: 4999,
+    price: 999, original_price: 2999,
     image_url: "https://images.unsplash.com/photo-1548883354-7622d03aca27?w=800&auto=format&fit=crop&q=80",
     description: "Ultra-fluffy borg teddy fleece mid-length coat with tortoiseshell buttons."
   }
 ];
 
 module.exports = { girlsWear, brandShoes, tshirtsAndWinter };
+
