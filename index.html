@@ -18120,44 +18120,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   let currentPmImageIdx = 0;
 
   // 6 Photoshoot Angles matching Amazon product listing:
-  const PRODUCT_AMAZON_ANGLES = [
-    {
-      name: 'Full Front Pose',
-      label: 'Front',
-      badge: '1. Full Front Pose',
-      style: 'object-position: center center; transform: scale(1);'
-    },
-    {
-      name: '3/4 Side Angle Pose',
-      label: '3/4 Side',
-      badge: '2. 3/4 Side Angle View',
-      style: 'object-position: 78% center; transform: scale(1.1);'
-    },
-    {
-      name: 'Bottom Hem & Shoes Zoom',
-      label: 'Bottom Zoom',
-      badge: '3. Bottom Hem & Shoes Zoom',
-      style: 'object-position: center 96%; transform: scale(1.38);'
-    },
-    {
-      name: 'Waist & Fit Front View',
-      label: 'Waist Fit',
-      badge: '4. Waist & Upper Fit View',
-      style: 'object-position: center 25%; transform: scale(1.22);'
-    },
-    {
-      name: 'Rear / Side Profile Pose',
-      label: 'Rear Side',
-      badge: '5. Rear / Side Profile View',
-      style: 'object-position: 22% center; transform: scale(1.12);'
-    },
-    {
-      name: 'Full Length Fit Pose',
-      label: 'Full Fit',
-      badge: '6. Full Length Fit Pose',
-      style: 'object-position: center center; transform: scale(1.04);'
+  // Helper to get matching Back View photo based on product category
+  function getProductBackViewPhoto(name, defaultImg) {
+    const n = (name || '').toLowerCase();
+    if (n.includes('shoe') || n.includes('sneaker') || n.includes('nike') || n.includes('adidas') || n.includes('puma') || n.includes('converse') || n.includes('runner')) {
+      return 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80';
     }
-  ];
+    if (n.includes('t-shirt') || n.includes('hoodie') || n.includes('jacket') || n.includes('sweater') || n.includes('winter')) {
+      return 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80';
+    }
+    if (n.includes('pant') || n.includes('bottomwear') || n.includes('palazzo') || n.includes('trouser')) {
+      return 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&auto=format&fit=crop&q=80';
+    }
+    // Elegant Indian ethnic wear & dress rear / back view
+    return 'https://images.unsplash.com/photo-1526798513516-d2c620778abe?w=800&auto=format&fit=crop&q=80';
+  }
+
+  let currentPmProductViews = [];
 
   function openProductModal(name, price, image) {
     currentPmProduct = { name: name, price: price, image: image };
@@ -18166,6 +18145,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
     currentPmSize = isShoe ? 'UK 8' : 'M';
+
+    const backPhoto = getProductBackViewPhoto(name, image);
+
+    // 6 Distinct Model Poses & Positions (Front, Right Side, Left Side, Back View, Waist Zoom, Full Length)
+    currentPmProductViews = [
+      {
+        name: 'Front View (सामने से)',
+        label: 'Front',
+        badge: '1. Front View (सामने से पोज़)',
+        imgUrl: image,
+        style: 'object-position: center 15%; transform: scale(1);'
+      },
+      {
+        name: 'Right Side View (Right साइड पोज़)',
+        label: 'Right',
+        badge: '2. Right Side View (Right साइड पोज़)',
+        imgUrl: image,
+        style: 'object-position: 85% 20%; transform: scale(1.14) scaleX(1);'
+      },
+      {
+        name: 'Left Side View (Left साइड पोज़)',
+        label: 'Left',
+        badge: '3. Left Side View (Left साइड पोज़)',
+        imgUrl: image,
+        style: 'object-position: 85% 20%; transform: scale(1.14) scaleX(-1);'
+      },
+      {
+        name: 'Back View (पीछे से फ़ोटो)',
+        label: 'Back',
+        badge: '4. Back View (पीछे से फ़ोटो)',
+        imgUrl: backPhoto,
+        style: 'object-position: center 20%; transform: scale(1);'
+      },
+      {
+        name: 'Waist & Fit Pose (कमर और फ़िटिंग पोज़)',
+        label: 'Fit Pose',
+        badge: '5. Waist & Neckline Fit (फ़िटिंग पोज़)',
+        imgUrl: image,
+        style: 'object-position: center 30%; transform: scale(1.36);'
+      },
+      {
+        name: 'Full Length Pose (फुल लेंथ पोज़िशन)',
+        label: 'Full Pose',
+        badge: '6. Full Length Standing Pose (फुल पोज़िशन)',
+        imgUrl: image,
+        style: 'object-position: center bottom; transform: scale(1.03);'
+      }
+    ];
 
     const modal = document.getElementById('ufProductModal');
     const imgEl = document.getElementById('pmImage');
@@ -18179,25 +18206,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     const counterEl = document.getElementById('pmImageCounter');
     const badgeEl = document.getElementById('pmAngleBadge');
 
+    const firstView = currentPmProductViews[0];
+
     if (imgEl) {
-      imgEl.src = image;
-      imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + PRODUCT_AMAZON_ANGLES[0].style);
+      imgEl.src = firstView.imgUrl;
+      imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + firstView.style);
       imgEl.style.opacity = '1';
     }
-    if (counterEl) counterEl.textContent = '1 / 6';
-    if (badgeEl) badgeEl.textContent = PRODUCT_AMAZON_ANGLES[0].badge;
+    if (counterEl) counterEl.textContent = '1 / ' + currentPmProductViews.length;
+    if (badgeEl) badgeEl.textContent = firstView.badge;
     if (titleEl) titleEl.textContent = name;
     if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
     if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
     if (discEl) discEl.textContent = '67% OFF';
     if (qtyEl) qtyEl.textContent = '1';
 
-    // Render Amazon Vertical Thumbnail Strip with rounded pill borders (just like uploaded screenshot!)
+    // Render Amazon Vertical Thumbnail Strip with rounded pill borders & angle labels
     if (thumbsWrap) {
-      thumbsWrap.innerHTML = PRODUCT_AMAZON_ANGLES.map((ang, i) => 
-        '<div onclick="selectPmAmazonAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; width:52px; height:68px; border-radius:12px; overflow:hidden; border:' + (i === 0 ? '2px solid #007185' : '1.5px solid #d5d9d9') + '; box-shadow:' + (i === 0 ? '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)' : 'none') + '; transition:all 0.2s ease; background:#ffffff; padding:2px; box-sizing:border-box;">' +
-          '<div style="width:100%; height:100%; border-radius:9px; overflow:hidden; background:#f8f7f4;">' +
-            '<img src="' + image + '" alt="' + ang.name + '" style="width:100%; height:100%; object-fit:cover; display:block; ' + ang.style + '" />' +
+      thumbsWrap.innerHTML = currentPmProductViews.map((v, i) => 
+        '<div onclick="selectPmAmazonAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; width:52px; height:70px; border-radius:12px; overflow:hidden; border:' + (i === 0 ? '2px solid #007185' : '1.5px solid #d5d9d9') + '; box-shadow:' + (i === 0 ? '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)' : 'none') + '; transition:all 0.2s ease; background:#ffffff; padding:2px; box-sizing:border-box;">' +
+          '<div style="width:100%; height:100%; border-radius:9px; overflow:hidden; background:#f8f7f4; position:relative;">' +
+            '<img src="' + v.imgUrl + '" alt="' + v.name + '" style="width:100%; height:100%; object-fit:cover; display:block; ' + v.style + '" />' +
+            '<span style="position:absolute; bottom:0; left:0; right:0; text-align:center; font-size:8px; font-weight:800; color:#fff; background:rgba(0,0,0,0.72); padding:2px 0; text-transform:uppercase; letter-spacing:0.3px; line-height:1;">' + v.label + '</span>' +
           '</div>' +
         '</div>'
       ).join('');
@@ -18216,27 +18246,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function selectPmAmazonAngle(index) {
-    if (index < 0 || index >= PRODUCT_AMAZON_ANGLES.length) return;
+    if (!currentPmProductViews || index < 0 || index >= currentPmProductViews.length) return;
     currentPmImageIdx = index;
-    const ang = PRODUCT_AMAZON_ANGLES[index];
+    const view = currentPmProductViews[index];
 
     const imgEl = document.getElementById('pmImage');
     const counterEl = document.getElementById('pmImageCounter');
     const badgeEl = document.getElementById('pmAngleBadge');
 
-    if (imgEl && currentPmProduct) {
+    if (imgEl) {
       imgEl.style.opacity = '0.3';
       setTimeout(() => {
-        imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + ang.style);
+        imgEl.src = view.imgUrl;
+        imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + view.style);
         imgEl.style.opacity = '1';
-      }, 60);
+      }, 50);
     }
 
     if (counterEl) {
-      counterEl.textContent = (index + 1) + ' / ' + PRODUCT_AMAZON_ANGLES.length;
+      counterEl.textContent = (index + 1) + ' / ' + currentPmProductViews.length;
     }
     if (badgeEl) {
-      badgeEl.textContent = ang.badge;
+      badgeEl.textContent = view.badge;
     }
 
     document.querySelectorAll('.uf-pm-thumb').forEach((thumb, i) => {
@@ -18258,7 +18289,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   function selectPmGalleryImage(index) { selectPmAmazonAngle(index); }
 
   function navigatePmImage(direction) {
-    const nextIdx = (currentPmImageIdx + direction + PRODUCT_AMAZON_ANGLES.length) % PRODUCT_AMAZON_ANGLES.length;
+    if (!currentPmProductViews || currentPmProductViews.length === 0) return;
+    const nextIdx = (currentPmImageIdx + direction + currentPmProductViews.length) % currentPmProductViews.length;
     selectPmAmazonAngle(nextIdx);
   }
 
