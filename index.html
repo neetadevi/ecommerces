@@ -2155,6 +2155,14 @@
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
   }
+
+  @media (max-width: 640px) {
+    .uf-pm-grid {
+      grid-template-columns: 1fr !important;
+      gap: 14px !important;
+    }
+  }
+
 </style>
 <link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/karla/karla_n4.40497e07df527e6a50e58fb17ef1950c72f3e32c.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link href="//www.lakshita.com/cdn/shop/t/266/assets/theme.css?v=129186432948997067681793338900" rel="stylesheet" type="text/css" media="all" />
 <link href="//www.lakshita.com/cdn/shop/t/266/assets/swatches.css?v=157844926215047500451793338900" rel="stylesheet" type="text/css" media="all" />
@@ -17813,10 +17821,16 @@ document.addEventListener('DOMContentLoaded', async () => {
           Open PhonePe or any UPI app, scan the QR code above, and pay <strong>₹<span id="ufPayStepAmountInline">0</span></strong>. After payment, click Confirm below.
         </p>
 
-        <!-- Optional UTR reference input -->
+        <!-- Mandatory UTR input -->
         <div class="uf-form-group" style="text-align:left; margin-bottom:14px;">
-          <label style="font-size:11px; color:#555;">UPI Ref / Transaction UTR No. (Optional)</label>
-          <input type="text" id="custUtr" placeholder="e.g. 12-digit UTR number" maxlength="25" style="font-size:13px; text-transform:uppercase;">
+          <label style="font-size:12px; font-weight:700; color:#4b0006; display:flex; justify-content:space-between; margin-bottom:5px;">
+            <span>Enter 12-Digit UPI UTR / Ref Number *</span>
+            <span style="color:#dc2626; font-size:11px;">(Mandatory)</span>
+          </label>
+          <input type="text" id="custUtr" placeholder="Enter 12-digit UTR number from UPI app" maxlength="22" required style="font-size:14px; font-weight:700; letter-spacing:1px; border:2px solid #4b0006; padding:10px 12px; border-radius:6px; width:100%; box-sizing:border-box;">
+          <div style="font-size:11px; color:#666; margin-top:4px;">
+            ℹ️ UTR is the 12-digit transaction number shown on PhonePe/GPay after successful payment.
+          </div>
         </div>
 
         <button type="button" id="btnFinalPlaceOrder" class="uf-checkout-btn" onclick="submitFinalOrder();" style="width:100%; background:#15803d; font-size:15px; padding:14px; margin-bottom:10px;">
@@ -17829,6 +17843,137 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>
   </div>
 </div>
+
+<!-- Product Details / Quick View Modal -->
+<div class="uf-modal-overlay" id="ufProductModal" onclick="if(event.target===this) closeProductModal();" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.72); z-index:99999990; align-items:center; justify-content:center; padding:16px; backdrop-filter:blur(4px); font-family:Montserrat,sans-serif;">
+  <div style="background:#ffffff; width:100%; max-width:680px; max-height:92vh; overflow-y:auto; border-radius:14px; box-shadow:0 25px 60px rgba(0,0,0,0.35); position:relative; animation:ufModalFade 0.25s ease;">
+    <!-- Close button -->
+    <button type="button" onclick="closeProductModal();" style="position:absolute; top:12px; right:14px; z-index:10; background:#f5f3ef; border:none; width:34px; height:34px; border-radius:50%; font-size:22px; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">&times;</button>
+    
+    <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:22px;" class="uf-pm-grid">
+      <!-- Left: Image -->
+      <div>
+        <div style="position:relative; aspect-ratio:3/4; overflow:hidden; border-radius:10px; background:#f5f3ef; border:1px solid #ede8de;">
+          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block;" />
+          <span style="position:absolute; top:10px; left:10px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase;">UNIQUE FASHION</span>
+        </div>
+        <div style="display:flex; justify-content:space-around; margin-top:12px; font-size:11px; color:#555; font-weight:600;">
+          <span>✓ 100% Genuine</span>
+          <span>✓ Free Express Delivery</span>
+          <span>✓ Easy Returns</span>
+        </div>
+      </div>
+
+      <!-- Right: Details -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span id="pmTag" style="font-size:11px; font-weight:700; color:#d4af37; text-transform:uppercase; letter-spacing:1.5px; display:block; margin-bottom:4px;">PREMIUM QUALITY</span>
+          <h2 id="pmTitle" style="font-size:19px; font-weight:800; color:#4b0006; margin:0 0 8px; line-height:1.3;">Product Name</h2>
+
+          <!-- Rating -->
+          <div style="display:flex; align-items:center; gap:6px; margin-bottom:12px;">
+            <div style="background:#15803d; color:#fff; font-size:11px; font-weight:700; padding:2px 6px; border-radius:4px; display:inline-flex; align-items:center; gap:3px;">
+              ★ 4.9
+            </div>
+            <span style="font-size:11px; color:#777;">(184 Verified Ratings)</span>
+          </div>
+
+          <!-- Price -->
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid #ede8de;">
+            <span id="pmPrice" style="font-size:24px; font-weight:900; color:#4b0006;">₹999</span>
+            <span id="pmOriginalPrice" style="font-size:14px; color:#888; text-decoration:line-through;">₹2,999</span>
+            <span id="pmDiscountBadge" style="font-size:11px; font-weight:800; color:#15803d; background:#ecfdf5; padding:2px 7px; border-radius:4px; border:1px solid #bbf7d0;">67% OFF</span>
+          </div>
+
+          <!-- Description -->
+          <p id="pmDescription" style="font-size:12px; color:#555; line-height:1.5; margin:0 0 14px;">
+            Crafted with signature premium fabrics, tailored for a flattering fit, and designed for all-day comfort. Includes easy 7-day returns and free doorstep delivery.
+          </p>
+
+          <!-- Size Selector -->
+          <div style="margin-bottom:14px;">
+            <label style="display:block; font-size:11px; font-weight:700; color:#333; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Select Size:</label>
+            <div id="pmSizesWrap" style="display:flex; gap:8px; flex-wrap:wrap;">
+              <!-- injected dynamically -->
+            </div>
+          </div>
+
+          <!-- Quantity Selector -->
+          <div style="margin-bottom:16px;">
+            <label style="display:block; font-size:11px; font-weight:700; color:#333; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Quantity:</label>
+            <div style="display:inline-flex; align-items:center; border:1px solid #ddd; border-radius:6px; overflow:hidden;">
+              <button type="button" onclick="changePmQty(-1);" style="background:#faf9f6; border:none; width:34px; height:32px; font-size:16px; font-weight:bold; cursor:pointer;">-</button>
+              <span id="pmQtyDisplay" style="width:38px; text-align:center; font-size:13px; font-weight:700;">1</span>
+              <button type="button" onclick="changePmQty(1);" style="background:#faf9f6; border:none; width:34px; height:32px; font-size:16px; font-weight:bold; cursor:pointer;">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+          <button type="button" onclick="pmBuyNow();" style="width:100%; background:#15803d; color:#ffffff; border:none; padding:13px; border-radius:8px; font-size:14px; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:6px; box-shadow:0 4px 12px rgba(21,128,61,0.25);">
+            ⚡ Buy Now & Proceed &rarr;
+          </button>
+          <button type="button" onclick="pmAddToBagOnly();" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:11px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:6px;">
+            🛒 Add to Shopping Bag
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Thank You Popup Modal -->
+<div class="uf-modal-overlay" id="ufThankYouModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.75); z-index:999999999; align-items:center; justify-content:center; padding:16px; backdrop-filter:blur(5px); font-family:Montserrat,sans-serif;">
+  <div style="background:#ffffff; width:100%; max-width:480px; border-radius:16px; overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,0.35); text-align:center; animation:ufModalFade 0.3s ease;">
+    <div style="background:linear-gradient(135deg, #15803d 0%, #166534 100%); padding:28px 20px 22px; color:#ffffff; position:relative;">
+      <button type="button" onclick="closeThankYouModal();" style="position:absolute; top:12px; right:14px; background:none; border:none; color:#ffffff; font-size:24px; cursor:pointer; line-height:1;">&times;</button>
+      <div style="width:64px; height:64px; background:#ffffff; border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.15);">
+        <span style="font-size:36px; color:#15803d; line-height:1;">✓</span>
+      </div>
+      <h2 style="font-size:22px; font-weight:800; margin:0 0 4px; color:#ffffff; letter-spacing:0.5px;">THANK YOU!</h2>
+      <p style="font-size:13px; margin:0; opacity:0.95; font-weight:500;">Your Order Has Been Placed Successfully</p>
+    </div>
+
+    <div style="padding:22px 20px;">
+      <div style="background:#faf9f6; border:1px solid #ede8de; border-radius:10px; padding:16px; text-align:left; font-size:13px; line-height:1.7; margin-bottom:18px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px; padding-bottom:6px; border-bottom:1px dashed #ddd;">
+          <span style="color:#666;">Order ID:</span>
+          <strong style="color:#4b0006; font-size:14px;" id="tyOrderId">#UF-123456</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:#666;">Customer Name:</span>
+          <strong id="tyCustomerName">Customer</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:#666;">Amount Paid:</span>
+          <strong style="color:#15803d; font-size:14px;" id="tyTotalAmount">₹0</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span style="color:#666;">UPI UTR Number:</span>
+          <strong style="color:#4b0006; font-family:monospace; font-size:13px;" id="tyUtr">XXXXXXXXXXXX</strong>
+        </div>
+        <div style="margin-top:6px; padding-top:6px; border-top:1px dashed #ddd;">
+          <span style="color:#666; display:block; font-size:11px; text-transform:uppercase; font-weight:600;">Delivery Address:</span>
+          <div id="tyDeliveryAddress" style="font-size:12px; color:#222; font-weight:600; margin-top:2px;">Address details</div>
+        </div>
+        <div style="margin-top:6px;">
+          <span style="color:#666; font-size:11px; text-transform:uppercase; font-weight:600;">Estimated Delivery:</span>
+          <div style="font-size:12px; color:#15803d; font-weight:700;">Within 3 to 5 Business Days 🚚</div>
+        </div>
+      </div>
+
+      <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:10px 12px; font-size:12px; color:#065f46; margin-bottom:18px; text-align:left;">
+        ✓ Your payment and order details have been received. We will verify the UTR and dispatch your parcel quickly!
+      </div>
+
+      <button type="button" onclick="closeThankYouModal();" style="width:100%; background:#4b0006; color:#ffffff; font-size:14px; font-weight:800; padding:14px; border-radius:8px; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; transition:background 0.2s ease;">
+        Continue Shopping 🛍️
+      </button>
+    </div>
+  </div>
+</div>
+
 
 <script>
   let cartItems = JSON.parse(localStorage.getItem('uf_cart') || '[]');
@@ -17965,6 +18110,111 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Enhanced zero-scroll Add to Cart
+  // Product Quick View / Details Modal Logic
+  let currentPmProduct = null;
+  let currentPmSize = 'M';
+  let currentPmQty = 1;
+
+  function openProductModal(name, price, image) {
+    currentPmProduct = { name: name, price: price, image: image };
+    currentPmQty = 1;
+
+    const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
+    currentPmSize = isShoe ? 'UK 8' : 'M';
+
+    const modal = document.getElementById('ufProductModal');
+    const imgEl = document.getElementById('pmImage');
+    const titleEl = document.getElementById('pmTitle');
+    const priceEl = document.getElementById('pmPrice');
+    const origPriceEl = document.getElementById('pmOriginalPrice');
+    const discEl = document.getElementById('pmDiscountBadge');
+    const qtyEl = document.getElementById('pmQtyDisplay');
+    const sizesWrap = document.getElementById('pmSizesWrap');
+
+    if (imgEl) imgEl.src = image;
+    if (titleEl) titleEl.textContent = name;
+    if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
+    if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
+    if (discEl) discEl.textContent = '67% OFF';
+    if (qtyEl) qtyEl.textContent = '1';
+
+    const sizes = isShoe ? ['UK 6', 'UK 7', 'UK 8', 'UK 9', 'UK 10'] : ['S', 'M', 'L', 'XL', 'XXL'];
+    if (sizesWrap) {
+      sizesWrap.innerHTML = sizes.map(s => 
+        '<button type="button" class="uf-size-btn" onclick="selectPmSize(\'' + s + '\', this)" style="padding:6px 14px; border:1.5px solid ' + (s === currentPmSize ? '#4b0006' : '#ddd') + '; background:' + (s === currentPmSize ? '#4b0006' : '#fff') + '; color:' + (s === currentPmSize ? '#fff' : '#333') + '; font-weight:700; border-radius:6px; cursor:pointer; font-size:12px;">' +
+          s +
+        '</button>'
+      ).join('');
+    }
+
+    if (modal) modal.style.display = 'flex';
+  }
+
+  function selectPmSize(size, el) {
+    currentPmSize = size;
+    document.querySelectorAll('#pmSizesWrap .uf-size-btn').forEach(b => {
+      b.style.borderColor = '#ddd';
+      b.style.background = '#fff';
+      b.style.color = '#333';
+    });
+    if (el) {
+      el.style.borderColor = '#4b0006';
+      el.style.background = '#4b0006';
+      el.style.color = '#fff';
+    }
+  }
+
+  function changePmQty(delta) {
+    currentPmQty = Math.max(1, currentPmQty + delta);
+    const qtyEl = document.getElementById('pmQtyDisplay');
+    if (qtyEl) qtyEl.textContent = currentPmQty;
+  }
+
+  function closeProductModal() {
+    const modal = document.getElementById('ufProductModal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function pmBuyNow() {
+    if (!currentPmProduct) return;
+    const fullName = currentPmProduct.name + ' (' + currentPmSize + ')';
+    
+    let existing = cartItems.find(i => i.name === fullName);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + currentPmQty;
+    } else {
+      cartItems.push({
+        name: fullName,
+        price: currentPmProduct.price,
+        image: currentPmProduct.image,
+        quantity: currentPmQty
+      });
+    }
+    saveCart();
+    closeProductModal();
+    startCheckout();
+  }
+
+  function pmAddToBagOnly() {
+    if (!currentPmProduct) return;
+    const fullName = currentPmProduct.name + ' (' + currentPmSize + ')';
+    
+    let existing = cartItems.find(i => i.name === fullName);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + currentPmQty;
+    } else {
+      cartItems.push({
+        name: fullName,
+        price: currentPmProduct.price,
+        image: currentPmProduct.image,
+        quantity: currentPmQty
+      });
+    }
+    saveCart();
+    closeProductModal();
+    openCartDrawer();
+  }
+
   function addToCart(name, price, image, ev) {
     if (ev) {
       if (typeof ev.preventDefault === 'function') ev.preventDefault();
@@ -17979,14 +18229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       } catch (err) {}
     }
 
-    let existing = cartItems.find(i => i.name === name);
-    if (existing) {
-      existing.quantity = (existing.quantity || 1) + 1;
-    } else {
-      cartItems.push({ name: name, price: price, image: image, quantity: 1 });
-    }
-    saveCart();
-    openCartDrawer();
+    openProductModal(name, price, image);
     return false;
   }
 
@@ -18117,6 +18360,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function submitFinalOrder() {
     const submitBtn = document.getElementById('btnFinalPlaceOrder');
+    const utrInput = document.getElementById('custUtr');
+    const utr = utrInput ? utrInput.value.trim() : '';
+
+    // Enforce 12-digit UTR input before confirming order
+    if (!utr || utr.length < 10) {
+      alert('⚠️ Mandatory: Please enter your 12-digit UPI Transaction / UTR Number before confirming the order.');
+      if (utrInput) {
+        utrInput.focus();
+        utrInput.style.borderColor = '#dc2626';
+        utrInput.style.backgroundColor = '#fff5f5';
+        utrInput.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.2)';
+      }
+      return;
+    }
+
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Verifying & Placing Order...';
@@ -18129,10 +18387,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const city = document.getElementById('custCity').value.trim();
     const pincode = document.getElementById('custPincode').value.trim();
     const state = document.getElementById('custState').value.trim();
-    const utr = (document.getElementById('custUtr') ? document.getElementById('custUtr').value.trim() : '');
 
     const total_amount = cartItems.reduce((acc, item) => acc + ((item.price || 0) * (item.quantity || 1)), 0);
-    const paymentDesc = utr ? ('Online UPI (PhonePe QR) - UTR: ' + utr) : 'Online UPI (PhonePe QR)';
+    const paymentDesc = 'Online UPI (PhonePe QR) - UTR: ' + utr;
 
     const orderPayload = {
       customer_name: customer_name,
@@ -18163,23 +18420,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       cartItems = [];
       saveCart();
 
-      document.getElementById('checkoutModalTitle').textContent = 'Order Confirmed!';
-      document.getElementById('checkoutModalBody').innerHTML = 
-        '<div class="uf-success-screen" style="text-align:center; padding:15px 0;">' +
-          '<div class="uf-check-icon" style="width:56px; height:56px; background:#15803d; color:#fff; border-radius:50%; font-size:32px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">✓</div>' +
-          '<h2 style="color:#4b0006; font-size:22px; font-weight:800; margin-bottom:6px;">Thank You, ' + customer_name + '!</h2>' +
-          '<p style="color:#15803d; font-weight:700; margin-bottom:16px;">Your online order has been placed successfully.</p>' +
-          '<div style="background:#faf9f6; border:1px solid #ede8de; border-radius:8px; padding:16px; text-align:left; font-size:13px; line-height:1.7; margin-bottom:20px;">' +
-            '<div><strong>Order ID:</strong> #' + orderId + '</div>' +
-            '<div><strong>Payment Mode:</strong> ' + paymentDesc + '</div>' +
-            '<div><strong>Total Amount:</strong> ₹' + total_amount.toLocaleString('en-IN') + '</div>' +
-            '<div><strong>Delivery Address:</strong> ' + address + ', ' + city + ', ' + state + ' - ' + pincode + '</div>' +
-            '<div><strong>Estimated Delivery:</strong> Within 3-5 Business Days</div>' +
-          '</div>' +
-          '<button type="button" class="uf-checkout-btn" onclick="location.reload();" style="width:100%;">' +
-            'Continue Shopping' +
-          '</button>' +
-        '</div>';
+      // Close checkout modal
+      closeCheckoutModal();
+
+      // Populate & open Thank You Popup Modal
+      const tyOrderId = document.getElementById('tyOrderId');
+      const tyCustomerName = document.getElementById('tyCustomerName');
+      const tyTotalAmount = document.getElementById('tyTotalAmount');
+      const tyUtr = document.getElementById('tyUtr');
+      const tyDeliveryAddress = document.getElementById('tyDeliveryAddress');
+
+      if (tyOrderId) tyOrderId.textContent = '#' + orderId;
+      if (tyCustomerName) tyCustomerName.textContent = customer_name;
+      if (tyTotalAmount) tyTotalAmount.textContent = '₹' + total_amount.toLocaleString('en-IN');
+      if (tyUtr) tyUtr.textContent = utr;
+      if (tyDeliveryAddress) tyDeliveryAddress.textContent = address + ', ' + city + ', ' + state + ' - ' + pincode;
+
+      const tyModal = document.getElementById('ufThankYouModal');
+      if (tyModal) tyModal.style.display = 'flex';
+
     } catch (err) {
       alert('Order could not be saved: ' + err.message);
       if (submitBtn) {
@@ -18189,7 +18448,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Alias for backward compatibility
+  function closeThankYouModal() {
+    const tyModal = document.getElementById('ufThankYouModal');
+    if (tyModal) tyModal.style.display = 'none';
+    location.reload();
+  }
+
   function submitOrder(e) {
     if (e && e.preventDefault) e.preventDefault();
     proceedToPaymentStep();
@@ -18261,24 +18525,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 4. Inject Add to Cart buttons in original Tab 0 and Tab 1 cards
     // Duplicate button injector removed - each card has exactly one .uf-add-btn
 
-    // 5. Intercept any other quick add / add to cart buttons across the entire document
+    // 5. Open Product Details Modal when clicking any product card, image, title or quick add button
     document.addEventListener('click', function(e) {
-      const btn = e.target.closest('.quick-add__button, [data-quick-add-btn]');
-      if (btn) {
+      // Don't intercept clicks inside any modals or drawers
+      if (e.target.closest('#ufProductModal, #ufCheckoutOverlay, #ufCartOverlay, #ufThankYouModal')) {
+        return;
+      }
+
+      const card = e.target.closest('.product-item, .uf-product-card');
+      if (card) {
         e.preventDefault();
         e.stopPropagation();
-        const card = btn.closest('.product-item') || btn.closest('.uf-product-card');
-        if (card) {
-          const title = card.querySelector('.product-item__title, .uf-card-name')?.textContent.trim() || 'Unique Fashion Item';
-          const priceText = card.querySelector('.price, .uf-price')?.textContent || '1999';
-          const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10) || 1999;
-          const img = card.querySelector('img')?.src || '';
-          addToCart(title, price, img, e);
-        } else {
-          openCartDrawer();
+        const title = card.querySelector('.product-item__title, .uf-card-name, h3, a')?.textContent.trim() || 'Unique Fashion Item';
+        const priceText = card.querySelector('.price, .uf-price, span[style*="font-weight:800"]')?.textContent || '999';
+        const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10) || 999;
+        const img = card.querySelector('img')?.src || '';
+        if (img && title) {
+          openProductModal(title, price, img);
         }
       }
-    }, true);
+    }, false);
   }
 
   if (document.readyState === 'loading') {
