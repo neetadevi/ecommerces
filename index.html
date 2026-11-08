@@ -17853,24 +17853,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:22px;" class="uf-pm-grid">
       <!-- Left: Multi-Image Gallery with Thumbnails & Controls -->
       <div>
-        <!-- Main Product Image -->
+        <!-- Main Product Image with Zoom/Pan on same product -->
         <div style="position:relative; aspect-ratio:3/4; overflow:hidden; border-radius:12px; background:#f5f3ef; border:1px solid #ede8de; box-shadow:0 4px 15px rgba(0,0,0,0.06);">
-          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.2s ease;" />
+          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin:center center;" />
           <span style="position:absolute; top:10px; left:10px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase;">UNIQUE FASHION</span>
           
+          <!-- Current Angle Badge: e.g. FRONT VIEW / RIGHT ANGLE / UPER SE / NICHE SE -->
+          <span id="pmAngleBadge" style="position:absolute; bottom:10px; left:10px; background:rgba(75,0,6,0.85); color:#fff; font-size:10px; font-weight:800; padding:4px 8px; border-radius:4px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(3px); box-shadow:0 2px 6px rgba(0,0,0,0.25);">FRONT VIEW</span>
+
           <!-- Image Counter Badge (1 / 5) -->
           <span id="pmImageCounter" style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.65); color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:12px; backdrop-filter:blur(2px);">1 / 5</span>
 
           <!-- Prev Image Button -->
-          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); border:none; width:32px; height:32px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❮</button>
+          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❮</button>
 
           <!-- Next Image Button -->
-          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); border:none; width:32px; height:32px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❯</button>
+          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❯</button>
         </div>
 
-        <!-- 4-5 Thumbnail Images Strip -->
-        <div id="pmThumbnailsWrap" style="display:flex; gap:8px; margin-top:10px; justify-content:center; overflow-x:auto; padding:2px;">
-          <!-- Dynamically populated 4-5 thumbnails -->
+        <!-- 5 Angle Thumbnails Strip for the SAME product (Front, Right, Left, Top, Bottom) -->
+        <div id="pmThumbnailsWrap" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; margin-top:10px;">
+          <!-- Dynamically populated 5 angle views of the same product -->
         </div>
 
         <div style="display:flex; justify-content:space-around; margin-top:12px; font-size:11px; color:#555; font-weight:600;">
@@ -18126,67 +18129,49 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Enhanced zero-scroll Add to Cart
-  // Product Quick View / Details Modal Logic with 4-5 Gallery Images
+  // Product Quick View / Details Modal Logic with 5 Distinct Angles of the SAME Product
   let currentPmProduct = null;
   let currentPmSize = 'M';
   let currentPmQty = 1;
-  let currentPmGallery = [];
   let currentPmImageIdx = 0;
 
-  // Curated category gallery images for realistic 4-5 views per product
-  const GALLERY_PRESETS = {
-    ethnic: [
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1596783074418-9759492167d5?w=800&auto=format&fit=crop&q=80"
-    ],
-    top: [
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80"
-    ],
-    shoes: [
-      "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80"
-    ],
-    tshirt: [
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80"
-    ]
-  };
-
-  function getProductGallery(name, mainImage) {
-    const list = [mainImage];
-    const n = (name || '').toLowerCase();
-    let preset = GALLERY_PRESETS.ethnic;
-
-    if (/shoe|sneaker|nike|adidas|puma|converse|runner|boot|casual shoe/i.test(n)) {
-      preset = GALLERY_PRESETS.shoes;
-    } else if (/tee|t-shirt|hoodie|jacket|sweatshirt|sweater|pullover/i.test(n)) {
-      preset = GALLERY_PRESETS.tshirt;
-    } else if (/top|crop|shirt|blouse/i.test(n)) {
-      preset = GALLERY_PRESETS.top;
+  // 5 Precise views of the SAME product: Front, Right Angle, Left Angle, Top (Uper Se), Bottom (Niche Se)
+  const PRODUCT_ANGLES = [
+    {
+      name: 'Front View',
+      shortLabel: 'Front',
+      badge: 'Front View',
+      style: 'object-position: center center; transform: scale(1);'
+    },
+    {
+      name: 'Right Angle',
+      shortLabel: 'Right',
+      badge: 'Right Side Angle',
+      style: 'object-position: 85% center; transform: scale(1.18);'
+    },
+    {
+      name: 'Left Angle',
+      shortLabel: 'Left',
+      badge: 'Left Side Angle',
+      style: 'object-position: 15% center; transform: scale(1.18);'
+    },
+    {
+      name: 'Top Detail (Uper Se)',
+      shortLabel: 'Uper Se',
+      badge: 'Top Angle (Uper Se)',
+      style: 'object-position: center 8%; transform: scale(1.35);'
+    },
+    {
+      name: 'Bottom Detail (Niche Se)',
+      shortLabel: 'Niche Se',
+      badge: 'Bottom Angle (Niche Se)',
+      style: 'object-position: center 92%; transform: scale(1.35);'
     }
-
-    preset.forEach(url => {
-      if (url !== mainImage && list.length < 5) {
-        list.push(url);
-      }
-    });
-
-    return list;
-  }
+  ];
 
   function openProductModal(name, price, image) {
     currentPmProduct = { name: name, price: price, image: image };
     currentPmQty = 1;
-    currentPmGallery = getProductGallery(name, image);
     currentPmImageIdx = 0;
 
     const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
@@ -18202,23 +18187,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sizesWrap = document.getElementById('pmSizesWrap');
     const thumbsWrap = document.getElementById('pmThumbnailsWrap');
     const counterEl = document.getElementById('pmImageCounter');
+    const badgeEl = document.getElementById('pmAngleBadge');
 
     if (imgEl) {
+      imgEl.src = image;
+      imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin:center center; ' + PRODUCT_ANGLES[0].style);
       imgEl.style.opacity = '1';
-      imgEl.src = currentPmGallery[0];
     }
-    if (counterEl) counterEl.textContent = '1 / ' + currentPmGallery.length;
+    if (counterEl) counterEl.textContent = '1 / 5';
+    if (badgeEl) badgeEl.textContent = 'FRONT VIEW';
     if (titleEl) titleEl.textContent = name;
     if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
     if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
     if (discEl) discEl.textContent = '67% OFF';
     if (qtyEl) qtyEl.textContent = '1';
 
-    // Render 4-5 Thumbnails Strip
+    // Render 5 Angle Thumbnails of the SAME product
     if (thumbsWrap) {
-      thumbsWrap.innerHTML = currentPmGallery.map((imgUrl, i) => 
-        '<div onclick="selectPmGalleryImage(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="width:52px; height:65px; border-radius:6px; overflow:hidden; cursor:pointer; flex-shrink:0; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.75') + '; transition:all 0.2s ease;">' +
-          '<img src="' + imgUrl + '" alt="Angle ' + (i + 1) + '" style="width:100%; height:100%; object-fit:cover; display:block;" />' +
+      thumbsWrap.innerHTML = PRODUCT_ANGLES.map((ang, i) => 
+        '<div onclick="selectPmAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; text-align:center;">' +
+          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8') + '; transition:all 0.2s ease; background:#f5f3ef;">' +
+            '<img src="' + image + '" alt="' + ang.name + '" style="width:100%; height:100%; object-fit:cover; display:block; ' + ang.style + '" />' +
+          '</div>' +
+          '<div class="uf-thumb-lbl" style="font-size:10px; font-weight:700; color:' + (i === 0 ? '#4b0006' : '#666') + '; margin-top:4px; text-transform:uppercase; letter-spacing:0.3px;">' +
+            ang.shortLabel +
+          '</div>' +
         '</div>'
       ).join('');
     }
@@ -18235,42 +18228,59 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (modal) modal.style.display = 'flex';
   }
 
-  function selectPmGalleryImage(index) {
-    if (!currentPmGallery || index < 0 || index >= currentPmGallery.length) return;
+  function selectPmAngle(index) {
+    if (index < 0 || index >= PRODUCT_ANGLES.length) return;
     currentPmImageIdx = index;
+    const ang = PRODUCT_ANGLES[index];
 
     const imgEl = document.getElementById('pmImage');
     const counterEl = document.getElementById('pmImageCounter');
+    const badgeEl = document.getElementById('pmAngleBadge');
 
     if (imgEl) {
       imgEl.style.opacity = '0.3';
       setTimeout(() => {
-        imgEl.src = currentPmGallery[index];
+        imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin:center center; ' + ang.style);
         imgEl.style.opacity = '1';
-      }, 80);
+      }, 70);
     }
 
     if (counterEl) {
-      counterEl.textContent = (index + 1) + ' / ' + currentPmGallery.length;
+      counterEl.textContent = (index + 1) + ' / ' + PRODUCT_ANGLES.length;
+    }
+    if (badgeEl) {
+      badgeEl.textContent = ang.badge;
     }
 
     document.querySelectorAll('.uf-pm-thumb').forEach((thumb, i) => {
+      const box = thumb.querySelector('div');
+      const lbl = thumb.querySelector('.uf-thumb-lbl');
       if (i === index) {
-        thumb.style.border = '2px solid #4b0006';
-        thumb.style.opacity = '1';
-        thumb.style.boxShadow = '0 2px 6px rgba(75,0,6,0.3)';
+        if (box) {
+          box.style.border = '2px solid #4b0006';
+          box.style.opacity = '1';
+          box.style.boxShadow = '0 2px 6px rgba(75,0,6,0.3)';
+        }
+        if (lbl) lbl.style.color = '#4b0006';
       } else {
-        thumb.style.border = '1.5px solid #ede8de';
-        thumb.style.opacity = '0.75';
-        thumb.style.boxShadow = 'none';
+        if (box) {
+          box.style.border = '1.5px solid #ede8de';
+          box.style.opacity = '0.8';
+          box.style.boxShadow = 'none';
+        }
+        if (lbl) lbl.style.color = '#666';
       }
     });
   }
 
+  // Alias
+  function selectPmGalleryImage(index) {
+    selectPmAngle(index);
+  }
+
   function navigatePmImage(direction) {
-    if (!currentPmGallery || currentPmGallery.length <= 1) return;
-    const nextIdx = (currentPmImageIdx + direction + currentPmGallery.length) % currentPmGallery.length;
-    selectPmGalleryImage(nextIdx);
+    const nextIdx = (currentPmImageIdx + direction + PRODUCT_ANGLES.length) % PRODUCT_ANGLES.length;
+    selectPmAngle(nextIdx);
   }
 
   function selectPmSize(size, el) {
