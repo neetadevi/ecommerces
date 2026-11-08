@@ -2163,6 +2163,19 @@
     }
   }
 
+
+  @media (max-width: 640px) {
+    .uf-amazon-gallery-wrap {
+      flex-direction: column-reverse !important;
+    }
+    #pmThumbnailsWrap {
+      flex-direction: row !important;
+      width: 100% !important;
+      overflow-x: auto !important;
+      padding-bottom: 6px !important;
+    }
+  }
+
 </style>
 <link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/karla/karla_n4.40497e07df527e6a50e58fb17ef1950c72f3e32c.woff2" type="font/woff2" crossorigin><link rel="preload" as="font" href="//www.lakshita.com/cdn/fonts/montserrat/montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2" type="font/woff2" crossorigin><link href="//www.lakshita.com/cdn/shop/t/266/assets/theme.css?v=129186432948997067681793338900" rel="stylesheet" type="text/css" media="all" />
 <link href="//www.lakshita.com/cdn/shop/t/266/assets/swatches.css?v=157844926215047500451793338900" rel="stylesheet" type="text/css" media="all" />
@@ -2302,6 +2315,42 @@
       return false;
     }
   }, true);
+
+
+  // Drawer Menu Navigation Handler
+  function navigateToCategory(cat) {
+    // 1. Close drawer menu
+    const closeBtn = document.querySelector('.drawer__close[data-drawer-close], [data-drawer-close]');
+    if (closeBtn) {
+      try { closeBtn.click(); } catch (e) {}
+    }
+    document.querySelectorAll('#header-menu, .drawer--header').forEach(d => {
+      d.classList.remove('is-open');
+      d.setAttribute('aria-expanded', 'false');
+    });
+
+    // 2. Navigate and display products
+    setTimeout(() => {
+      if (cat === 'shoes') {
+        const el = document.getElementById('section-shoes');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        showAllShoes();
+      } else if (cat === 'tshirts') {
+        const el = document.getElementById('section-tshirts');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        showAllTshirts();
+      } else {
+        // Girls wear, new launch, plus size, suit sets, kurtis, sale
+        const tab0 = document.querySelector('.tab-link[data-tab="0"]');
+        if (tab0) {
+          tab0.click();
+        }
+        const el = document.getElementById('section-girls') || document.querySelector('.tab-content-0') || document.querySelector('.tabs.text-center');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        showAllGirls();
+      }
+    }, 150);
+  }
 
 </script>
 
@@ -4378,151 +4427,64 @@ img.drawer_logo {
         <div class="drawer__content" data-drawer-content>
           <div class="drawer__content__scroll" data-scroll-lock-scrollable>
             <nav class="drawer__menu" data-scroll-lock-scrollable data-sliderule-pane="0" style="--highlight: #d02e2e;">
-              <div class="drawer__main-menu"><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="250"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#section-girls">
-      <span>
-        DIWALI MUBARAK SALE
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="300"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        New Launch
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="350"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Plus Size
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="400"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#section-girls">
-      <span>
-        Suit Sets
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="450"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Kurta Sets
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="500"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Co-Ord Sets
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="550"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#section-girls">
-      <span>
-        Kurtas &amp; Kurtis
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="600"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Velvets
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="650"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#section-girls">
-      <span>
-        Nayam (Essentials)
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="700"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Comfort Daily
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="750"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#section-girls">
-      <span>
-        NEW UPTO 50% OFF
-</span>
-    </a>
-    </div></div><div class="sliderule__wrapper">
-    <div class="sliderow"
-      role="button"
-      data-animates="0"
-      data-animation="drawer-items-fade"
-      data-animation-delay="800"
-      data-animation-duration="500">
-      <a class="sliderow__title" href="#">
-      <span>
-        Bottomwear
-</span>
-    </a>
-    </div></div></div><style>
+              <div class="drawer__main-menu">
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('sale');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('sale');">
+          <span style="color:#d4af37; font-weight:800;">🔥 DIWALI MUBARAK SALE (UPTO 80% OFF)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('new-launch');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('new-launch');">
+          <span>✨ New Launch Collection (25 Items)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('plus-size');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('plus-size');">
+          <span>👗 Plus Size & All Sizes</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('suit-sets');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('suit-sets');">
+          <span>👑 Suit Sets & Anarkalis (₹999)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('kurtis');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('kurtis');">
+          <span>🌸 Kurtas &amp; Kurtis (₹999)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('shoes');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('shoes');">
+          <span>👟 Shoes Collection (Nike, Adidas, Puma, Converse)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('tshirts');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('tshirts');">
+          <span>👕 T-Shirts, Hoodies &amp; Winter Collection</span>
+        </a>
+      </div>
+    </div>
+    <div class="sliderule__wrapper">
+      <div class="sliderow" role="button" onclick="navigateToCategory('bottomwear');">
+        <a class="sliderow__title" href="javascript:void(0)" onclick="navigateToCategory('bottomwear');">
+          <span>👖 Bottomwear, Pants &amp; Palazzos</span>
+        </a>
+      </div>
+    </div>
+  </div><style>
   @media only screen and (min-width: 768px) {
     .menu_image_box{
     display:none;
@@ -5266,7 +5228,7 @@ img.drawer_logo {
     
     
     <!-- Tab 0: Girls Wear (New Launch & Bestsellers Combined) -->
-    <div class="tab-content tab-content-0 current" id="tab--collection_girls">
+    <div class="tab-content tab-content-0 current" id="section-girls" data-tab-id="tab--collection_girls">
       <div class="grid-container">
         <div class="grid-outer">
           <div id="tab-girls-grid" class="uf-grid-4">
@@ -17872,31 +17834,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     <button type="button" onclick="closeProductModal();" style="position:absolute; top:12px; right:14px; z-index:10; background:#f5f3ef; border:none; width:34px; height:34px; border-radius:50%; font-size:22px; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">&times;</button>
     
     <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:22px;" class="uf-pm-grid">
-      <!-- Left: Amazon-Style Multi-Angle & Folded Gallery Stage -->
+      <!-- Left: Amazon-Style Multi-Angle Gallery (Matching User Uploaded Image Layout) -->
       <div>
-        <!-- Main Product Stage (Amazon Style Viewport) -->
-        <div style="position:relative; aspect-ratio:3/4; border-radius:12px; background:#f8f7f4; border:1px solid #ede8de; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 18px rgba(0,0,0,0.06); overflow:hidden;">
-          
-          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.22s ease;" />
+        <div class="uf-amazon-gallery-wrap" style="display:flex; gap:10px; align-items:flex-start;">
+          <!-- Vertical Amazon Thumbnail Strip with curved rounded cards -->
+          <div id="pmThumbnailsWrap" style="display:flex; flex-direction:column; gap:8px; width:54px; flex-shrink:0;">
+            <!-- Rendered dynamically -->
+          </div>
 
-          <span style="position:absolute; top:12px; left:12px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase; z-index:3;">UNIQUE FASHION</span>
-          
-          <!-- Current Angle Badge: FRONT / SIDE (OUTDOOR) / BACK / DETAIL / FOLDED -->
-          <span id="pmAngleBadge" style="position:absolute; bottom:12px; left:12px; background:rgba(75,0,6,0.9); color:#fff; font-size:10px; font-weight:800; padding:5px 10px; border-radius:6px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(4px); box-shadow:0 2px 8px rgba(0,0,0,0.3); z-index:3;">1. FRONT VIEW</span>
+          <!-- Main High-Resolution Photo Viewport -->
+          <div style="flex:1; position:relative; aspect-ratio:3/4; border-radius:12px; overflow:hidden; background:#f8f7f4; border:1px solid #ede8de; box-shadow:0 4px 18px rgba(0,0,0,0.06);">
+            <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease;" />
 
-          <!-- Image Counter Badge (1 / 5) -->
-          <span id="pmImageCounter" style="position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px; backdrop-filter:blur(2px); z-index:3;">1 / 5</span>
+            <span style="position:absolute; top:12px; left:12px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase; z-index:3;">UNIQUE FASHION</span>
 
-          <!-- Prev Button -->
-          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❮</button>
+            <!-- Angle Badge -->
+            <span id="pmAngleBadge" style="position:absolute; bottom:12px; left:12px; background:rgba(0,0,0,0.78); color:#fff; font-size:10px; font-weight:700; padding:4px 8px; border-radius:6px; letter-spacing:0.5px; text-transform:uppercase; backdrop-filter:blur(3px); z-index:3;">FRONT VIEW</span>
 
-          <!-- Next Button -->
-          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❯</button>
-        </div>
+            <!-- Counter (1 / 6) -->
+            <span id="pmImageCounter" style="position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px; backdrop-filter:blur(2px); z-index:3;">1 / 6</span>
 
-        <!-- 5 Amazon-Style Thumbnails: Front, Side Outdoor, Back, Fabric Zoom, Folded Look -->
-        <div id="pmThumbnailsWrap" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; margin-top:10px;">
-          <!-- Dynamically generated Amazon 5-view thumbnails -->
+            <!-- Prev / Next Controls -->
+            <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:32px; height:32px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:4;">❮</button>
+            <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:32px; height:32px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:4;">❯</button>
+          </div>
         </div>
 
         <div style="display:flex; justify-content:space-around; margin-top:12px; font-size:11px; color:#555; font-weight:600;">
@@ -18152,79 +18113,55 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Enhanced zero-scroll Add to Cart
-  // Product Quick View / Details Modal Logic with Amazon-Style 5 Photos:
-  // 1. Front View (Studio)
-  // 2. Side Angle (Outdoor / Changed Background)
-  // 3. Back View (Fit & Cut)
-  // 4. Fabric Zoom (Close-up Detail)
-  // 5. Folded Look (Neatly Folded Flat-lay like Amazon)
+  // Product Quick View Modal Logic with 6 Amazon-Style Angles of the SAME Product Photo
   let currentPmProduct = null;
   let currentPmSize = 'M';
   let currentPmQty = 1;
   let currentPmImageIdx = 0;
-  let currentPmAmazonViews = [];
 
-  // Amazon-Style 5-View Sets per Category
-  const AMAZON_VIEW_SETS = {
-    // 1. GIRLS ETHNIC WEAR (Kurtis, Suits, Anarkalis)
-    ethnic: [
-      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Side Angle', badge: '2. Side Angle (Outdoor Background)', sub: 'Side Flare', url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Back View', badge: '3. Back View (Drape & Fit)', sub: 'Rear Look', url: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Detail Zoom', badge: '4. Fabric & Embroidery Zoom', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Folded Look', badge: '5. Folded Product (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=80' }
-    ],
-    // 2. GIRLS TOPS & WESTERN
-    top: [
-      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Side Angle', badge: '2. Side Angle (Street Background)', sub: 'Profile', url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Back View', badge: '3. Back View (Cut & Fit)', sub: 'Rear Look', url: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Detail Zoom', badge: '4. Collar & Stitch Detail', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Folded Look', badge: '5. Folded Shirt (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80' }
-    ],
-    // 3. BRAND SHOES & SNEAKERS
-    shoes: [
-      { label: 'Front / 3/4', badge: '1. Front / 3/4 Angle (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Side Profile', badge: '2. Side Profile (Outdoor Background)', sub: 'Side View', url: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Back Heel', badge: '3. Back Heel & Collar View', sub: 'Rear View', url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Laces Zoom', badge: '4. Laces & Tongue Detail Zoom', sub: 'Top Laces', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Sole / In-Box', badge: '5. Sole Tread & In-Box Display', sub: 'Sole / Box', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
-    ],
-    // 4. T-SHIRTS & HOODIES / WINTER
-    tshirt: [
-      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Side Angle', badge: '2. Side Angle (Street Background)', sub: 'Profile', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Back View', badge: '3. Back View (Rear Silhouette)', sub: 'Back Look', url: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Fabric Zoom', badge: '4. Chest Print & Fabric Texture', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Folded Look', badge: '5. Folded T-Shirt (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80' }
-    ]
-  };
-
-  function getAmazonViews(name, mainImage) {
-    const n = (name || '').toLowerCase();
-    let set = AMAZON_VIEW_SETS.ethnic;
-
-    if (/shoe|sneaker|nike|adidas|puma|converse|runner|boot|footwear/i.test(n)) {
-      set = AMAZON_VIEW_SETS.shoes;
-    } else if (/tee|t-shirt|hoodie|jacket|sweater|sweatshirt|pullover|coat|fleece/i.test(n)) {
-      set = AMAZON_VIEW_SETS.tshirt;
-    } else if (/top|crop|shirt|blouse/i.test(n)) {
-      set = AMAZON_VIEW_SETS.top;
+  // 6 Photoshoot Angles matching Amazon product listing:
+  const PRODUCT_AMAZON_ANGLES = [
+    {
+      name: 'Full Front Pose',
+      label: 'Front',
+      badge: '1. Full Front Pose',
+      style: 'object-position: center center; transform: scale(1);'
+    },
+    {
+      name: '3/4 Side Angle Pose',
+      label: '3/4 Side',
+      badge: '2. 3/4 Side Angle View',
+      style: 'object-position: 78% center; transform: scale(1.1);'
+    },
+    {
+      name: 'Bottom Hem & Shoes Zoom',
+      label: 'Bottom Zoom',
+      badge: '3. Bottom Hem & Shoes Zoom',
+      style: 'object-position: center 96%; transform: scale(1.38);'
+    },
+    {
+      name: 'Waist & Fit Front View',
+      label: 'Waist Fit',
+      badge: '4. Waist & Upper Fit View',
+      style: 'object-position: center 25%; transform: scale(1.22);'
+    },
+    {
+      name: 'Rear / Side Profile Pose',
+      label: 'Rear Side',
+      badge: '5. Rear / Side Profile View',
+      style: 'object-position: 22% center; transform: scale(1.12);'
+    },
+    {
+      name: 'Full Length Fit Pose',
+      label: 'Full Fit',
+      badge: '6. Full Length Fit Pose',
+      style: 'object-position: center center; transform: scale(1.04);'
     }
-
-    return set.map((item, idx) => {
-      // Photo 1 is ALWAYS the product's primary photo
-      if (idx === 0 && mainImage) {
-        return { ...item, url: mainImage };
-      }
-      return item;
-    });
-  }
+  ];
 
   function openProductModal(name, price, image) {
     currentPmProduct = { name: name, price: price, image: image };
     currentPmQty = 1;
-    currentPmAmazonViews = getAmazonViews(name, image);
     currentPmImageIdx = 0;
 
     const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
@@ -18243,26 +18180,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const badgeEl = document.getElementById('pmAngleBadge');
 
     if (imgEl) {
-      imgEl.src = currentPmAmazonViews[0].url;
+      imgEl.src = image;
+      imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + PRODUCT_AMAZON_ANGLES[0].style);
       imgEl.style.opacity = '1';
     }
-    if (counterEl) counterEl.textContent = '1 / 5';
-    if (badgeEl) badgeEl.textContent = currentPmAmazonViews[0].badge;
+    if (counterEl) counterEl.textContent = '1 / 6';
+    if (badgeEl) badgeEl.textContent = PRODUCT_AMAZON_ANGLES[0].badge;
     if (titleEl) titleEl.textContent = name;
     if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
     if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
     if (discEl) discEl.textContent = '67% OFF';
     if (qtyEl) qtyEl.textContent = '1';
 
-    // Render 5 Amazon-Style Thumbnails
+    // Render Amazon Vertical Thumbnail Strip with rounded pill borders (just like uploaded screenshot!)
     if (thumbsWrap) {
-      thumbsWrap.innerHTML = currentPmAmazonViews.map((item, i) => 
-        '<div onclick="selectPmAmazonView(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; text-align:center;">' +
-          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8'); transition:all 0.2s ease; background:#f8f7f4;">' +
-            '<img src="' + item.url + '" alt="' + item.label + '" style="width:100%; height:100%; object-fit:cover; display:block;" />' +
-          '</div>' +
-          '<div class="uf-thumb-lbl" style="font-size:9.5px; font-weight:700; color:' + (i === 0 ? '#4b0006' : '#555') + '; margin-top:3px; text-transform:uppercase; letter-spacing:0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">' +
-            item.label +
+      thumbsWrap.innerHTML = PRODUCT_AMAZON_ANGLES.map((ang, i) => 
+        '<div onclick="selectPmAmazonAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; width:52px; height:68px; border-radius:12px; overflow:hidden; border:' + (i === 0 ? '2px solid #007185' : '1.5px solid #d5d9d9') + '; box-shadow:' + (i === 0 ? '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)' : 'none') + '; transition:all 0.2s ease; background:#ffffff; padding:2px; box-sizing:border-box;">' +
+          '<div style="width:100%; height:100%; border-radius:9px; overflow:hidden; background:#f8f7f4;">' +
+            '<img src="' + image + '" alt="' + ang.name + '" style="width:100%; height:100%; object-fit:cover; display:block; ' + ang.style + '" />' +
           '</div>' +
         '</div>'
       ).join('');
@@ -18280,63 +18215,51 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (modal) modal.style.display = 'flex';
   }
 
-  function selectPmAmazonView(index) {
-    if (!currentPmAmazonViews || index < 0 || index >= currentPmAmazonViews.length) return;
+  function selectPmAmazonAngle(index) {
+    if (index < 0 || index >= PRODUCT_AMAZON_ANGLES.length) return;
     currentPmImageIdx = index;
-    const item = currentPmAmazonViews[index];
+    const ang = PRODUCT_AMAZON_ANGLES[index];
 
     const imgEl = document.getElementById('pmImage');
     const counterEl = document.getElementById('pmImageCounter');
     const badgeEl = document.getElementById('pmAngleBadge');
 
-    if (imgEl) {
-      imgEl.style.opacity = '0.25';
+    if (imgEl && currentPmProduct) {
+      imgEl.style.opacity = '0.3';
       setTimeout(() => {
-        imgEl.src = item.url;
+        imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + ang.style);
         imgEl.style.opacity = '1';
-      }, 70);
+      }, 60);
     }
 
     if (counterEl) {
-      counterEl.textContent = (index + 1) + ' / ' + currentPmAmazonViews.length;
+      counterEl.textContent = (index + 1) + ' / ' + PRODUCT_AMAZON_ANGLES.length;
     }
     if (badgeEl) {
-      badgeEl.textContent = item.badge;
+      badgeEl.textContent = ang.badge;
     }
 
     document.querySelectorAll('.uf-pm-thumb').forEach((thumb, i) => {
-      const box = thumb.querySelector('div');
-      const lbl = thumb.querySelector('.uf-thumb-lbl');
       if (i === index) {
-        if (box) {
-          box.style.border = '2px solid #4b0006';
-          box.style.opacity = '1';
-          box.style.boxShadow = '0 2px 6px rgba(75,0,6,0.3)';
-        }
-        if (lbl) lbl.style.color = '#4b0006';
+        thumb.style.border = '2px solid #007185';
+        thumb.style.boxShadow = '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)';
+        thumb.classList.add('active');
       } else {
-        if (box) {
-          box.style.border = '1.5px solid #ede8de';
-          box.style.opacity = '0.8';
-          box.style.boxShadow = 'none';
-        }
-        if (lbl) lbl.style.color = '#555';
+        thumb.style.border = '1.5px solid #d5d9d9';
+        thumb.style.boxShadow = 'none';
+        thumb.classList.remove('active');
       }
     });
   }
 
-  // Alias
-  function selectPmAngle(index) {
-    selectPmAmazonView(index);
-  }
-  function selectPmGalleryImage(index) {
-    selectPmAmazonView(index);
-  }
+  // Aliases for compatibility
+  function selectPmAmazonView(index) { selectPmAmazonAngle(index); }
+  function selectPmAngle(index) { selectPmAmazonAngle(index); }
+  function selectPmGalleryImage(index) { selectPmAmazonAngle(index); }
 
   function navigatePmImage(direction) {
-    if (!currentPmAmazonViews || currentPmAmazonViews.length <= 1) return;
-    const nextIdx = (currentPmImageIdx + direction + currentPmAmazonViews.length) % currentPmAmazonViews.length;
-    selectPmAmazonView(nextIdx);
+    const nextIdx = (currentPmImageIdx + direction + PRODUCT_AMAZON_ANGLES.length) % PRODUCT_AMAZON_ANGLES.length;
+    selectPmAmazonAngle(nextIdx);
   }
 
   function selectPmSize(size, el) {
