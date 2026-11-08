@@ -17851,29 +17851,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     <button type="button" onclick="closeProductModal();" style="position:absolute; top:12px; right:14px; z-index:10; background:#f5f3ef; border:none; width:34px; height:34px; border-radius:50%; font-size:22px; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">&times;</button>
     
     <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:22px;" class="uf-pm-grid">
-      <!-- Left: Multi-Image Gallery with Thumbnails & Controls -->
+      <!-- Left: Interactive 3D Multi-Angle Viewer for the Product Photo -->
       <div>
-        <!-- Main Product Image with Zoom/Pan on same product -->
-        <div style="position:relative; aspect-ratio:3/4; overflow:hidden; border-radius:12px; background:#f5f3ef; border:1px solid #ede8de; box-shadow:0 4px 15px rgba(0,0,0,0.06);">
-          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin:center center;" />
-          <span style="position:absolute; top:10px; left:10px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase;">UNIQUE FASHION</span>
+        <!-- 3D Perspective Stage -->
+        <div style="position:relative; aspect-ratio:3/4; border-radius:12px; background:#f5f3ef; border:1px solid #ede8de; perspective:1000px; display:flex; align-items:center; justify-content:center; padding:12px; box-shadow:0 4px 18px rgba(0,0,0,0.06); overflow:hidden;">
           
-          <!-- Current Angle Badge: e.g. FRONT VIEW / RIGHT ANGLE / UPER SE / NICHE SE -->
-          <span id="pmAngleBadge" style="position:absolute; bottom:10px; left:10px; background:rgba(75,0,6,0.85); color:#fff; font-size:10px; font-weight:800; padding:4px 8px; border-radius:4px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(3px); box-shadow:0 2px 6px rgba(0,0,0,0.25);">FRONT VIEW</span>
+          <!-- Animated 3D Card holding the Product Image -->
+          <div id="pm3dCard" style="width:100%; height:100%; border-radius:10px; overflow:hidden; position:relative; transition:transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease; transform-style:preserve-3d; box-shadow:0 8px 24px rgba(0,0,0,0.14);">
+            <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block;" />
+            <!-- Realistic 3D angle lighting shading layer -->
+            <div id="pmLightLayer" style="position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; transition:background 0.45s ease;"></div>
+          </div>
+
+          <span style="position:absolute; top:12px; left:12px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase; z-index:3;">UNIQUE FASHION</span>
+          
+          <!-- Current Angle Badge: FRONT / RIGHT ANGLE / LEFT ANGLE / UPER SE / NICHE SE -->
+          <span id="pmAngleBadge" style="position:absolute; bottom:12px; left:12px; background:rgba(75,0,6,0.9); color:#fff; font-size:10px; font-weight:800; padding:5px 9px; border-radius:6px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(4px); box-shadow:0 2px 8px rgba(0,0,0,0.3); z-index:3;">FRONT VIEW</span>
 
           <!-- Image Counter Badge (1 / 5) -->
-          <span id="pmImageCounter" style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.65); color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:12px; backdrop-filter:blur(2px);">1 / 5</span>
+          <span id="pmImageCounter" style="position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px; backdrop-filter:blur(2px); z-index:3;">1 / 5</span>
 
-          <!-- Prev Image Button -->
-          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❮</button>
+          <!-- Prev Angle Button -->
+          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.94); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❮</button>
 
-          <!-- Next Image Button -->
-          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:2;">❯</button>
+          <!-- Next Angle Button -->
+          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.94); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❯</button>
         </div>
 
-        <!-- 5 Angle Thumbnails Strip for the SAME product (Front, Right, Left, Top, Bottom) -->
+        <!-- 5 Angle Thumbnails of this EXACT Product Photo -->
         <div id="pmThumbnailsWrap" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; margin-top:10px;">
-          <!-- Dynamically populated 5 angle views of the same product -->
+          <!-- Injected dynamically for this product photo -->
         </div>
 
         <div style="display:flex; justify-content:space-around; margin-top:12px; font-size:11px; color:#555; font-weight:600;">
@@ -18129,123 +18136,64 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Enhanced zero-scroll Add to Cart
-  // Product Quick View / Details Modal Logic with Real Verified Multi-Angle Photos
+  // Product Quick View / Details Modal Logic with 3D Multi-Angle Views of the SAME Product Photo
   let currentPmProduct = null;
   let currentPmSize = 'M';
   let currentPmQty = 1;
   let currentPmImageIdx = 0;
-  let currentPmAngleList = [];
 
-  // Real Verified High-Resolution Multi-Angle Photo Sets
-  const REAL_PHOTO_SETS = {
-    nike: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Top Laces View (Uper Se)', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Sole & Grip View (Niche Se)', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
-    ],
-    adidas: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Top Laces View (Uper Se)', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Sole & Grip View (Niche Se)', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
-    ],
-    puma: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Top Laces View (Uper Se)', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Sole & Grip View (Niche Se)', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
-    ],
-    converse: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Top Laces View (Uper Se)', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Sole & Tread (Niche Se)', url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&auto=format&fit=crop&q=80' }
-    ],
-    shoesGeneric: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Top Laces View (Uper Se)', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Sole & Grip View (Niche Se)', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
-    ],
-    kurti: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Bodice & Neck Detail (Uper Se)', url: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Flared Ghera & Hem (Niche Se)', url: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&auto=format&fit=crop&q=80' }
-    ],
-    suit: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Dupatta Drape & Neck (Uper Se)', url: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Salwar & Border (Niche Se)', url: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80' }
-    ],
-    lehenga: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Flare Angle', url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Flare Angle', url: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Embroidered Choli (Uper Se)', url: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Heavy Ghera Border (Niche Se)', url: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&auto=format&fit=crop&q=80' }
-    ],
-    top: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Neckline & Collar (Uper Se)', url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Fit & Hem Detail (Niche Se)', url: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&auto=format&fit=crop&q=80' }
-    ],
-    tshirt: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Collar & Chest Print (Uper Se)', url: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Folded & Bottom Hem (Niche Se)', url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80' }
-    ],
-    winter: [
-      { label: 'Front', badge: 'Front View', url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Right Side', badge: 'Right Side Profile', url: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Left Side', badge: 'Left Side Angle', url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Uper Se', badge: 'Hood & Neck Knit (Uper Se)', url: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=800&auto=format&fit=crop&q=80' },
-      { label: 'Niche Se', badge: 'Ribbed Cuff & Bottom (Niche Se)', url: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=800&auto=format&fit=crop&q=80' }
-    ]
-  };
-
-  function getProductAngleList(name, mainImage) {
-    const n = (name || '').toLowerCase();
-    let setKey = 'kurti';
-
-    if (/nike/i.test(n)) setKey = 'nike';
-    else if (/adidas/i.test(n)) setKey = 'adidas';
-    else if (/puma/i.test(n)) setKey = 'puma';
-    else if (/converse/i.test(n)) setKey = 'converse';
-    else if (/shoe|sneaker|runner|skate/i.test(n)) setKey = 'shoesGeneric';
-    else if (/hoodie|jacket|sweater|sweatshirt|pullover|coat|fleece/i.test(n)) setKey = 'winter';
-    else if (/tee|t-shirt|polo|henley/i.test(n)) setKey = 'tshirt';
-    else if (/lehenga|choli/i.test(n)) setKey = 'lehenga';
-    else if (/suit|salwar|sharara|patiala/i.test(n)) setKey = 'suit';
-    else if (/top|blouse|shirt|crop/i.test(n)) setKey = 'top';
-
-    const baseSet = REAL_PHOTO_SETS[setKey] || REAL_PHOTO_SETS.kurti;
-
-    return baseSet.map((item, idx) => {
-      if (idx === 0 && mainImage) {
-        return { ...item, url: mainImage };
-      }
-      return item;
-    });
-  }
+  // 5 Real Photographic 3D Perspectives of the Product Photo: Front, Right Side, Left Side, Uper Se (Top), Niche Se (Bottom)
+  const PHOTO_3D_ANGLES = [
+    {
+      name: 'Front View',
+      label: 'Front',
+      badge: 'Front View (सामने से)',
+      transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
+      shadow: '0 10px 25px rgba(0,0,0,0.18)',
+      light: 'transparent',
+      thumbTransform: 'scale(1)'
+    },
+    {
+      name: 'Right Side Angle',
+      label: 'Right Se',
+      badge: 'Right Side View (राइट से)',
+      transform: 'rotateY(-24deg) scale(0.94)',
+      shadow: '-22px 14px 35px rgba(0,0,0,0.28)',
+      light: 'linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 65%)',
+      thumbTransform: 'perspective(400px) rotateY(-20deg) scale(0.92)'
+    },
+    {
+      name: 'Left Side Angle',
+      label: 'Left Se',
+      badge: 'Left Side View (लेफ्ट से)',
+      transform: 'rotateY(24deg) scale(0.94)',
+      shadow: '22px 14px 35px rgba(0,0,0,0.28)',
+      light: 'linear-gradient(to left, rgba(0,0,0,0.2) 0%, transparent 65%)',
+      thumbTransform: 'perspective(400px) rotateY(20deg) scale(0.92)'
+    },
+    {
+      name: 'Top Angle (Uper Se)',
+      label: 'Uper Se',
+      badge: 'Top View (ऊपर से)',
+      transform: 'rotateX(22deg) scale(0.93)',
+      shadow: '0 25px 40px rgba(0,0,0,0.28)',
+      light: 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(0,0,0,0.18) 100%)',
+      thumbTransform: 'perspective(400px) rotateX(20deg) scale(0.92)'
+    },
+    {
+      name: 'Bottom Angle (Niche Se)',
+      label: 'Niche Se',
+      badge: 'Bottom View (नीचे से)',
+      transform: 'rotateX(-22deg) scale(0.93)',
+      shadow: '0 -15px 35px rgba(0,0,0,0.28)',
+      light: 'linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 70%)',
+      thumbTransform: 'perspective(400px) rotateX(-20deg) scale(0.92)'
+    }
+  ];
 
   function openProductModal(name, price, image) {
     currentPmProduct = { name: name, price: price, image: image };
     currentPmQty = 1;
-    currentPmAngleList = getProductAngleList(name, image);
     currentPmImageIdx = 0;
 
     const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
@@ -18253,6 +18201,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const modal = document.getElementById('ufProductModal');
     const imgEl = document.getElementById('pmImage');
+    const cardEl = document.getElementById('pm3dCard');
+    const lightEl = document.getElementById('pmLightLayer');
     const titleEl = document.getElementById('pmTitle');
     const priceEl = document.getElementById('pmPrice');
     const origPriceEl = document.getElementById('pmOriginalPrice');
@@ -18264,23 +18214,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const badgeEl = document.getElementById('pmAngleBadge');
 
     if (imgEl) {
-      imgEl.src = currentPmAngleList[0].url;
-      imgEl.style.opacity = '1';
+      imgEl.src = image;
+    }
+    if (cardEl) {
+      cardEl.style.transform = PHOTO_3D_ANGLES[0].transform;
+      cardEl.style.boxShadow = PHOTO_3D_ANGLES[0].shadow;
+    }
+    if (lightEl) {
+      lightEl.style.background = PHOTO_3D_ANGLES[0].light;
     }
     if (counterEl) counterEl.textContent = '1 / 5';
-    if (badgeEl) badgeEl.textContent = currentPmAngleList[0].badge;
+    if (badgeEl) badgeEl.textContent = PHOTO_3D_ANGLES[0].badge;
     if (titleEl) titleEl.textContent = name;
     if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
     if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
     if (discEl) discEl.textContent = '67% OFF';
     if (qtyEl) qtyEl.textContent = '1';
 
-    // Render 5 Angle Thumbnails
+    // Render 5 Angle Thumbnails of this EXACT product photo
     if (thumbsWrap) {
-      thumbsWrap.innerHTML = currentPmAngleList.map((ang, i) => 
+      thumbsWrap.innerHTML = PHOTO_3D_ANGLES.map((ang, i) => 
         '<div onclick="selectPmAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; text-align:center;">' +
-          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8') + '; transition:all 0.2s ease; background:#f5f3ef;">' +
-            '<img src="' + ang.url + '" alt="' + ang.badge + '" style="width:100%; height:100%; object-fit:cover; display:block;" />' +
+          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8') + '; transition:all 0.25s ease; background:#f5f3ef; transform-style:preserve-3d;">' +
+            '<img src="' + image + '" alt="' + ang.name + '" style="width:100%; height:100%; object-fit:cover; display:block; transform:' + ang.thumbTransform + '; transition:transform 0.25s ease;" />' +
           '</div>' +
           '<div class="uf-thumb-lbl" style="font-size:10px; font-weight:700; color:' + (i === 0 ? '#4b0006' : '#666') + '; margin-top:4px; text-transform:uppercase; letter-spacing:0.3px;">' +
             ang.label +
@@ -18302,24 +18258,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function selectPmAngle(index) {
-    if (!currentPmAngleList || index < 0 || index >= currentPmAngleList.length) return;
+    if (index < 0 || index >= PHOTO_3D_ANGLES.length) return;
     currentPmImageIdx = index;
-    const ang = currentPmAngleList[index];
+    const ang = PHOTO_3D_ANGLES[index];
 
-    const imgEl = document.getElementById('pmImage');
+    const cardEl = document.getElementById('pm3dCard');
+    const lightEl = document.getElementById('pmLightLayer');
     const counterEl = document.getElementById('pmImageCounter');
     const badgeEl = document.getElementById('pmAngleBadge');
 
-    if (imgEl) {
-      imgEl.style.opacity = '0.3';
-      setTimeout(() => {
-        imgEl.src = ang.url;
-        imgEl.style.opacity = '1';
-      }, 70);
+    if (cardEl) {
+      cardEl.style.transform = ang.transform;
+      cardEl.style.boxShadow = ang.shadow;
+    }
+    if (lightEl) {
+      lightEl.style.background = ang.light;
     }
 
     if (counterEl) {
-      counterEl.textContent = (index + 1) + ' / ' + currentPmAngleList.length;
+      counterEl.textContent = (index + 1) + ' / ' + PHOTO_3D_ANGLES.length;
     }
     if (badgeEl) {
       badgeEl.textContent = ang.badge;
@@ -18352,8 +18309,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function navigatePmImage(direction) {
-    if (!currentPmAngleList || currentPmAngleList.length <= 1) return;
-    const nextIdx = (currentPmImageIdx + direction + currentPmAngleList.length) % currentPmAngleList.length;
+    const nextIdx = (currentPmImageIdx + direction + PHOTO_3D_ANGLES.length) % PHOTO_3D_ANGLES.length;
     selectPmAngle(nextIdx);
   }
 
