@@ -3574,6 +3574,7 @@ jdgm.loadCSS(jdgm.CDN_BASE_URL+"widget_base.css"):jdgm.loadCSS(jdgm.CDN_BASE_URL
 
 <!-- ================= CUSTOM UNIQUE FASHION STYLES ================= -->
 
+
 <style id="uf-injected-styles">
   .tab-content {
     display: none !important;
@@ -3598,30 +3599,39 @@ jdgm.loadCSS(jdgm.CDN_BASE_URL+"widget_base.css"):jdgm.loadCSS(jdgm.CDN_BASE_URL
     background: #730009 !important;
     box-shadow: 0 4px 12px rgba(75,0,6,0.25);
   }
-  .uf-5-products-grid {
+  .uf-shoes-grid {
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+  }
+  .uf-shoes-grid.show-all-5 {
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    padding: 12px 0;
   }
   @media (max-width: 1200px) {
-    .uf-5-products-grid {
+    .uf-shoes-grid, .uf-shoes-grid.show-all-5 {
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
   }
   @media (max-width: 768px) {
-    .uf-5-products-grid {
+    .uf-shoes-grid, .uf-shoes-grid.show-all-5 {
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
   }
-  .viewallbtn a:hover {
+  @keyframes ufFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .viewallbtn button:hover, .viewallbtn a:hover {
     background: #730009 !important;
     transform: translateY(-2px);
     transition: all 0.2s ease;
   }
 </style>
+
 
 
 </head>
@@ -4285,7 +4295,7 @@ img.drawer_logo {
   </style>
   <div class="header__logo header__logo--image header__logo--has-transparent">
     <a class="header__logo__link" href="./" style="text-decoration:none; display:flex; align-items:center;">
-  <span style="font-family:'Montserrat',sans-serif; font-size:22px; font-weight:800; letter-spacing:2px; color:#4b0006; text-transform:uppercase; line-height:1;">UNIQUE FASHION</span>
+  <span style="font-family:'Montserrat',sans-serif; font-size:23px; font-weight:800; letter-spacing:2px; color:#d4af37; background:linear-gradient(135deg, #f3d47d 0%, #d4af37 40%, #aa771c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-transform:uppercase; line-height:1; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.15));">UNIQUE FASHION</span>
 </a>
   </div>
 
@@ -5186,6 +5196,7 @@ img.drawer_logo {
               <div class="grid__heading-actions">
                 <native-scrollbar class="tabs__nav">
                   
+  
   <ul class="tabs text-center" data-scrollbar data-scrollbar-slider>
     <li class="tab-link tab-link-0 current" data-tab="0" tabindex="0">
       <span>New launch</span>
@@ -5196,16 +5207,8 @@ img.drawer_logo {
     <li class="tab-link tab-link-2" data-tab="2" tabindex="0">
       <span>Shoes</span>
     </li>
-    <li class="tab-link tab-link-3" data-tab="3" tabindex="0">
-      <span>Shirts</span>
-    </li>
-    <li class="tab-link tab-link-4" data-tab="4" tabindex="0">
-      <span>T-Shirts</span>
-    </li>
-    <li class="tab-link tab-link-5" data-tab="5" tabindex="0">
-      <span>Pants</span>
-    </li>
   </ul>
+
 
 
                   <button
@@ -8263,12 +8266,13 @@ span.sizename {
 
           
     
-    <div class="tab-content tab-content-2" id="tab--collection_shoes" style="display:none;">
-      <div class="grid-container">
-        <div class="grid-outer">
-          <div class="uf-5-products-grid">
-            
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    
+  <div class="tab-content tab-content-2" id="tab--collection_shoes" style="display:none;">
+    <div class="grid-container">
+      <div class="grid-outer">
+        <div id="tab-shoes-grid" class="uf-shoes-grid">
+          
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=800&auto=format&fit=crop&q=80" alt="Classic Leather Loafers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8295,7 +8299,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&auto=format&fit=crop&q=80" alt="Urban Street Sneaker" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8322,7 +8326,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=800&auto=format&fit=crop&q=80" alt="Formal Brogue Shoes" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8349,7 +8353,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80" alt="Air Mesh Running Shoes" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8376,7 +8380,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div id="tab-shoe-card-5" class="grid-item product-item uf-5th-shoe" style="display:none; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=800&auto=format&fit=crop&q=80" alt="Leather Chelsea Boots" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8403,489 +8407,39 @@ span.sizename {
       </div>
     </div>
   
-          </div>
-          <div class="viewallbtn" style="text-align:center; margin-top:28px;">
-            <a style="color: #fff; background: #4b0006; padding: 12px 36px; border-radius: 30px; font-size: 13px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 14px rgba(75,0,6,0.25);" href="#section-shoes">
-              View All Shoes &rarr;
-            </a>
-          </div>
+        </div>
+        <div class="viewallbtn" style="text-align:center; margin-top:28px;">
+          <button type="button" id="btnTabAllShoes" onclick="showAllShoes(event);" style="color: #fff; background: #4b0006; border: none; padding: 12px 38px; border-radius: 30px; font-size: 13px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 14px rgba(75,0,6,0.25);">
+            View All Shoes (5) &rarr;
+          </button>
         </div>
       </div>
     </div>
-  
+  </div>
 
-    <div class="tab-content tab-content-3" id="tab--collection_shirts" style="display:none;">
-      <div class="grid-container">
-        <div class="grid-outer">
-          <div class="uf-5-products-grid">
-            
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80" alt="Pure Linen Slim Fit Casual Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Pure Linen Slim Fit Casual Shirt">
-            Pure Linen Slim Fit Casual Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,499</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Pure Linen Slim Fit Casual Shirt', 1499, 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1620012253295-c15c429f66bf?w=800&auto=format&fit=crop&q=80" alt="Classic White Oxford Formal Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic White Oxford Formal Shirt">
-            Classic White Oxford Formal Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,299</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,499</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic White Oxford Formal Shirt', 1299, 'https://images.unsplash.com/photo-1620012253295-c15c429f66bf?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80" alt="Vintage Plaid Flannel Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Vintage Plaid Flannel Shirt">
-            Vintage Plaid Flannel Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,399</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,699</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Vintage Plaid Flannel Shirt', 1399, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=800&auto=format&fit=crop&q=80" alt="Tropical Resort Cuban Collar Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          45% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Tropical Resort Cuban Collar Shirt">
-            Tropical Resort Cuban Collar Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,199</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,199</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Tropical Resort Cuban Collar Shirt', 1199, 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80" alt="Royal Navy Denim Casual Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Royal Navy Denim Casual Shirt">
-            Royal Navy Denim Casual Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,599</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,199</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Royal Navy Denim Casual Shirt', 1599, 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-          </div>
-          <div class="viewallbtn" style="text-align:center; margin-top:28px;">
-            <a style="color: #fff; background: #4b0006; padding: 12px 36px; border-radius: 30px; font-size: 13px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 14px rgba(75,0,6,0.25);" href="#section-shirts">
-              View All Shirts &rarr;
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="tab-content tab-content-4" id="tab--collection_t_shirts" style="display:none;">
-      <div class="grid-container">
-        <div class="grid-outer">
-          <div class="uf-5-products-grid">
-            
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80" alt="Heavyweight Boxy Crewneck T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Heavyweight Boxy Crewneck T-Shirt">
-            Heavyweight Boxy Crewneck T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹799</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,599</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Heavyweight Boxy Crewneck T-Shirt', 799, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80" alt="Classic Pique Polo T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic Pique Polo T-Shirt">
-            Classic Pique Polo T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹999</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic Pique Polo T-Shirt', 999, 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80" alt="Graphic Vintage Wash T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Graphic Vintage Wash T-Shirt">
-            Graphic Vintage Wash T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹849</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,699</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Graphic Vintage Wash T-Shirt', 849, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80" alt="Essential Supima Cotton Black Tee" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Essential Supima Cotton Black Tee">
-            Essential Supima Cotton Black Tee
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹699</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,399</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Essential Supima Cotton Black Tee', 699, 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80" alt="Premium Textured Waffle Tee" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Premium Textured Waffle Tee">
-            Premium Textured Waffle Tee
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹899</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,799</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Premium Textured Waffle Tee', 899, 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-          </div>
-          <div class="viewallbtn" style="text-align:center; margin-top:28px;">
-            <a style="color: #fff; background: #4b0006; padding: 12px 36px; border-radius: 30px; font-size: 13px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 14px rgba(75,0,6,0.25);" href="#section-tshirts">
-              View All T-Shirts &rarr;
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="tab-content tab-content-5" id="tab--collection_pants" style="display:none;">
-      <div class="grid-container">
-        <div class="grid-outer">
-          <div class="uf-5-products-grid">
-            
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80" alt="Stretch Slim Fit Chino Pants" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Stretch Slim Fit Chino Pants">
-            Stretch Slim Fit Chino Pants
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,699</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,299</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Stretch Slim Fit Chino Pants', 1699, 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop&q=80" alt="Pleated Formal Dress Trousers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          47% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Pleated Formal Dress Trousers">
-            Pleated Formal Dress Trousers
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,899</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,599</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Pleated Formal Dress Trousers', 1899, 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&auto=format&fit=crop&q=80" alt="Utility Cargo Jogger Pants" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          47% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Utility Cargo Jogger Pants">
-            Utility Cargo Jogger Pants
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,599</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Utility Cargo Jogger Pants', 1599, 'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80" alt="Classic Regular Fit Denim Jeans" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          49% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic Regular Fit Denim Jeans">
-            Classic Regular Fit Denim Jeans
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,799</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,499</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic Regular Fit Denim Jeans', 1799, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop&q=80" alt="Relaxed Cotton Linen Trousers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Relaxed Cotton Linen Trousers">
-            Relaxed Cotton Linen Trousers
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,499</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,899</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Relaxed Cotton Linen Trousers', 1499, 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-          </div>
-          <div class="viewallbtn" style="text-align:center; margin-top:28px;">
-            <a style="color: #fff; background: #4b0006; padding: 12px 36px; border-radius: 30px; font-size: 13px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 14px rgba(75,0,6,0.25);" href="#section-pants">
-              View All Pants &rarr;
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
 </tabs-component></section>
 
 
 <style> #shopify-section-template--28239539470580__section_tab_collections_jeQYQN .index-tab-collections .tabs-collections__head .grid__heading-holder {margin-bottom: 13px;} </style></div>
 
-<!-- ================= UNIQUE FASHION CATEGORY SHOWCASES (RIGHT BELOW TABS) ================= -->
-<div id="uf-immediate-showcases" style="background: #faf9f6; padding: 20px 0 40px; border-top: 1px solid #ede8de; border-bottom: 1px solid #ede8de;">
-  
-    <section id="section-shoes" class="uf-category-section" style="padding: 40px 16px 20px; max-width: 1440px; margin: 0 auto; font-family: Montserrat, sans-serif;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 20px; border-bottom: 2px solid #4b0006; padding-bottom: 10px;">
-        <div>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #ab8c52; text-transform: uppercase;">Unique Fashion</span>
-          <h2 style="font-size: 22px; font-weight: 700; color: #4b0006; margin: 2px 0 0; text-transform: uppercase; letter-spacing: 1px;">Shoes Collection</h2>
-        </div>
-        <a href="#section-shoes" style="color: #4b0006; font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">View Collection &rarr;</a>
-      </div>
 
-      <div class="uf-5-products-grid">
-        
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+<!-- ================= UNIQUE FASHION SHOES SHOWCASE (RIGHT BELOW NEW LAUNCH) ================= -->
+<div id="uf-immediate-showcases" style="background: #ffffff; padding: 30px 0 40px; border-top: 1px solid #ede8de; border-bottom: 1px solid #ede8de;">
+  <section id="section-shoes" class="uf-category-section" style="padding: 20px 16px; max-width: 1400px; margin: 0 auto; font-family: Montserrat, sans-serif;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 24px; border-bottom: 2px solid #d4af37; padding-bottom: 12px;">
+      <div>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 2.5px; color: #d4af37; text-transform: uppercase; display: block; margin-bottom: 4px;">UNIQUE FASHION</span>
+        <h2 style="font-size: 26px; font-weight: 800; color: #4b0006; margin: 0; text-transform: uppercase; letter-spacing: 1px;">SHOES COLLECTION</h2>
+      </div>
+      <a href="#section-shoes" onclick="showAllShoes(event);" style="color: #d4af37; font-size: 13px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.2s ease;">
+        VIEW COLLECTION &rarr;
+      </a>
+    </div>
+
+    <!-- 4 shoes visible in front, 5th shoe expands on click -->
+    <div id="shoes-grid" class="uf-shoes-grid">
+      
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=800&auto=format&fit=crop&q=80" alt="Classic Leather Loafers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8912,7 +8466,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&auto=format&fit=crop&q=80" alt="Urban Street Sneaker" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8939,7 +8493,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=800&auto=format&fit=crop&q=80" alt="Formal Brogue Shoes" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8966,7 +8520,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div  class="grid-item product-item " style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80" alt="Air Mesh Running Shoes" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -8993,7 +8547,7 @@ span.sizename {
       </div>
     </div>
   
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+    <div id="shoe-card-5" class="grid-item product-item uf-5th-shoe" style="display:none; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
       <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
         <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=800&auto=format&fit=crop&q=80" alt="Leather Chelsea Boots" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
         <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
@@ -9020,485 +8574,17 @@ span.sizename {
       </div>
     </div>
   
-      </div>
+    </div>
 
-      <div class="viewallbtn" style="text-align: center; margin: 28px 0 36px;">
-        <a style="color: #fff; background: #4b0006; padding: 12px 40px; border-radius: 25px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(75,0,6,0.25);" href="#section-shoes">
-          View All Shoes Collection &rarr;
-        </a>
-      </div>
-    </section>
-  
-  
-    <section id="section-shirts" class="uf-category-section" style="padding: 40px 16px 20px; max-width: 1440px; margin: 0 auto; font-family: Montserrat, sans-serif;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 20px; border-bottom: 2px solid #4b0006; padding-bottom: 10px;">
-        <div>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #ab8c52; text-transform: uppercase;">Unique Fashion</span>
-          <h2 style="font-size: 22px; font-weight: 700; color: #4b0006; margin: 2px 0 0; text-transform: uppercase; letter-spacing: 1px;">Shirts Collection</h2>
-        </div>
-        <a href="#section-shirts" style="color: #4b0006; font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">View Collection &rarr;</a>
-      </div>
-
-      <div class="uf-5-products-grid">
-        
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80" alt="Pure Linen Slim Fit Casual Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Pure Linen Slim Fit Casual Shirt">
-            Pure Linen Slim Fit Casual Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,499</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Pure Linen Slim Fit Casual Shirt', 1499, 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
+    <div class="viewallbtn" style="text-align: center; margin-top: 30px;">
+      <button type="button" id="btnViewAllShoes" onclick="showAllShoes(event);" style="color: #fff; background: #4b0006; border: none; padding: 13px 42px; border-radius: 30px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 4px 14px rgba(75,0,6,0.25); transition: all 0.2s ease;">
+        View All Shoes (5) &rarr;
+      </button>
     </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1620012253295-c15c429f66bf?w=800&auto=format&fit=crop&q=80" alt="Classic White Oxford Formal Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic White Oxford Formal Shirt">
-            Classic White Oxford Formal Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,299</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,499</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic White Oxford Formal Shirt', 1299, 'https://images.unsplash.com/photo-1620012253295-c15c429f66bf?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80" alt="Vintage Plaid Flannel Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Vintage Plaid Flannel Shirt">
-            Vintage Plaid Flannel Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,399</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,699</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Vintage Plaid Flannel Shirt', 1399, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=800&auto=format&fit=crop&q=80" alt="Tropical Resort Cuban Collar Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          45% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Tropical Resort Cuban Collar Shirt">
-            Tropical Resort Cuban Collar Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,199</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,199</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Tropical Resort Cuban Collar Shirt', 1199, 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80" alt="Royal Navy Denim Casual Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Royal Navy Denim Casual Shirt">
-            Royal Navy Denim Casual Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,599</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,199</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Royal Navy Denim Casual Shirt', 1599, 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-      </div>
-
-      <div class="viewallbtn" style="text-align: center; margin: 28px 0 36px;">
-        <a style="color: #fff; background: #4b0006; padding: 12px 40px; border-radius: 25px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(75,0,6,0.25);" href="#section-shirts">
-          View All Shirts Collection &rarr;
-        </a>
-      </div>
-    </section>
-  
-  
-    <section id="section-tshirts" class="uf-category-section" style="padding: 40px 16px 20px; max-width: 1440px; margin: 0 auto; font-family: Montserrat, sans-serif;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 20px; border-bottom: 2px solid #4b0006; padding-bottom: 10px;">
-        <div>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #ab8c52; text-transform: uppercase;">Unique Fashion</span>
-          <h2 style="font-size: 22px; font-weight: 700; color: #4b0006; margin: 2px 0 0; text-transform: uppercase; letter-spacing: 1px;">T-Shirts Collection</h2>
-        </div>
-        <a href="#section-tshirts" style="color: #4b0006; font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">View Collection &rarr;</a>
-      </div>
-
-      <div class="uf-5-products-grid">
-        
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80" alt="Heavyweight Boxy Crewneck T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Heavyweight Boxy Crewneck T-Shirt">
-            Heavyweight Boxy Crewneck T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹799</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,599</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Heavyweight Boxy Crewneck T-Shirt', 799, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80" alt="Classic Pique Polo T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic Pique Polo T-Shirt">
-            Classic Pique Polo T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹999</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic Pique Polo T-Shirt', 999, 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80" alt="Graphic Vintage Wash T-Shirt" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Graphic Vintage Wash T-Shirt">
-            Graphic Vintage Wash T-Shirt
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹849</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,699</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Graphic Vintage Wash T-Shirt', 849, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80" alt="Essential Supima Cotton Black Tee" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Essential Supima Cotton Black Tee">
-            Essential Supima Cotton Black Tee
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹699</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,399</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Essential Supima Cotton Black Tee', 699, 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80" alt="Premium Textured Waffle Tee" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          T-Shirt
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          50% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Premium Textured Waffle Tee">
-            Premium Textured Waffle Tee
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹899</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹1,799</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Premium Textured Waffle Tee', 899, 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-      </div>
-
-      <div class="viewallbtn" style="text-align: center; margin: 28px 0 36px;">
-        <a style="color: #fff; background: #4b0006; padding: 12px 40px; border-radius: 25px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(75,0,6,0.25);" href="#section-tshirts">
-          View All T-Shirts Collection &rarr;
-        </a>
-      </div>
-    </section>
-  
-  
-    <section id="section-pants" class="uf-category-section" style="padding: 40px 16px 20px; max-width: 1440px; margin: 0 auto; font-family: Montserrat, sans-serif;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 20px; border-bottom: 2px solid #4b0006; padding-bottom: 10px;">
-        <div>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #ab8c52; text-transform: uppercase;">Unique Fashion</span>
-          <h2 style="font-size: 22px; font-weight: 700; color: #4b0006; margin: 2px 0 0; text-transform: uppercase; letter-spacing: 1px;">Pants Collection</h2>
-        </div>
-        <a href="#section-pants" style="color: #4b0006; font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;">View Collection &rarr;</a>
-      </div>
-
-      <div class="uf-5-products-grid">
-        
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80" alt="Stretch Slim Fit Chino Pants" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Stretch Slim Fit Chino Pants">
-            Stretch Slim Fit Chino Pants
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,699</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,299</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Stretch Slim Fit Chino Pants', 1699, 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop&q=80" alt="Pleated Formal Dress Trousers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          47% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Pleated Formal Dress Trousers">
-            Pleated Formal Dress Trousers
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,899</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,599</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Pleated Formal Dress Trousers', 1899, 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&auto=format&fit=crop&q=80" alt="Utility Cargo Jogger Pants" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          47% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Utility Cargo Jogger Pants">
-            Utility Cargo Jogger Pants
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,599</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,999</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Utility Cargo Jogger Pants', 1599, 'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80" alt="Classic Regular Fit Denim Jeans" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          49% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Classic Regular Fit Denim Jeans">
-            Classic Regular Fit Denim Jeans
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,799</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹3,499</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Classic Regular Fit Denim Jeans', 1799, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-    <div class="grid-item product-item" style="display:flex; flex-direction:column; justify-content:space-between; background:#ffffff; border-radius:8px; overflow:hidden; border:1px solid #ede8de; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-      <div style="position:relative; overflow:hidden; aspect-ratio:3/4; background:#f7f7f7;">
-        <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop&q=80" alt="Relaxed Cotton Linen Trousers" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy">
-        <span style="position:absolute; top:8px; left:8px; background:#4b0006; color:#fff; font-size:10px; font-weight:700; padding:3px 7px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-          Pant
-        </span>
-        <span style="position:absolute; top:8px; right:8px; background:#15803d; color:#fff; font-size:10px; font-weight:700; padding:3px 6px; border-radius:4px;">
-          48% OFF
-        </span>
-      </div>
-      <div style="padding:12px; display:flex; flex-direction:column; flex:1; justify-content:space-between;">
-        <div>
-          <h3 style="font-size:13px; font-weight:600; color:#1a1a1a; margin:0 0 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="Relaxed Cotton Linen Trousers">
-            Relaxed Cotton Linen Trousers
-          </h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
-            <span style="font-size:16px; font-weight:800; color:#4b0006;">₹1,499</span>
-            <span style="font-size:12px; color:#888; text-decoration:line-through;">₹2,899</span>
-          </div>
-        </div>
-        <button type="button" class="uf-add-btn" onclick="addToCart('Relaxed Cotton Linen Trousers', 1499, 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop&q=80', event)" style="width:100%; background:#4b0006; color:#ffffff; border:none; padding:9px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:5px; transition:background 0.2s ease;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Cart
-        </button>
-      </div>
-    </div>
-  
-      </div>
-
-      <div class="viewallbtn" style="text-align: center; margin: 28px 0 36px;">
-        <a style="color: #fff; background: #4b0006; padding: 12px 40px; border-radius: 25px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(75,0,6,0.25);" href="#section-pants">
-          View All Pants Collection &rarr;
-        </a>
-      </div>
-    </section>
-  
+  </section>
 </div>
 <!-- ================= END CATEGORY SHOWCASES ================= -->
+
 <div id="shopify-section-template--28239539470580__section_rich_text_fDmzat" class="shopify-section"><!-- /sections/section-rich-text.liquid --><style data-shopify>#Rte--template--28239539470580__section_rich_text_fDmzat {
     --PT: 20px;
     --PB: 20px;
@@ -17677,6 +16763,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   function saveCart() {
     localStorage.setItem('uf_cart', JSON.stringify(cartItems));
     updateCartUI();
+  }
+
+  
+  function showAllShoes(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+    const shoe5 = document.getElementById('shoe-card-5');
+    const grid = document.getElementById('shoes-grid');
+    const btn = document.getElementById('btnViewAllShoes');
+    if (shoe5) {
+      shoe5.style.display = 'flex';
+      shoe5.style.animation = 'ufFadeIn 0.4s ease';
+    }
+    if (grid) {
+      grid.classList.add('show-all-5');
+    }
+    if (btn) {
+      btn.innerHTML = 'All 5 Shoes Displayed ✓';
+      btn.style.background = '#15803d';
+    }
+
+    const tabShoe5 = document.getElementById('tab-shoe-card-5');
+    const tabGrid = document.getElementById('tab-shoes-grid');
+    const tabBtn = document.getElementById('btnTabAllShoes');
+    if (tabShoe5) {
+      tabShoe5.style.display = 'flex';
+      tabShoe5.style.animation = 'ufFadeIn 0.4s ease';
+    }
+    if (tabGrid) {
+      tabGrid.classList.add('show-all-5');
+    }
+    if (tabBtn) {
+      tabBtn.innerHTML = 'All 5 Shoes Displayed ✓';
+      tabBtn.style.background = '#15803d';
+    }
+    return false;
   }
 
   function updateCartUI() {
