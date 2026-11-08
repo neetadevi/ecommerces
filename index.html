@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ab8c52">
 
-  <link rel="canonical" href="https://www.lakshita.com/">
+  <link rel="canonical" href="#">
 
 
 <!-- ======================= Broadcast Theme V6.1.0 ========================= -->
@@ -19,7 +19,7 @@
 
   <link rel="icon" type="image/png" href="//www.lakshita.com/cdn/shop/files/Favicon_2.png?crop=center&height=32&v=1783600880&width=32">
 
-<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><link rel="canonical" href="https://www.lakshita.com/"><!-- Title and description ================================================ -->
+<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><link rel="canonical" href="#"><!-- Title and description ================================================ -->
 
 
 <title>Unique Fashion | Shoes, Shirts, T-Shirts, Pants & Dresses</title>
@@ -29,7 +29,7 @@
 
 
 <meta property="og:site_name" content="Unique Fashion">
-<meta property="og:url" content="https://www.lakshita.com/">
+<meta property="og:url" content="https://neetadevi.github.io/ecommerces/">
 <meta property="og:title" content="Women&#39;s Ethnic &amp; Indo-Western Wear | India&#39;s Biggest Ethnic Wear Brand">
 <meta property="og:type" content="website">
 <meta property="og:description" content="Unique Fashion offers premium clothing, shoes, shirts, t-shirts, and pants offers timeless ethnic wear with Flattering Fits, Premium Fabrics, and Exquisite Embroidery, in size-inclusive Suit Sets, Co-ords, Dresses, and Shirts. Enjoy Same-day Dispatch and Free Shipping!"><meta property="og:image" content="http://www.lakshita.com/cdn/shop/files/Banner_5630d41b-e444-47cf-bbcd-e2e5cca0ca89.jpg?v=1759990381">
@@ -2282,6 +2282,27 @@
     document.documentElement.style.setProperty('--one-half', `${windowInnerHeight * 0.5}px`);
     document.documentElement.style.setProperty('--one-third', `${windowInnerHeight * 0.33}px`);
     document.documentElement.style.setProperty('--one-fifth', `${windowInnerHeight * 0.2}px`);
+
+  // Global Interceptor: Prevent any click from ever navigating to lakshita.com
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a');
+    if (a && a.href && a.href.includes('lakshita.com')) {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = a.href.toLowerCase();
+      if (href.includes('shoe') || href.includes('footwear')) {
+        const el = document.getElementById('section-shoes');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else if (href.includes('tshirt') || href.includes('winter') || href.includes('coat') || href.includes('jacket') || href.includes('shirt')) {
+        const el = document.getElementById('section-tshirts');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 600, behavior: 'smooth' });
+      }
+      return false;
+    }
+  }, true);
+
 </script>
 
 
@@ -2679,7 +2700,7 @@ header-component.header__wrapper.js__header__stuck .theme__header {
 
     
 
-a.sliderow__title[href="https://www.lakshita.com/collections/new-arrivals-upto-45"] span {
+a.sliderow__title[href="#section-girls"] span {
   color:#F7682A;
   font-weight:bold;
 }
@@ -2687,7 +2708,7 @@ a.th_wlc_position_relative svg{
       width: 23px;
 }
 
-    a.sliderow__title[href="https://www.lakshita.com/collections/new-arrivals-on-discount"] span {
+    a.sliderow__title[href="#section-girls"] span {
     color: #fd5270;
     font-weight:bold;
 } 
@@ -3743,19 +3764,19 @@ jdgm.loadCSS(jdgm.CDN_BASE_URL+"widget_base.css"):jdgm.loadCSS(jdgm.CDN_BASE_URL
 <div class="custom-announcement" data-custom-announcement>
   
     <div class="custom-announcement-item" style="background:#72285a;">
-      <a href="https://www.lakshita.com/collections/winter-wear" style="color:#fffffa">WINTER</a>
+      <a href="#section-tshirts" style="color:#fffffa">WINTER</a>
     </div>
   
     <div class="custom-announcement-item" style="background:#b40740;">
-      <a href="https://www.lakshita.com/collections/new-arrivals" style="color:#fffffa">NAYAM</a>
+      <a href="#section-girls" style="color:#fffffa">NAYAM</a>
     </div>
   
     <div class="custom-announcement-item" style="background:#145636;">
-      <a href="https://www.lakshita.com/collections/sale" style="color:#fffffa">UPTO 50%</a>
+      <a href="#section-girls" style="color:#fffffa">UPTO 50%</a>
     </div>
   
     <div class="custom-announcement-item" style="background:#998b0d;">
-      <a href="https://www.lakshita.com/collections/velvets" style="color:#fffffa">VELVETS</a>
+      <a href="#" style="color:#fffffa">VELVETS</a>
     </div>
   
 </div>
@@ -4350,7 +4371,7 @@ img.drawer_logo {
       </header>
 
       <div class="drawer__body">
-        <a href="https://www.lakshita.com/collections/lakshita-jewellery">
+        <a href="#">
         <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&auto=format&fit=crop&q=80" style="width:100%;">
         </a>
          <img src="" style="width: 100%;">
@@ -4364,7 +4385,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="250"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/new-arrivals">
+      <a class="sliderow__title" href="#section-girls">
       <span>
         DIWALI MUBARAK SALE
 </span>
@@ -4376,7 +4397,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="300"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/just-in">
+      <a class="sliderow__title" href="#">
       <span>
         New Launch
 </span>
@@ -4388,7 +4409,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="350"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/plus-size">
+      <a class="sliderow__title" href="#">
       <span>
         Plus Size
 </span>
@@ -4400,7 +4421,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="400"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/suit-sets">
+      <a class="sliderow__title" href="#section-girls">
       <span>
         Suit Sets
 </span>
@@ -4412,7 +4433,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="450"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/kurta-sets">
+      <a class="sliderow__title" href="#">
       <span>
         Kurta Sets
 </span>
@@ -4424,7 +4445,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="500"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/co-ord-sets">
+      <a class="sliderow__title" href="#">
       <span>
         Co-Ord Sets
 </span>
@@ -4436,7 +4457,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="550"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/kurtas-kurtis">
+      <a class="sliderow__title" href="#section-girls">
       <span>
         Kurtas &amp; Kurtis
 </span>
@@ -4448,7 +4469,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="600"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/velvets">
+      <a class="sliderow__title" href="#">
       <span>
         Velvets
 </span>
@@ -4460,7 +4481,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="650"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/new-arrivals">
+      <a class="sliderow__title" href="#section-girls">
       <span>
         Nayam (Essentials)
 </span>
@@ -4472,7 +4493,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="700"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/summer-styles">
+      <a class="sliderow__title" href="#">
       <span>
         Comfort Daily
 </span>
@@ -4484,7 +4505,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="750"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/new-arrivals-on-discount">
+      <a class="sliderow__title" href="#section-girls">
       <span>
         NEW UPTO 50% OFF
 </span>
@@ -4496,7 +4517,7 @@ img.drawer_logo {
       data-animation="drawer-items-fade"
       data-animation-delay="800"
       data-animation-duration="500">
-      <a class="sliderow__title" href="https://www.lakshita.com/collections/bottom-wear">
+      <a class="sliderow__title" href="#">
       <span>
         Bottomwear
 </span>
@@ -4778,7 +4799,7 @@ img.drawer_logo {
                     data-animation="cart-items-fade"
                     data-animation-duration="500"
                     data-animation-delay="250">
-                    <a href="https://www.lakshita.com/collections/trending-collection" class="btn btn--full btn--primary btn--outline">
+                    <a href="#" class="btn btn--full btn--primary btn--outline">
                       Shaadi Unique Fashion वाली
                     </a>
                   </div><div
@@ -4786,7 +4807,7 @@ img.drawer_logo {
                     data-animation="cart-items-fade"
                     data-animation-duration="500"
                     data-animation-delay="300">
-                    <a href="https://www.lakshita.com/collections/a-sunday" class="btn btn--full btn--primary btn--outline">
+                    <a href="#" class="btn btn--full btn--primary btn--outline">
                       A Sunday  Spring&#39;25
                     </a>
                   </div></div></div>
@@ -4849,7 +4870,7 @@ img.drawer_logo {
             
           ><a
                 class="hero__image frame__item"
-                href="https://www.lakshita.com/collections/new-arrivals"
+                href="#section-girls"
                 aria-label="Slide image"
               ><div class="image__hero__frame image-height image-height--mobile" style="--aspect-ratio: 2.1333333333333333;--aspect-ratio-mobile: 0.6818181818181818;">
   <div class="image__hero__pane" >
@@ -4877,7 +4898,7 @@ img.drawer_logo {
             
           ><a
                 class="hero__image frame__item"
-                href="https://www.lakshita.com/collections/new-arrivals"
+                href="#section-girls"
                 aria-label="Slide image"
               ><div class="image__hero__frame image-height image-height--mobile" style="--aspect-ratio: 2.1333333333333333;--aspect-ratio-mobile: 0.6818181818181818;">
   <div class="image__hero__pane" >
@@ -9841,7 +9862,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/suit-sets"
+          href="#section-girls"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -9871,7 +9892,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/kurta-sets"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -9901,7 +9922,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/co-ord-sets"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -9931,7 +9952,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/kurtas-kurtis"
+          href="#section-girls"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -9961,7 +9982,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/tops-and-tunics"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -9991,7 +10012,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/shirts-for-women"
+          href="#section-tshirts"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -10021,7 +10042,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/bottom-wear"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -10051,7 +10072,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/plus-size"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -10081,7 +10102,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/velvets"
+          href="#"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -10111,7 +10132,7 @@ img.drawer_logo {
         
 
         <a
-          href="https://www.lakshita.com/collections/coats-jackets"
+          href="#section-tshirts"
           class="custom-image-grid-card-template--28239539470580__custom_grid_image_F3Pcyd text-top"
           
         >
@@ -10254,7 +10275,7 @@ img.drawer_logo {
 >
 <div class="single-video-banner">
   
-    <a href="https://www.lakshita.com/collections/just-in">
+    <a href="#">
   
 
   <!-- Desktop Video -->
@@ -10394,7 +10415,7 @@ img.drawer_logo {
 
 <div class="ai-responsive-image-awe9fmk5uc0xkajhpyaigenblockef4e427cdn4n3" >
   
-    <a href="https://www.lakshita.com/collections/lakshita-jewellery" class="ai-responsive-image-link-awe9fmk5uc0xkajhpyaigenblockef4e427cdn4n3">
+    <a href="#" class="ai-responsive-image-link-awe9fmk5uc0xkajhpyaigenblockef4e427cdn4n3">
   
 
   <div class="ai-responsive-image-wrapper-awe9fmk5uc0xkajhpyaigenblockef4e427cdn4n3">
@@ -11207,14 +11228,14 @@ img.drawer_logo {
   </p>
   <p>
     With a proud 25-year legacy, Unique Fashion stands as one of North India&rsquo;s leading
-    <a href="https://www.lakshita.com">brands of ethnic wear for women</a>, known for redefining modern Indian fashion.
+    <a href="#">brands of ethnic wear for women</a>, known for redefining modern Indian fashion.
     Rooted in tradition yet designed for today&rsquo;s woman, Unique Fashion offers a versatile range of ethnic wear, fusion
     wear, and contemporary western styles&mdash;from effortless
-    <a href="https://www.lakshita.com/collections/kurta-sets">kurta sets for women</a> to refined
-    <a href="https://www.lakshita.com/collections/co-ord-sets">co-ord sets</a>,
-    <a href="https://www.lakshita.com/collections/suit-sets">suit sets</a>,
-    <a href="https://www.lakshita.com/collections/festive-wear">festive wear</a>,
-    <a href="https://www.lakshita.com/collections/trending-collection">wedding wear</a>, and contemporary fusion
+    <a href="#">kurta sets for women</a> to refined
+    <a href="#">co-ord sets</a>,
+    <a href="#section-girls">suit sets</a>,
+    <a href="#">festive wear</a>,
+    <a href="#">wedding wear</a>, and contemporary fusion
     styles.&nbsp;
   </p>
   <p>
@@ -11299,7 +11320,7 @@ img.drawer_logo {
     <h3>Bottoms&nbsp;</h3>
     <p>
       Thoughtfully tailored trousers, palazzos, churidars, and winter-ready styles designed to complement your kurta
-      sets, <a href="https://www.lakshita.com/collections/tunics-for-women">tunics</a>, and festive ensembles. Precision
+      sets, <a href="#">tunics</a>, and festive ensembles. Precision
       fits and elevated fabrics ensure comfort, structure, and polish in every look.
     </p>
     <h3>Vaara by Unique Fashion</h3>
@@ -11339,11 +11360,11 @@ img.drawer_logo {
     </p>
     <h2>The Road Ahead&nbsp;</h2>
     <p>
-      As a leading innovator in <a href="https://www.lakshita.com">ethnic wear for women</a>, Unique Fashion is embracing
+      As a leading innovator in <a href="#">ethnic wear for women</a>, Unique Fashion is embracing
       innovation to shape the future of Indian fashion. The brand is moving toward an AI-driven shopping experience
       across its website, app, and omnichannel platforms offering personalised style recommendations, smarter size
       guidance, and a seamless online shopping journey. With plans to begin international shipping, Unique Fashion aims to
-      bring its&nbsp;<a href="https://www.lakshita.com/collections/kurta-sets">premium kurta sets</a>, festive wear,
+      bring its&nbsp;<a href="#">premium kurta sets</a>, festive wear,
       wedding wear, and contemporary Indian silhouettes to women worldwide.<br />At the same time, Unique Fashion is preparing
       to launch a dedicated loyalty programme to reward its valued customers, expand into new categories, and experiment
       with modern silhouettes and design directions. By investing in the latest machinery and advanced in-house
@@ -11428,226 +11449,226 @@ img.drawer_logo {
       <p>
         <strong>Co-ord Sets Top Categories:-</strong>
 
-        <a href="https://www.lakshita.com/collections/cotton-co-ord-set">Cotton Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/printed-co-ord-set">Printed Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/co-ord-sets">Summer Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/party-wear-co-ord-set">Party Wear Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/casual-co-ord-set">Casual Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/plus-size-co-ord-set">Plus Size Co ord Set</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-co-ord-set">Festive Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/office-wear-co-ord-set">Office Wear Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-co-ord-set">Daily Wear Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/airport-look-co-ord-set">Airport Look Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/chanderi-co-ord-set">Chanderi Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/chiffon-co-ord-sets">Chiffon Co-ord Sets</a>
-        <a href="https://www.lakshita.com/collections/linen-co-ord-set">Linen Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/georgette-co-ord-set">Georgette Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/organza-co-ord-set">Organza Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/embroidered-co-ord-set">Embroidered Co-ord Sets</a>
+        <a href="#">Cotton Co-ord Sets</a>
+        <a href="#">Printed Co-ord Sets</a>
+        <a href="#">Summer Co-ord Sets</a>
+        <a href="#">Party Wear Co-ord Sets</a>
+        <a href="#">Casual Co-ord Sets</a>
+        <a href="#">Plus Size Co ord Set</a>
+        <a href="#">Festive Co-ord Sets</a>
+        <a href="#">Office Wear Co-ord Sets</a>
+        <a href="#">Daily Wear Co-ord Sets</a>
+        <a href="#">Airport Look Co-ord Sets</a>
+        <a href="#">Chanderi Co-ord Sets</a>
+        <a href="#">Chiffon Co-ord Sets</a>
+        <a href="#">Linen Co-ord Set</a>
+        <a href="#">Georgette Co-ord Set</a>
+        <a href="#">Organza Co-ord Set</a>
+        <a href="#">Embroidered Co-ord Sets</a>
       </p>
       <p>&nbsp;</p>
 
       <p>
         <strong>Kurta Sets Top Categories:-</strong>
 
-        <a href="https://www.lakshita.com/collections/cotton-kurta-set-for-women">Cotton Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/printed-kurta-set-for-women">Printed Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-kurta-set">Festive Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/party-wear-kurta-set">Party Wear Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/anarkali-kurta-set">Anarkali Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/embroidered-kurta-set-for-women">Embroidered Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/kurta-sets">Kurta Sets with Dupatta</a>
-        <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/office-wear-kurta-set">Office Wear Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-kurta-set">Casual Kurta Sets</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-kurta-set">Daily Wear Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/airport-wear-kurta-set">Airport Wear Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/chanderi-kurta-set">Chanderi Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/chiffon-kurta-set">Chiffon Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/linen-kurta-set">Linen Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/georgette-kurta-set">Georgette Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/organza-kurta-set">Organza Kurta Set</a>
+        <a href="#">Cotton Kurta Sets</a>
+        <a href="#">Printed Kurta Sets</a>
+        <a href="#">Festive Kurta Sets</a>
+        <a href="#">Party Wear Kurta Sets</a>
+        <a href="#">Anarkali Kurta Sets</a>
+        <a href="#">Embroidered Kurta Sets</a>
+        <a href="#">Kurta Sets with Dupatta</a>
+        <a href="#">Plus Size Kurta Set</a>
+        <a href="#">Office Wear Kurta Set</a>
+        <a href="#">Casual Kurta Sets</a>
+        <a href="#">Daily Wear Kurta Set</a>
+        <a href="#">Airport Wear Kurta Set</a>
+        <a href="#">Chanderi Kurta Set</a>
+        <a href="#">Chiffon Kurta Set</a>
+        <a href="#">Linen Kurta Set</a>
+        <a href="#">Georgette Kurta Set</a>
+        <a href="#">Organza Kurta Set</a>
       </p>
  <p>&nbsp;</p>
       <p>
         <strong>Suit Sets Top Categories:-</strong>
 
-        <a href="https://www.lakshita.com/collections/cotton-suits">Cotton Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-suits">Festive Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/party-wear-suits">Party Wear Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/embroidered-suits">Embroidered Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/anarkali-suits">Anarkali Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/printed-suits">Printed Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/plus-size-suits">Plus Size Suit</a>
-        <a href="https://www.lakshita.com/collections/office-wear-suits">Office Wear Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-suits">Casual Wear Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-suits">Daily Wear Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-suits">Travel Wear Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/chanderi-suits">Chanderi Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/chiffon-suits">Chiffon Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/linen-suits">Linen Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/georgette-suits">Georgette Suit Sets</a>
-        <a href="https://www.lakshita.com/collections/organza-suits">Organza Suit Sets</a>
+        <a href="#section-girls">Cotton Suit Sets</a>
+        <a href="#section-girls">Festive Suit Sets</a>
+        <a href="#section-girls">Party Wear Suit Sets</a>
+        <a href="#section-girls">Embroidered Suit Sets</a>
+        <a href="#section-girls">Anarkali Suit Sets</a>
+        <a href="#section-girls">Printed Suit Sets</a>
+        <a href="#section-girls">Plus Size Suit</a>
+        <a href="#section-girls">Office Wear Suit Sets</a>
+        <a href="#section-girls">Casual Wear Suit Sets</a>
+        <a href="#section-girls">Daily Wear Suit Sets</a>
+        <a href="#section-girls">Travel Wear Suit Sets</a>
+        <a href="#section-girls">Chanderi Suit Sets</a>
+        <a href="#section-girls">Chiffon Suit Sets</a>
+        <a href="#section-girls">Linen Suit Sets</a>
+        <a href="#section-girls">Georgette Suit Sets</a>
+        <a href="#section-girls">Organza Suit Sets</a>
       </p>
  <p>&nbsp;</p>
       <p>
         <strong>Kurtas &amp; Kurtis Top Categories:-</strong>
-        <a href="https://www.lakshita.com/collections/cotton-kurtis">Cotton Kurtis</a>
-        <a href="https://www.lakshita.com/collections/printed-kurtis">Printed Kurtis</a>
-        <a href="https://www.lakshita.com/collections/embroidered-kurtis">Embroidered Kurtis</a>
-        <a href="https://www.lakshita.com/collections/office-wear-kurtis">Office Wear Kurtis</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-kurtis">Casual Kurtis</a>
-        <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurti</a>
-        <a href="https://www.lakshita.com/collections/party-wear-kurti">Party Wear Kurti</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-kurtis">Festive Wear Kurtis</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-kurtis">Daily Wear Kurtis</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-kurtis">Travel Wear Kurtis</a>
-        <a href="https://www.lakshita.com/collections/chanderi-kurtis">Chanderi Kurtis</a>
-        <a href="https://www.lakshita.com/collections/chiffon-kurtis">Chiffon Kurtis</a>
-        <a href="https://www.lakshita.com/collections/linen-kurtis">Linen Kurtis</a>
-        <a href="https://www.lakshita.com/collections/georgette-kurtis">Georgette Kurtis</a>
-        <a href="https://www.lakshita.com/collections/organza-kurtis">Organza Kurtis</a>
-        <a href="https://www.lakshita.com/collections/cotton-kurtas">Cotton Kurtas</a>
-        <a href="https://www.lakshita.com/collections/printed-kurta">Printed Kurtas</a>
-        <a href="https://www.lakshita.com/collections/embroidered-kurta">Embroidered Kurtas</a>
-        <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurta</a>
-        <a href="https://www.lakshita.com/collections/party-wear-kurtas">Party Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-kurtas">Festive Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/office-wear-kurtas">Office Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-kurtas">Casual Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-kurtas">Daily Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-kurtas">Travel Wear Kurtas</a>
-        <a href="https://www.lakshita.com/collections/chanderi-kurtas">Chanderi Kurtas</a>
-        <a href="https://www.lakshita.com/collections/chiffon-kurtas">Chiffon Kurtas</a>
-        <a href="https://www.lakshita.com/collections/linen-kurtas">Linen Kurtas</a>
-        <a href="https://www.lakshita.com/collections/georgette-kurtas">Georgette Kurtas</a>
-        <a href="https://www.lakshita.com/collections/organza-kurtas">Organza Kurtas</a>
+        <a href="#section-girls">Cotton Kurtis</a>
+        <a href="#section-girls">Printed Kurtis</a>
+        <a href="#section-girls">Embroidered Kurtis</a>
+        <a href="#section-girls">Office Wear Kurtis</a>
+        <a href="#section-girls">Casual Kurtis</a>
+        <a href="#">Plus Size Kurti</a>
+        <a href="#section-girls">Party Wear Kurti</a>
+        <a href="#section-girls">Festive Wear Kurtis</a>
+        <a href="#section-girls">Daily Wear Kurtis</a>
+        <a href="#section-girls">Travel Wear Kurtis</a>
+        <a href="#section-girls">Chanderi Kurtis</a>
+        <a href="#section-girls">Chiffon Kurtis</a>
+        <a href="#section-girls">Linen Kurtis</a>
+        <a href="#section-girls">Georgette Kurtis</a>
+        <a href="#section-girls">Organza Kurtis</a>
+        <a href="#">Cotton Kurtas</a>
+        <a href="#">Printed Kurtas</a>
+        <a href="#">Embroidered Kurtas</a>
+        <a href="#">Plus Size Kurta</a>
+        <a href="#">Party Wear Kurtas</a>
+        <a href="#">Festive Wear Kurtas</a>
+        <a href="#">Office Wear Kurtas</a>
+        <a href="#">Casual Wear Kurtas</a>
+        <a href="#">Daily Wear Kurtas</a>
+        <a href="#">Travel Wear Kurtas</a>
+        <a href="#">Chanderi Kurtas</a>
+        <a href="#">Chiffon Kurtas</a>
+        <a href="#">Linen Kurtas</a>
+        <a href="#">Georgette Kurtas</a>
+        <a href="#">Organza Kurtas</a>
       </p>
  <p>&nbsp;</p>
       <p>
         <strong>Tops, Tunics &amp; Shirts Top Categories:-</strong>
-        <a href="https://www.lakshita.com/collections/tops">Tops for Women</a>
-        <a href="https://www.lakshita.com/collections/cotton-tops">Cotton Tops for Women</a>
-        <a href="https://www.lakshita.com/collections/printed-tops">Printed Tops for Women</a>
-        <a href="https://www.lakshita.com/collections/party-wear-tops">Party Wear Tops for Women</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-tops">Festive Wear Tops</a>
-        <a href="https://www.lakshita.com/collections/office-wear-tops">Office Wear Tops For Women</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-tops">Casual Wear Tops</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-tops">Daily Wear Tops</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-tops">Travel Wear Tops</a>
-        <a href="https://www.lakshita.com/collections/chanderi-tops">Chanderi Tops</a>
-        <a href="https://www.lakshita.com/collections/chiffon-tops">Chiffon Tops</a>
-        <a href="https://www.lakshita.com/collections/linen-tops">Linen Tops</a>
-        <a href="https://www.lakshita.com/collections/georgette-tops">Georgette Tops</a>
-        <a href="https://www.lakshita.com/collections/organza-tops">Organza Tops</a>
-        <a href="https://www.lakshita.com/collections/embroidered-tops">Embroidered Tops</a>
-        <a href="https://www.lakshita.com/collections/tunics-for-women">Tunics for Women</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-tunics">Casual Tunics for Women</a>
-        <a href="https://www.lakshita.com/collections/embroidered-tunics-for-women">Embroidered Tunics</a>
-        <a href="https://www.lakshita.com/collections/printed-tunics-for-women">Printed Tunics</a>
-        <a href="https://www.lakshita.com/collections/party-wear-tunics">Party Wear Tunics</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-tunics">Festive Wear Tunics</a>
-        <a href="https://www.lakshita.com/collections/office-wear-tunics">Office Wear Tunics</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-tunics">Daily Wear Tunics</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-tunics">Travel Wear Tunics</a>
-        <a href="https://www.lakshita.com/collections/cotton-tunic">Cotton Tunics</a>
-        <a href="https://www.lakshita.com/collections/chanderi-tunics">Chanderi Tunics</a>
-        <a href="https://www.lakshita.com/collections/chiffon-tunics">Chiffon Tunics</a>
-        <a href="https://www.lakshita.com/collections/linen-tunics">Linen Tunics</a>
-        <a href="https://www.lakshita.com/collections/georgette-tunics">Georgette Tunics</a>
-        <a href="https://www.lakshita.com/collections/organza-tunics">Organza Tunics</a>
-        <a href="https://www.lakshita.com/collections/shirts-for-women">Shirts for Women</a>
-        <a href="https://www.lakshita.com/collections/casual-wear-shirts">Casual Shirts for Women</a>
-        <a href="https://www.lakshita.com/collections/party-wear-shirts">Party Wear Shirts</a>
-        <a href="https://www.lakshita.com/collections/festive-wear-shirts">Festive Wear Shirts</a>
-        <a href="https://www.lakshita.com/collections/office-wear-shirts">Office Wear Shirts</a>
-        <a href="https://www.lakshita.com/collections/daily-wear-shirts">Daily Wear Shirts</a>
-        <a href="https://www.lakshita.com/collections/travel-wear-shirts">Travel Wear Shirts</a>
-        <a href="https://www.lakshita.com/collections/cotton-shirts">Cotton Shirts</a>
-        <a href="https://www.lakshita.com/collections/chanderi-shirts">Chanderi Shirts</a>
-        <a href="https://www.lakshita.com/collections/chiffon-shirts">Chiffon Shirts</a>
-        <a href="https://www.lakshita.com/collections/linen-shirts">Linen Shirts</a>
-        <a href="https://www.lakshita.com/collections/georgette-shirts">Georgette Shirts</a>
-        <a href="https://www.lakshita.com/collections/organza-shirts">Organza Shirts</a>
-        <a href="https://www.lakshita.com/collections/women-printed-shirts">Printed Shirts</a>
-        <a href="https://www.lakshita.com/collections/embroidered-shirts-for-women">Embroidered Shirts</a>
+        <a href="#">Tops for Women</a>
+        <a href="#">Cotton Tops for Women</a>
+        <a href="#">Printed Tops for Women</a>
+        <a href="#">Party Wear Tops for Women</a>
+        <a href="#">Festive Wear Tops</a>
+        <a href="#">Office Wear Tops For Women</a>
+        <a href="#">Casual Wear Tops</a>
+        <a href="#">Daily Wear Tops</a>
+        <a href="#">Travel Wear Tops</a>
+        <a href="#">Chanderi Tops</a>
+        <a href="#">Chiffon Tops</a>
+        <a href="#">Linen Tops</a>
+        <a href="#">Georgette Tops</a>
+        <a href="#">Organza Tops</a>
+        <a href="#">Embroidered Tops</a>
+        <a href="#">Tunics for Women</a>
+        <a href="#">Casual Tunics for Women</a>
+        <a href="#">Embroidered Tunics</a>
+        <a href="#">Printed Tunics</a>
+        <a href="#">Party Wear Tunics</a>
+        <a href="#">Festive Wear Tunics</a>
+        <a href="#">Office Wear Tunics</a>
+        <a href="#">Daily Wear Tunics</a>
+        <a href="#">Travel Wear Tunics</a>
+        <a href="#">Cotton Tunics</a>
+        <a href="#">Chanderi Tunics</a>
+        <a href="#">Chiffon Tunics</a>
+        <a href="#">Linen Tunics</a>
+        <a href="#">Georgette Tunics</a>
+        <a href="#">Organza Tunics</a>
+        <a href="#section-tshirts">Shirts for Women</a>
+        <a href="#section-tshirts">Casual Shirts for Women</a>
+        <a href="#section-tshirts">Party Wear Shirts</a>
+        <a href="#section-tshirts">Festive Wear Shirts</a>
+        <a href="#section-tshirts">Office Wear Shirts</a>
+        <a href="#section-tshirts">Daily Wear Shirts</a>
+        <a href="#section-tshirts">Travel Wear Shirts</a>
+        <a href="#section-tshirts">Cotton Shirts</a>
+        <a href="#section-tshirts">Chanderi Shirts</a>
+        <a href="#section-tshirts">Chiffon Shirts</a>
+        <a href="#section-tshirts">Linen Shirts</a>
+        <a href="#section-tshirts">Georgette Shirts</a>
+        <a href="#section-tshirts">Organza Shirts</a>
+        <a href="#section-tshirts">Printed Shirts</a>
+        <a href="#section-tshirts">Embroidered Shirts</a>
       </p>
  <p>&nbsp;</p>
       <p>
         <strong>Shop By Colour:-</strong>
-        <a href="https://www.lakshita.com/collections/green-co-ord-set">Green Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/blue-co-ord-set">Blue Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/black-co-ord-set">Black Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/pink-co-ord-set">Pink Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/red-co-ord-set">Red Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/yellow-co-ord-set">Yellow Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/purple-co-ord-set">Purple Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/maroon-co-ord-set">Maroon Co-ord Set</a>
-        <a href="https://www.lakshita.com/collections/green-kurta-set">Green Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/blue-kurta-set">Blue Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/black-kurta-set">Black Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/pink-kurta-set">Pink Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/red-kurta-set">Red Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/yellow-kurta-set">Yellow Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/purple-kurta-set">Purple Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/maroon-kurta-set">Maroon Kurta Set</a>
-        <a href="https://www.lakshita.com/collections/green-suits">Green Suits</a>
-        <a href="https://www.lakshita.com/collections/blue-suits">Blue Suits</a>
-        <a href="https://www.lakshita.com/collections/black-suits">Black Suits</a>
-        <a href="https://www.lakshita.com/collections/pink-suits">Pink Suits</a>
-        <a href="https://www.lakshita.com/collections/red-suits">Red Suits</a>
-        <a href="https://www.lakshita.com/collections/yellow-suits">Yellow Suits</a>
-        <a href="https://www.lakshita.com/collections/purple-suits">Purple Suits</a>
-        <a href="https://www.lakshita.com/collections/maroon-suits">Maroon Suits</a>
-        <a href="https://www.lakshita.com/collections/green-kurtis">Green Kurtis</a>
-        <a href="https://www.lakshita.com/collections/blue-kurtis">Blue Kurtis</a>
-        <a href="https://www.lakshita.com/collections/black-kurtis">Black Kurtis</a>
-        <a href="https://www.lakshita.com/collections/pink-kurtis">Pink Kurtis</a>
-        <a href="https://www.lakshita.com/collections/red-kurtis">Red Kurtis</a>
-        <a href="https://www.lakshita.com/collections/yellow-kurtis">Yellow Kurtis</a>
-        <a href="https://www.lakshita.com/collections/purple-kurtis">Purple Kurtis</a>
-        <a href="https://www.lakshita.com/collections/maroon-kurtis">Maroon Kurtis</a>
-        <a href="https://www.lakshita.com/collections/green-kurtas">Green Kurtas</a>
-        <a href="https://www.lakshita.com/collections/blue-kurtas">Blue Kurtas</a>
-        <a href="https://www.lakshita.com/collections/black-kurtas">Black Kurtas</a>
-        <a href="https://www.lakshita.com/collections/pink-kurtas">Pink Kurtas</a>
-        <a href="https://www.lakshita.com/collections/red-kurtas">Red Kurtas</a>
-        <a href="https://www.lakshita.com/collections/yellow-kurtas">Yellow Kurtas</a>
-        <a href="https://www.lakshita.com/collections/purple-kurtas">Purple Kurtas</a>
-        <a href="https://www.lakshita.com/collections/maroon-kurtas">Maroon Kurtas</a>
-        <a href="https://www.lakshita.com/collections/green-shirts">Green Shirts</a>
-        <a href="https://www.lakshita.com/collections/blue-shirts">Blue Shirts</a>
-        <a href="https://www.lakshita.com/collections/black-shirts">Black Shirts</a>
-        <a href="https://www.lakshita.com/collections/pink-shirts">Pink Shirts</a>
-        <a href="https://www.lakshita.com/collections/red-shirts">Red Shirts</a>
-        <a href="https://www.lakshita.com/collections/yellow-shirts">Yellow Shirts</a>
-        <a href="https://www.lakshita.com/collections/purple-shirts">Purple Shirts</a>
-        <a href="https://www.lakshita.com/collections/maroon-shirts">Maroon Shirts</a>
-        <a href="https://www.lakshita.com/collections/green-tunics">Green Tunics</a>
-        <a href="https://www.lakshita.com/collections/blue-tunics">Blue Tunics</a>
-        <a href="http://lakshita.com/collections/black-tunics">Black Tunics</a>
-        <a href="https://www.lakshita.com/collections/pink-tunics">Pink Tunics</a>
-        <a href="https://www.lakshita.com/collections/red-tunics">Red Tunics</a>
-        <a href="https://www.lakshita.com/collections/yellow-tunics">Yellow Tunics</a>
-        <a href="https://www.lakshita.com/collections/purple-tunics">Purple Tunics</a>
-        <a href="https://www.lakshita.com/collections/maroon-tunics">Maroon Tunics</a>
-        <a href="https://www.lakshita.com/collections/green-tops">Green Tops</a>
-        <a href="https://www.lakshita.com/collections/blue-tops">Blue Tops</a>
-        <a href="https://www.lakshita.com/collections/black-tops">Black Tops</a>
-        <a href="https://www.lakshita.com/collections/pink-tops">Pink Tops</a>
-        <a href="https://www.lakshita.com/collections/red-tops">Red Tops</a>
-        <a href="https://www.lakshita.com/collections/yellow-tops">Yellow Tops</a>
-        <a href="https://www.lakshita.com/collections/purple-tops">Purple Tops</a>
-        <a href="https://www.lakshita.com/collections/maroon-tops">Maroon Tops</a>
-        <a href="https://www.lakshita.com/collections/green-dresses">Green Dresses</a>
-        <a href="https://www.lakshita.com/collections/blue-dresses">Blue Dresses</a>
-        <a href="https://www.lakshita.com/collections/black-dresses">Black Dresses</a>
-        <a href="https://www.lakshita.com/collections/pink-dresses">Pink Dresses</a>
-        <a href="https://www.lakshita.com/collections/red-dresses">Red Dresses</a>
-        <a href="https://www.lakshita.com/collections/yellow-dresses">Yellow Dresses</a>
-        <a href="https://www.lakshita.com/collections/purple-dresses">Purple Dresses</a>
-        <a href="https://www.lakshita.com/collections/maroon-dresses">Maroon Dresses</a>
-        <a href="https://www.lakshita.com/collections/black-tunics">Black Tunics</a>
+        <a href="#">Green Co-ord Set</a>
+        <a href="#">Blue Co-ord Set</a>
+        <a href="#">Black Co-ord Set</a>
+        <a href="#">Pink Co-ord Set</a>
+        <a href="#">Red Co-ord Set</a>
+        <a href="#">Yellow Co-ord Set</a>
+        <a href="#">Purple Co-ord Set</a>
+        <a href="#">Maroon Co-ord Set</a>
+        <a href="#">Green Kurta Set</a>
+        <a href="#">Blue Kurta Set</a>
+        <a href="#">Black Kurta Set</a>
+        <a href="#">Pink Kurta Set</a>
+        <a href="#">Red Kurta Set</a>
+        <a href="#">Yellow Kurta Set</a>
+        <a href="#">Purple Kurta Set</a>
+        <a href="#">Maroon Kurta Set</a>
+        <a href="#section-girls">Green Suits</a>
+        <a href="#section-girls">Blue Suits</a>
+        <a href="#section-girls">Black Suits</a>
+        <a href="#section-girls">Pink Suits</a>
+        <a href="#section-girls">Red Suits</a>
+        <a href="#section-girls">Yellow Suits</a>
+        <a href="#section-girls">Purple Suits</a>
+        <a href="#section-girls">Maroon Suits</a>
+        <a href="#section-girls">Green Kurtis</a>
+        <a href="#section-girls">Blue Kurtis</a>
+        <a href="#section-girls">Black Kurtis</a>
+        <a href="#section-girls">Pink Kurtis</a>
+        <a href="#section-girls">Red Kurtis</a>
+        <a href="#section-girls">Yellow Kurtis</a>
+        <a href="#section-girls">Purple Kurtis</a>
+        <a href="#section-girls">Maroon Kurtis</a>
+        <a href="#">Green Kurtas</a>
+        <a href="#">Blue Kurtas</a>
+        <a href="#">Black Kurtas</a>
+        <a href="#">Pink Kurtas</a>
+        <a href="#">Red Kurtas</a>
+        <a href="#">Yellow Kurtas</a>
+        <a href="#">Purple Kurtas</a>
+        <a href="#">Maroon Kurtas</a>
+        <a href="#section-tshirts">Green Shirts</a>
+        <a href="#section-tshirts">Blue Shirts</a>
+        <a href="#section-tshirts">Black Shirts</a>
+        <a href="#section-tshirts">Pink Shirts</a>
+        <a href="#section-tshirts">Red Shirts</a>
+        <a href="#section-tshirts">Yellow Shirts</a>
+        <a href="#section-tshirts">Purple Shirts</a>
+        <a href="#section-tshirts">Maroon Shirts</a>
+        <a href="#">Green Tunics</a>
+        <a href="#">Blue Tunics</a>
+        <a href="#">Black Tunics</a>
+        <a href="#">Pink Tunics</a>
+        <a href="#">Red Tunics</a>
+        <a href="#">Yellow Tunics</a>
+        <a href="#">Purple Tunics</a>
+        <a href="#">Maroon Tunics</a>
+        <a href="#">Green Tops</a>
+        <a href="#">Blue Tops</a>
+        <a href="#">Black Tops</a>
+        <a href="#">Pink Tops</a>
+        <a href="#">Red Tops</a>
+        <a href="#">Yellow Tops</a>
+        <a href="#">Purple Tops</a>
+        <a href="#">Maroon Tops</a>
+        <a href="#section-girls">Green Dresses</a>
+        <a href="#section-girls">Blue Dresses</a>
+        <a href="#section-girls">Black Dresses</a>
+        <a href="#section-girls">Pink Dresses</a>
+        <a href="#section-girls">Red Dresses</a>
+        <a href="#section-girls">Yellow Dresses</a>
+        <a href="#section-girls">Purple Dresses</a>
+        <a href="#section-girls">Maroon Dresses</a>
+        <a href="#">Black Tunics</a>
       </p>
     </div>
   </div>
@@ -11755,14 +11776,14 @@ img.drawer_logo {
       </p>
       <p>
         With a proud 25-year legacy, Unique Fashion stands as one of North India&rsquo;s leading
-        <a href="https://www.lakshita.com">brands of ethnic wear for women</a>, known for redefining modern Indian
+        <a href="#">brands of ethnic wear for women</a>, known for redefining modern Indian
         fashion. Rooted in tradition yet designed for today&rsquo;s woman, Unique Fashion offers a versatile range of ethnic
         wear, fusion wear, and contemporary western styles&mdash;from effortless
-        <a href="https://www.lakshita.com/collections/kurta-sets">kurta sets for women</a> to refined
-        <a href="https://www.lakshita.com/collections/co-ord-sets">co-ord sets</a>,
-        <a href="https://www.lakshita.com/collections/suit-sets">suit sets</a>,
-        <a href="https://www.lakshita.com/collections/festive-wear">festive wear</a>,
-        <a href="https://www.lakshita.com/collections/trending-collection">wedding wear</a>, and contemporary fusion
+        <a href="#">kurta sets for women</a> to refined
+        <a href="#">co-ord sets</a>,
+        <a href="#section-girls">suit sets</a>,
+        <a href="#">festive wear</a>,
+        <a href="#">wedding wear</a>, and contemporary fusion
         styles.&nbsp;
       </p>
       <p>
@@ -11845,7 +11866,7 @@ img.drawer_logo {
       <h3>Bottoms&nbsp;</h3>
       <p>
         Thoughtfully tailored trousers, palazzos, churidars, and winter-ready styles designed to complement your kurta
-        sets, <a href="https://www.lakshita.com/collections/tunics-for-women">tunics</a>, and festive ensembles.
+        sets, <a href="#">tunics</a>, and festive ensembles.
         Precision fits and elevated fabrics ensure comfort, structure, and polish in every look.
       </p>
       <h3>Vaara by Unique Fashion</h3>
@@ -11885,11 +11906,11 @@ img.drawer_logo {
       </p>
       <h2>The Road Ahead&nbsp;</h2>
       <p>
-        As a leading innovator in <a href="https://www.lakshita.com">ethnic wear for women</a>, Unique Fashion is embracing
+        As a leading innovator in <a href="#">ethnic wear for women</a>, Unique Fashion is embracing
         innovation to shape the future of Indian fashion. The brand is moving toward an AI-driven shopping experience
         across its website, app, and omnichannel platforms offering personalised style recommendations, smarter size
         guidance, and a seamless online shopping journey. With plans to begin international shipping, Unique Fashion aims to
-        bring its&nbsp;<a href="https://www.lakshita.com/collections/kurta-sets">premium kurta sets</a>, festive wear,
+        bring its&nbsp;<a href="#">premium kurta sets</a>, festive wear,
         wedding wear, and contemporary Indian silhouettes to women worldwide.<br />At the same time, Unique Fashion is
         preparing to launch a dedicated loyalty programme to reward its valued customers, expand into new categories,
         and experiment with modern silhouettes and design directions. By investing in the latest machinery and advanced
@@ -11912,22 +11933,22 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/cotton-co-ord-set">Cotton Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/printed-co-ord-set">Printed Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/co-ord-sets">Summer Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/party-wear-co-ord-set">Party Wear Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/casual-co-ord-set">Casual Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/plus-size-co-ord-set">Plus Size Co ord Set</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-co-ord-set">Festive Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/office-wear-co-ord-set">Office Wear Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-co-ord-set">Daily Wear Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/airport-look-co-ord-set">Airport Look Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/chanderi-co-ord-set">Chanderi Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/chiffon-co-ord-sets">Chiffon Co-ord Sets</a>
-    <a href="https://www.lakshita.com/collections/linen-co-ord-set">Linen Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/georgette-co-ord-set">Georgette Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/organza-co-ord-set">Organza Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/embroidered-co-ord-set">Embroidered Co-ord Sets</a>
+    <a href="#">Cotton Co-ord Sets</a>
+    <a href="#">Printed Co-ord Sets</a>
+    <a href="#">Summer Co-ord Sets</a>
+    <a href="#">Party Wear Co-ord Sets</a>
+    <a href="#">Casual Co-ord Sets</a>
+    <a href="#">Plus Size Co ord Set</a>
+    <a href="#">Festive Co-ord Sets</a>
+    <a href="#">Office Wear Co-ord Sets</a>
+    <a href="#">Daily Wear Co-ord Sets</a>
+    <a href="#">Airport Look Co-ord Sets</a>
+    <a href="#">Chanderi Co-ord Sets</a>
+    <a href="#">Chiffon Co-ord Sets</a>
+    <a href="#">Linen Co-ord Set</a>
+    <a href="#">Georgette Co-ord Set</a>
+    <a href="#">Organza Co-ord Set</a>
+    <a href="#">Embroidered Co-ord Sets</a>
   </div>
 
   <button class="hompage_seo_accordion 6thacc">
@@ -11943,23 +11964,23 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/cotton-kurta-set-for-women">Cotton Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/printed-kurta-set-for-women">Printed Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-kurta-set">Festive Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/party-wear-kurta-set">Party Wear Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/anarkali-kurta-set">Anarkali Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/embroidered-kurta-set-for-women">Embroidered Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/kurta-sets">Kurta Sets with Dupatta</a>
-    <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/office-wear-kurta-set">Office Wear Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-kurta-set">Casual Kurta Sets</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-kurta-set">Daily Wear Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/airport-wear-kurta-set">Airport Wear Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/chanderi-kurta-set">Chanderi Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/chiffon-kurta-set">Chiffon Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/linen-kurta-set">Linen Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/georgette-kurta-set">Georgette Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/organza-kurta-set">Organza Kurta Set</a>
+    <a href="#">Cotton Kurta Sets</a>
+    <a href="#">Printed Kurta Sets</a>
+    <a href="#">Festive Kurta Sets</a>
+    <a href="#">Party Wear Kurta Sets</a>
+    <a href="#">Anarkali Kurta Sets</a>
+    <a href="#">Embroidered Kurta Sets</a>
+    <a href="#">Kurta Sets with Dupatta</a>
+    <a href="#">Plus Size Kurta Set</a>
+    <a href="#">Office Wear Kurta Set</a>
+    <a href="#">Casual Kurta Sets</a>
+    <a href="#">Daily Wear Kurta Set</a>
+    <a href="#">Airport Wear Kurta Set</a>
+    <a href="#">Chanderi Kurta Set</a>
+    <a href="#">Chiffon Kurta Set</a>
+    <a href="#">Linen Kurta Set</a>
+    <a href="#">Georgette Kurta Set</a>
+    <a href="#">Organza Kurta Set</a>
   </div>
 
   <button class="hompage_seo_accordion 3rdacc">
@@ -11975,22 +11996,22 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/cotton-suits">Cotton Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-suits">Festive Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/party-wear-suits">Party Wear Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/embroidered-suits">Embroidered Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/anarkali-suits">Anarkali Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/printed-suits">Printed Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/plus-size-suits">Plus Size Suit</a>
-    <a href="https://www.lakshita.com/collections/office-wear-suits">Office Wear Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-suits">Casual Wear Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-suits">Daily Wear Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-suits">Travel Wear Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/chanderi-suits">Chanderi Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/chiffon-suits">Chiffon Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/linen-suits">Linen Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/georgette-suits">Georgette Suit Sets</a>
-    <a href="https://www.lakshita.com/collections/organza-suits">Organza Suit Sets</a>
+    <a href="#section-girls">Cotton Suit Sets</a>
+    <a href="#section-girls">Festive Suit Sets</a>
+    <a href="#section-girls">Party Wear Suit Sets</a>
+    <a href="#section-girls">Embroidered Suit Sets</a>
+    <a href="#section-girls">Anarkali Suit Sets</a>
+    <a href="#section-girls">Printed Suit Sets</a>
+    <a href="#section-girls">Plus Size Suit</a>
+    <a href="#section-girls">Office Wear Suit Sets</a>
+    <a href="#section-girls">Casual Wear Suit Sets</a>
+    <a href="#section-girls">Daily Wear Suit Sets</a>
+    <a href="#section-girls">Travel Wear Suit Sets</a>
+    <a href="#section-girls">Chanderi Suit Sets</a>
+    <a href="#section-girls">Chiffon Suit Sets</a>
+    <a href="#section-girls">Linen Suit Sets</a>
+    <a href="#section-girls">Georgette Suit Sets</a>
+    <a href="#section-girls">Organza Suit Sets</a>
   </div>
 
   <button class="hompage_seo_accordion 4thacc">
@@ -12006,36 +12027,36 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/cotton-kurtis">Cotton Kurtis</a>
-    <a href="https://www.lakshita.com/collections/printed-kurtis">Printed Kurtis</a>
-    <a href="https://www.lakshita.com/collections/embroidered-kurtis">Embroidered Kurtis</a>
-    <a href="https://www.lakshita.com/collections/office-wear-kurtis">Office Wear Kurtis</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-kurtis">Casual Kurtis</a>
-    <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurti</a>
-    <a href="https://www.lakshita.com/collections/party-wear-kurti">Party Wear Kurti</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-kurtis">Festive Wear Kurtis</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-kurtis">Daily Wear Kurtis</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-kurtis">Travel Wear Kurtis</a>
-    <a href="https://www.lakshita.com/collections/chanderi-kurtis">Chanderi Kurtis</a>
-    <a href="https://www.lakshita.com/collections/chiffon-kurtis">Chiffon Kurtis</a>
-    <a href="https://www.lakshita.com/collections/linen-kurtis">Linen Kurtis</a>
-    <a href="https://www.lakshita.com/collections/georgette-kurtis">Georgette Kurtis</a>
-    <a href="https://www.lakshita.com/collections/organza-kurtis">Organza Kurtis</a>
-    <a href="https://www.lakshita.com/collections/cotton-kurtas">Cotton Kurtas</a>
-    <a href="https://www.lakshita.com/collections/printed-kurta">Printed Kurtas</a>
-    <a href="https://www.lakshita.com/collections/embroidered-kurta">Embroidered Kurtas</a>
-    <a href="https://www.lakshita.com/collections/plus-size-clothing">Plus Size Kurta</a>
-    <a href="https://www.lakshita.com/collections/party-wear-kurtas">Party Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-kurtas">Festive Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/office-wear-kurtas">Office Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-kurtas">Casual Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-kurtas">Daily Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-kurtas">Travel Wear Kurtas</a>
-    <a href="https://www.lakshita.com/collections/chanderi-kurtas">Chanderi Kurtas</a>
-    <a href="https://www.lakshita.com/collections/chiffon-kurtas">Chiffon Kurtas</a>
-    <a href="https://www.lakshita.com/collections/linen-kurtas">Linen Kurtas</a>
-    <a href="https://www.lakshita.com/collections/georgette-kurtas">Georgette Kurtas</a>
-    <a href="https://www.lakshita.com/collections/organza-kurtas">Organza Kurtas</a>
+    <a href="#section-girls">Cotton Kurtis</a>
+    <a href="#section-girls">Printed Kurtis</a>
+    <a href="#section-girls">Embroidered Kurtis</a>
+    <a href="#section-girls">Office Wear Kurtis</a>
+    <a href="#section-girls">Casual Kurtis</a>
+    <a href="#">Plus Size Kurti</a>
+    <a href="#section-girls">Party Wear Kurti</a>
+    <a href="#section-girls">Festive Wear Kurtis</a>
+    <a href="#section-girls">Daily Wear Kurtis</a>
+    <a href="#section-girls">Travel Wear Kurtis</a>
+    <a href="#section-girls">Chanderi Kurtis</a>
+    <a href="#section-girls">Chiffon Kurtis</a>
+    <a href="#section-girls">Linen Kurtis</a>
+    <a href="#section-girls">Georgette Kurtis</a>
+    <a href="#section-girls">Organza Kurtis</a>
+    <a href="#">Cotton Kurtas</a>
+    <a href="#">Printed Kurtas</a>
+    <a href="#">Embroidered Kurtas</a>
+    <a href="#">Plus Size Kurta</a>
+    <a href="#">Party Wear Kurtas</a>
+    <a href="#">Festive Wear Kurtas</a>
+    <a href="#">Office Wear Kurtas</a>
+    <a href="#">Casual Wear Kurtas</a>
+    <a href="#">Daily Wear Kurtas</a>
+    <a href="#">Travel Wear Kurtas</a>
+    <a href="#">Chanderi Kurtas</a>
+    <a href="#">Chiffon Kurtas</a>
+    <a href="#">Linen Kurtas</a>
+    <a href="#">Georgette Kurtas</a>
+    <a href="#">Organza Kurtas</a>
   </div>
 
   <button class="hompage_seo_accordion 5thacc">
@@ -12051,51 +12072,51 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/tops">Tops for Women</a>
-    <a href="https://www.lakshita.com/collections/cotton-tops">Cotton Tops for Women</a>
-    <a href="https://www.lakshita.com/collections/printed-tops">Printed Tops for Women</a>
-    <a href="https://www.lakshita.com/collections/party-wear-tops">Party Wear Tops for Women</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-tops">Festive Wear Tops</a>
-    <a href="https://www.lakshita.com/collections/office-wear-tops">Office Wear Tops For Women</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-tops">Casual Wear Tops</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-tops">Daily Wear Tops</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-tops">Travel Wear Tops</a>
-    <a href="https://www.lakshita.com/collections/chanderi-tops">Chanderi Tops</a>
-    <a href="https://www.lakshita.com/collections/chiffon-tops">Chiffon Tops</a>
-    <a href="https://www.lakshita.com/collections/linen-tops">Linen Tops</a>
-    <a href="https://www.lakshita.com/collections/georgette-tops">Georgette Tops</a>
-    <a href="https://www.lakshita.com/collections/organza-tops">Organza Tops</a>
-    <a href="https://www.lakshita.com/collections/embroidered-tops">Embroidered Tops</a>
-    <a href="https://www.lakshita.com/collections/tunics-for-women">Tunics for Women</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-tunics">Casual Tunics for Women</a>
-    <a href="https://www.lakshita.com/collections/embroidered-tunics-for-women">Embroidered Tunics</a>
-    <a href="https://www.lakshita.com/collections/printed-tunics-for-women">Printed Tunics</a>
-    <a href="https://www.lakshita.com/collections/party-wear-tunics">Party Wear Tunics</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-tunics">Festive Wear Tunics</a>
-    <a href="https://www.lakshita.com/collections/office-wear-tunics">Office Wear Tunics</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-tunics">Daily Wear Tunics</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-tunics">Travel Wear Tunics</a>
-    <a href="https://www.lakshita.com/collections/cotton-tunic">Cotton Tunics</a>
-    <a href="https://www.lakshita.com/collections/chanderi-tunics">Chanderi Tunics</a>
-    <a href="https://www.lakshita.com/collections/chiffon-tunics">Chiffon Tunics</a>
-    <a href="https://www.lakshita.com/collections/linen-tunics">Linen Tunics</a>
-    <a href="https://www.lakshita.com/collections/georgette-tunics">Georgette Tunics</a>
-    <a href="https://www.lakshita.com/collections/organza-tunics">Organza Tunics</a>
-    <a href="https://www.lakshita.com/collections/shirts-for-women">Shirts for Women</a>
-    <a href="https://www.lakshita.com/collections/casual-wear-shirts">Casual Shirts for Women</a>
-    <a href="https://www.lakshita.com/collections/party-wear-shirts">Party Wear Shirts</a>
-    <a href="https://www.lakshita.com/collections/festive-wear-shirts">Festive Wear Shirts</a>
-    <a href="https://www.lakshita.com/collections/office-wear-shirts">Office Wear Shirts</a>
-    <a href="https://www.lakshita.com/collections/daily-wear-shirts">Daily Wear Shirts</a>
-    <a href="https://www.lakshita.com/collections/travel-wear-shirts">Travel Wear Shirts</a>
-    <a href="https://www.lakshita.com/collections/cotton-shirts">Cotton Shirts</a>
-    <a href="https://www.lakshita.com/collections/chanderi-shirts">Chanderi Shirts</a>
-    <a href="https://www.lakshita.com/collections/chiffon-shirts">Chiffon Shirts</a>
-    <a href="https://www.lakshita.com/collections/linen-shirts">Linen Shirts</a>
-    <a href="https://www.lakshita.com/collections/georgette-shirts">Georgette Shirts</a>
-    <a href="https://www.lakshita.com/collections/organza-shirts">Organza Shirts</a>
-    <a href="https://www.lakshita.com/collections/women-printed-shirts">Printed Shirts</a>
-    <a href="https://www.lakshita.com/collections/embroidered-shirts-for-women">Embroidered Shirts</a>
+    <a href="#">Tops for Women</a>
+    <a href="#">Cotton Tops for Women</a>
+    <a href="#">Printed Tops for Women</a>
+    <a href="#">Party Wear Tops for Women</a>
+    <a href="#">Festive Wear Tops</a>
+    <a href="#">Office Wear Tops For Women</a>
+    <a href="#">Casual Wear Tops</a>
+    <a href="#">Daily Wear Tops</a>
+    <a href="#">Travel Wear Tops</a>
+    <a href="#">Chanderi Tops</a>
+    <a href="#">Chiffon Tops</a>
+    <a href="#">Linen Tops</a>
+    <a href="#">Georgette Tops</a>
+    <a href="#">Organza Tops</a>
+    <a href="#">Embroidered Tops</a>
+    <a href="#">Tunics for Women</a>
+    <a href="#">Casual Tunics for Women</a>
+    <a href="#">Embroidered Tunics</a>
+    <a href="#">Printed Tunics</a>
+    <a href="#">Party Wear Tunics</a>
+    <a href="#">Festive Wear Tunics</a>
+    <a href="#">Office Wear Tunics</a>
+    <a href="#">Daily Wear Tunics</a>
+    <a href="#">Travel Wear Tunics</a>
+    <a href="#">Cotton Tunics</a>
+    <a href="#">Chanderi Tunics</a>
+    <a href="#">Chiffon Tunics</a>
+    <a href="#">Linen Tunics</a>
+    <a href="#">Georgette Tunics</a>
+    <a href="#">Organza Tunics</a>
+    <a href="#section-tshirts">Shirts for Women</a>
+    <a href="#section-tshirts">Casual Shirts for Women</a>
+    <a href="#section-tshirts">Party Wear Shirts</a>
+    <a href="#section-tshirts">Festive Wear Shirts</a>
+    <a href="#section-tshirts">Office Wear Shirts</a>
+    <a href="#section-tshirts">Daily Wear Shirts</a>
+    <a href="#section-tshirts">Travel Wear Shirts</a>
+    <a href="#section-tshirts">Cotton Shirts</a>
+    <a href="#section-tshirts">Chanderi Shirts</a>
+    <a href="#section-tshirts">Chiffon Shirts</a>
+    <a href="#section-tshirts">Linen Shirts</a>
+    <a href="#section-tshirts">Georgette Shirts</a>
+    <a href="#section-tshirts">Organza Shirts</a>
+    <a href="#section-tshirts">Printed Shirts</a>
+    <a href="#section-tshirts">Embroidered Shirts</a>
   </div>
 
   <button class="hompage_seo_accordion 6thacc">
@@ -12111,79 +12132,79 @@ img.drawer_logo {
     </svg>
   </button>
   <div class="homepage_accordion_panel">
-    <a href="https://www.lakshita.com/collections/green-co-ord-set">Green Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/blue-co-ord-set">Blue Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/black-co-ord-set">Black Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/pink-co-ord-set">Pink Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/red-co-ord-set">Red Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/yellow-co-ord-set">Yellow Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/purple-co-ord-set">Purple Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/maroon-co-ord-set">Maroon Co-ord Set</a>
-    <a href="https://www.lakshita.com/collections/green-kurta-set">Green Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/blue-kurta-set">Blue Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/black-kurta-set">Black Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/pink-kurta-set">Pink Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/red-kurta-set">Red Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/yellow-kurta-set">Yellow Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/purple-kurta-set">Purple Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/maroon-kurta-set">Maroon Kurta Set</a>
-    <a href="https://www.lakshita.com/collections/green-suits">Green Suits</a>
-    <a href="https://www.lakshita.com/collections/blue-suits">Blue Suits</a>
-    <a href="https://www.lakshita.com/collections/black-suits">Black Suits</a>
-    <a href="https://www.lakshita.com/collections/pink-suits">Pink Suits</a>
-    <a href="https://www.lakshita.com/collections/red-suits">Red Suits</a>
-    <a href="https://www.lakshita.com/collections/yellow-suits">Yellow Suits</a>
-    <a href="https://www.lakshita.com/collections/purple-suits">Purple Suits</a>
-    <a href="https://www.lakshita.com/collections/maroon-suits">Maroon Suits</a>
-    <a href="https://www.lakshita.com/collections/green-kurtis">Green Kurtis</a>
-    <a href="https://www.lakshita.com/collections/blue-kurtis">Blue Kurtis</a>
-    <a href="https://www.lakshita.com/collections/black-kurtis">Black Kurtis</a>
-    <a href="https://www.lakshita.com/collections/pink-kurtis">Pink Kurtis</a>
-    <a href="https://www.lakshita.com/collections/red-kurtis">Red Kurtis</a>
-    <a href="https://www.lakshita.com/collections/yellow-kurtis">Yellow Kurtis</a>
-    <a href="https://www.lakshita.com/collections/purple-kurtis">Purple Kurtis</a>
-    <a href="https://www.lakshita.com/collections/maroon-kurtis">Maroon Kurtis</a>
-    <a href="https://www.lakshita.com/collections/green-kurtas">Green Kurtas</a>
-    <a href="https://www.lakshita.com/collections/blue-kurtas">Blue Kurtas</a>
-    <a href="https://www.lakshita.com/collections/black-kurtas">Black Kurtas</a>
-    <a href="https://www.lakshita.com/collections/pink-kurtas">Pink Kurtas</a>
-    <a href="https://www.lakshita.com/collections/red-kurtas">Red Kurtas</a>
-    <a href="https://www.lakshita.com/collections/yellow-kurtas">Yellow Kurtas</a>
-    <a href="https://www.lakshita.com/collections/purple-kurtas">Purple Kurtas</a>
-    <a href="https://www.lakshita.com/collections/maroon-kurtas">Maroon Kurtas</a>
-    <a href="https://www.lakshita.com/collections/green-shirts">Green Shirts</a>
-    <a href="https://www.lakshita.com/collections/blue-shirts">Blue Shirts</a>
-    <a href="https://www.lakshita.com/collections/black-shirts">Black Shirts</a>
-    <a href="https://www.lakshita.com/collections/pink-shirts">Pink Shirts</a>
-    <a href="https://www.lakshita.com/collections/red-shirts">Red Shirts</a>
-    <a href="https://www.lakshita.com/collections/yellow-shirts">Yellow Shirts</a>
-    <a href="https://www.lakshita.com/collections/purple-shirts">Purple Shirts</a>
-    <a href="https://www.lakshita.com/collections/maroon-shirts">Maroon Shirts</a>
-    <a href="https://www.lakshita.com/collections/green-tunics">Green Tunics</a>
-    <a href="https://www.lakshita.com/collections/blue-tunics">Blue Tunics</a>
-    <a href="http://lakshita.com/collections/black-tunics">Black Tunics</a>
-    <a href="https://www.lakshita.com/collections/pink-tunics">Pink Tunics</a>
-    <a href="https://www.lakshita.com/collections/red-tunics">Red Tunics</a>
-    <a href="https://www.lakshita.com/collections/yellow-tunics">Yellow Tunics</a>
-    <a href="https://www.lakshita.com/collections/purple-tunics">Purple Tunics</a>
-    <a href="https://www.lakshita.com/collections/maroon-tunics">Maroon Tunics</a>
-    <a href="https://www.lakshita.com/collections/green-tops">Green Tops</a>
-    <a href="https://www.lakshita.com/collections/blue-tops">Blue Tops</a>
-    <a href="https://www.lakshita.com/collections/black-tops">Black Tops</a>
-    <a href="https://www.lakshita.com/collections/pink-tops">Pink Tops</a>
-    <a href="https://www.lakshita.com/collections/red-tops">Red Tops</a>
-    <a href="https://www.lakshita.com/collections/yellow-tops">Yellow Tops</a>
-    <a href="https://www.lakshita.com/collections/purple-tops">Purple Tops</a>
-    <a href="https://www.lakshita.com/collections/maroon-tops">Maroon Tops</a>
-    <a href="https://www.lakshita.com/collections/green-dresses">Green Dresses</a>
-    <a href="https://www.lakshita.com/collections/blue-dresses">Blue Dresses</a>
-    <a href="https://www.lakshita.com/collections/black-dresses">Black Dresses</a>
-    <a href="https://www.lakshita.com/collections/pink-dresses">Pink Dresses</a>
-    <a href="https://www.lakshita.com/collections/red-dresses">Red Dresses</a>
-    <a href="https://www.lakshita.com/collections/yellow-dresses">Yellow Dresses</a>
-    <a href="https://www.lakshita.com/collections/purple-dresses">Purple Dresses</a>
-    <a href="https://www.lakshita.com/collections/maroon-dresses">Maroon Dresses</a>
-    <a href="https://www.lakshita.com/collections/black-tunics">Black Tunics</a>
+    <a href="#">Green Co-ord Set</a>
+    <a href="#">Blue Co-ord Set</a>
+    <a href="#">Black Co-ord Set</a>
+    <a href="#">Pink Co-ord Set</a>
+    <a href="#">Red Co-ord Set</a>
+    <a href="#">Yellow Co-ord Set</a>
+    <a href="#">Purple Co-ord Set</a>
+    <a href="#">Maroon Co-ord Set</a>
+    <a href="#">Green Kurta Set</a>
+    <a href="#">Blue Kurta Set</a>
+    <a href="#">Black Kurta Set</a>
+    <a href="#">Pink Kurta Set</a>
+    <a href="#">Red Kurta Set</a>
+    <a href="#">Yellow Kurta Set</a>
+    <a href="#">Purple Kurta Set</a>
+    <a href="#">Maroon Kurta Set</a>
+    <a href="#section-girls">Green Suits</a>
+    <a href="#section-girls">Blue Suits</a>
+    <a href="#section-girls">Black Suits</a>
+    <a href="#section-girls">Pink Suits</a>
+    <a href="#section-girls">Red Suits</a>
+    <a href="#section-girls">Yellow Suits</a>
+    <a href="#section-girls">Purple Suits</a>
+    <a href="#section-girls">Maroon Suits</a>
+    <a href="#section-girls">Green Kurtis</a>
+    <a href="#section-girls">Blue Kurtis</a>
+    <a href="#section-girls">Black Kurtis</a>
+    <a href="#section-girls">Pink Kurtis</a>
+    <a href="#section-girls">Red Kurtis</a>
+    <a href="#section-girls">Yellow Kurtis</a>
+    <a href="#section-girls">Purple Kurtis</a>
+    <a href="#section-girls">Maroon Kurtis</a>
+    <a href="#">Green Kurtas</a>
+    <a href="#">Blue Kurtas</a>
+    <a href="#">Black Kurtas</a>
+    <a href="#">Pink Kurtas</a>
+    <a href="#">Red Kurtas</a>
+    <a href="#">Yellow Kurtas</a>
+    <a href="#">Purple Kurtas</a>
+    <a href="#">Maroon Kurtas</a>
+    <a href="#section-tshirts">Green Shirts</a>
+    <a href="#section-tshirts">Blue Shirts</a>
+    <a href="#section-tshirts">Black Shirts</a>
+    <a href="#section-tshirts">Pink Shirts</a>
+    <a href="#section-tshirts">Red Shirts</a>
+    <a href="#section-tshirts">Yellow Shirts</a>
+    <a href="#section-tshirts">Purple Shirts</a>
+    <a href="#section-tshirts">Maroon Shirts</a>
+    <a href="#">Green Tunics</a>
+    <a href="#">Blue Tunics</a>
+    <a href="#">Black Tunics</a>
+    <a href="#">Pink Tunics</a>
+    <a href="#">Red Tunics</a>
+    <a href="#">Yellow Tunics</a>
+    <a href="#">Purple Tunics</a>
+    <a href="#">Maroon Tunics</a>
+    <a href="#">Green Tops</a>
+    <a href="#">Blue Tops</a>
+    <a href="#">Black Tops</a>
+    <a href="#">Pink Tops</a>
+    <a href="#">Red Tops</a>
+    <a href="#">Yellow Tops</a>
+    <a href="#">Purple Tops</a>
+    <a href="#">Maroon Tops</a>
+    <a href="#section-girls">Green Dresses</a>
+    <a href="#section-girls">Blue Dresses</a>
+    <a href="#section-girls">Black Dresses</a>
+    <a href="#section-girls">Pink Dresses</a>
+    <a href="#section-girls">Red Dresses</a>
+    <a href="#section-girls">Yellow Dresses</a>
+    <a href="#section-girls">Purple Dresses</a>
+    <a href="#section-girls">Maroon Dresses</a>
+    <a href="#">Black Tunics</a>
   </div>
 </div>
 
@@ -12561,7 +12582,7 @@ img.drawer_logo {
         
 
         
-          <a href="https://www.lakshita.com/products/aarohi-graphite-black-embroidered-suit-set?variant=67675525447924" class="story-reel__cta">
+          <a href="#section-girls" class="story-reel__cta">
             Click Here
           </a>
         
@@ -12575,7 +12596,7 @@ img.drawer_logo {
         
 
         
-          <a href="https://www.lakshita.com/products/vritika-persian-pink-embroidered-suit-set?variant=67785322430708" class="story-reel__cta">
+          <a href="#section-girls" class="story-reel__cta">
             Shop Now
           </a>
         
@@ -12589,7 +12610,7 @@ img.drawer_logo {
         
 
         
-          <a href="https://www.lakshita.com/products/vaidehi-turmeric-mustard-embroidered-suit-set?variant=67785309225204" class="story-reel__cta">
+          <a href="#section-girls" class="story-reel__cta">
             Shop Now
           </a>
         
@@ -13019,7 +13040,7 @@ img.drawer_logo {
 <details class="footer__block footer__block--menu accordion" style="--desktop-width: 25%;"  data-collapsible desktop="false" mobile="true">
                     <summary class="h3 footer__block__title heading-small accordion__title" data-collapsible-trigger>Top Categories
 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 24 24"><path d="M6 12h12" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div data-collapsible-body>
-                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="https://www.lakshita.com/collections/co-ord-sets">Co-ord Sets</a></li><li><a href="https://www.lakshita.com/collections/kurta-sets">Kurta Sets</a></li><li><a href="https://www.lakshita.com/collections/suit-sets">Suit Sets</a></li><li><a href="https://www.lakshita.com/collections/kurtas-kurtis">Kurtas & Kurtis</a></li><li><a href="https://www.lakshita.com/collections/tops-and-tunics">Tops & Tunics</a></li><li><a href="https://www.lakshita.com/collections/dresses">Dresses</a></li><li><a href="https://www.lakshita.com/collections/coat-jacket">Coats and Jackets</a></li><li><a href="https://www.lakshita.com/collections/winter-wear">Winter Wear</a></li>
+                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="#">Co-ord Sets</a></li><li><a href="#">Kurta Sets</a></li><li><a href="#section-girls">Suit Sets</a></li><li><a href="#section-girls">Kurtas & Kurtis</a></li><li><a href="#">Tops & Tunics</a></li><li><a href="#section-girls">Dresses</a></li><li><a href="#section-tshirts">Coats and Jackets</a></li><li><a href="#section-tshirts">Winter Wear</a></li>
                           
                           
                         </ul>
@@ -13027,7 +13048,7 @@ img.drawer_logo {
 <details class="footer__block footer__block--menu accordion" style="--desktop-width: 25%;"  data-collapsible desktop="false" mobile="true">
                     <summary class="h3 footer__block__title heading-small accordion__title" data-collapsible-trigger>LK World
 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 24 24"><path d="M6 12h12" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div data-collapsible-body>
-                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="/pages/about-us">About Us</a></li><li><a href="/blogs/the-lk-journal">The LK Journal</a></li><li><a href="https://www.lakshita.com/pages/store-update">Store Locator</a></li>
+                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="/pages/about-us">About Us</a></li><li><a href="/blogs/the-lk-journal">The LK Journal</a></li><li><a href="#">Store Locator</a></li>
                           
                           
                         </ul>
@@ -13035,7 +13056,7 @@ img.drawer_logo {
 <details class="footer__block footer__block--menu accordion" style="--desktop-width: 25%;"  data-collapsible desktop="false" mobile="true">
                     <summary class="h3 footer__block__title heading-small accordion__title" data-collapsible-trigger>Policies
 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 24 24"><path d="M6 12h12" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div data-collapsible-body>
-                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="https://www.lakshita.com/pages/order-poilcy">Order Policy</a></li><li><a href="https://www.lakshita.com/pages/exchange-and-return-policy">Return and Exchange Policy</a></li><li><a href="https://www.lakshita.com/pages/privacy-policy">Privacy Policy</a></li><li><a href="https://www.lakshita.com/pages/terms-of-service">Terms of Service</a></li><li><a href="https://www.lakshita.com/pages/terms-conditions">Terms and Conditions</a></li>
+                        <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content><li><a href="#">Order Policy</a></li><li><a href="#">Return and Exchange Policy</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Terms and Conditions</a></li>
                           
                           
                         </ul>
@@ -13060,9 +13081,9 @@ img.drawer_logo {
 <div class="customer_support">
   <ul class="footer__quicklinks unstyled accordion__content" data-collapsible-content="">
      
-      <li><a href="https://www.lakshita.com/pages/lakshita-customer-support">Contact Us</a></li>
+      <li><a href="#">Contact Us</a></li>
 
-    <li><a href="https://lakshita-tracking.shiprocket.co/tracking">Track Order</a></li> 
+    <li><a href="#">Track Order</a></li> 
     
   </ul>
   <ul class="contact_list">
@@ -13085,16 +13106,16 @@ img.drawer_logo {
         <div class="playstore_heading">Connect With Us</div>
 <ul class="socials socials--newsletter socials--thin"
   ><li>
-    <a href="https://instagram.com/lakshitafashions" title="Unique Fashion on Instagram" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-instagram" viewBox="0 0 24 24"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z" stroke="#000"/><path d="m17.5 6.51.01-.011" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Instagram</span>
+    <a href="#" title="Unique Fashion on Instagram" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-instagram" viewBox="0 0 24 24"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z" stroke="#000"/><path d="m17.5 6.51.01-.011" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Instagram</span>
     </a>
   </li><li>
-    <a href="https://www.facebook.com/lakshitafashion" title="Unique Fashion on Facebook" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-facebook" viewBox="0 0 24 24"><path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Facebook</span>
+    <a href="#" title="Unique Fashion on Facebook" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-facebook" viewBox="0 0 24 24"><path d="M17 2h-3a5 5 0 0 0-5 5v3H6v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Facebook</span>
     </a>
   </li><li>
-    <a href="https://in.pinterest.com/lakshitafashions" title="Unique Fashion on Pinterest" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pinterest" viewBox="0 0 24 24"><path d="M8 14.5c-3-4.5 1.462-8 4.5-8 3.038 0 5.5 1.654 5.5 5.5 0 3.038-2 5-4 5s-3-2-2.5-5m.5-2L9 21.5" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Pinterest</span>
+    <a href="#" title="Unique Fashion on Pinterest" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pinterest" viewBox="0 0 24 24"><path d="M8 14.5c-3-4.5 1.462-8 4.5-8 3.038 0 5.5 1.654 5.5 5.5 0 3.038-2 5-4 5s-3-2-2.5-5m.5-2L9 21.5" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Pinterest</span>
     </a>
   </li><li>
-    <a href="https://in.linkedin.com/company/lakshita" title="Unique Fashion on Linkedin" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-linkedin" viewBox="0 0 24 24"><path d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5zM7 17v-7" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 17v-3.25M11 10v3.75m0 0c0-3.75 6-3.75 6 0V17M7 7.01l.01-.011" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Linkedin</span>
+    <a href="#" title="Unique Fashion on Linkedin" rel="noopener" target="_blank" class="social-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-linkedin" viewBox="0 0 24 24"><path d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5zM7 17v-7" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 17v-3.25M11 10v3.75m0 0c0-3.75 6-3.75 6 0V17M7 7.01l.01-.011" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="icon-fallback-text">Linkedin</span>
     </a>
   </li></ul></div>
     </div>
@@ -13422,13 +13443,13 @@ xpopup
       </p>
       <p>
         <a
-          href="https://lakshita-tracking.shiprocket.co/tracking"
-          title="https://lakshita-tracking.shiprocket.co/tracking"
+          href="#"
+          title="#"
           style="color:#fff;">Track Your Order</a
         >
       </p>
       <p>
-        <a href="https://www.lakshita.com/apps/return_prime" title="https://www.lakshita.com/apps/return_prime"
+        <a href="#" title="https://www.lakshita.com/apps/return_prime"
           style="color:#fff;">Return/Exchange</a
         >
       </p>
@@ -17851,36 +17872,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     <button type="button" onclick="closeProductModal();" style="position:absolute; top:12px; right:14px; z-index:10; background:#f5f3ef; border:none; width:34px; height:34px; border-radius:50%; font-size:22px; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">&times;</button>
     
     <div style="display:grid; grid-template-columns:1fr 1.15fr; gap:20px; padding:22px;" class="uf-pm-grid">
-      <!-- Left: Interactive 3D Multi-Angle Viewer for the Product Photo -->
+      <!-- Left: Amazon-Style Multi-Angle & Folded Gallery Stage -->
       <div>
-        <!-- 3D Perspective Stage -->
-        <div style="position:relative; aspect-ratio:3/4; border-radius:12px; background:#f5f3ef; border:1px solid #ede8de; perspective:1000px; display:flex; align-items:center; justify-content:center; padding:12px; box-shadow:0 4px 18px rgba(0,0,0,0.06); overflow:hidden;">
+        <!-- Main Product Stage (Amazon Style Viewport) -->
+        <div style="position:relative; aspect-ratio:3/4; border-radius:12px; background:#f8f7f4; border:1px solid #ede8de; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 18px rgba(0,0,0,0.06); overflow:hidden;">
           
-          <!-- Animated 3D Card holding the Product Image -->
-          <div id="pm3dCard" style="width:100%; height:100%; border-radius:10px; overflow:hidden; position:relative; transition:transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease; transform-style:preserve-3d; box-shadow:0 8px 24px rgba(0,0,0,0.14);">
-            <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block;" />
-            <!-- Realistic 3D angle lighting shading layer -->
-            <div id="pmLightLayer" style="position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none; transition:background 0.45s ease;"></div>
-          </div>
+          <img id="pmImage" src="" alt="Product Photo" style="width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.22s ease;" />
 
           <span style="position:absolute; top:12px; left:12px; background:#4b0006; color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:4px; letter-spacing:1px; text-transform:uppercase; z-index:3;">UNIQUE FASHION</span>
           
-          <!-- Current Angle Badge: FRONT / RIGHT ANGLE / LEFT ANGLE / UPER SE / NICHE SE -->
-          <span id="pmAngleBadge" style="position:absolute; bottom:12px; left:12px; background:rgba(75,0,6,0.9); color:#fff; font-size:10px; font-weight:800; padding:5px 9px; border-radius:6px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(4px); box-shadow:0 2px 8px rgba(0,0,0,0.3); z-index:3;">FRONT VIEW</span>
+          <!-- Current Angle Badge: FRONT / SIDE (OUTDOOR) / BACK / DETAIL / FOLDED -->
+          <span id="pmAngleBadge" style="position:absolute; bottom:12px; left:12px; background:rgba(75,0,6,0.9); color:#fff; font-size:10px; font-weight:800; padding:5px 10px; border-radius:6px; letter-spacing:0.8px; text-transform:uppercase; backdrop-filter:blur(4px); box-shadow:0 2px 8px rgba(0,0,0,0.3); z-index:3;">1. FRONT VIEW</span>
 
           <!-- Image Counter Badge (1 / 5) -->
           <span id="pmImageCounter" style="position:absolute; top:12px; right:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px; backdrop-filter:blur(2px); z-index:3;">1 / 5</span>
 
-          <!-- Prev Angle Button -->
-          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.94); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❮</button>
+          <!-- Prev Button -->
+          <button type="button" onclick="navigatePmImage(-1);" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❮</button>
 
-          <!-- Next Angle Button -->
-          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.94); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❯</button>
+          <!-- Next Button -->
+          <button type="button" onclick="navigatePmImage(1);" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.92); border:none; width:34px; height:34px; border-radius:50%; font-size:16px; font-weight:bold; color:#333; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,0.25); z-index:4;">❯</button>
         </div>
 
-        <!-- 5 Angle Thumbnails of this EXACT Product Photo -->
+        <!-- 5 Amazon-Style Thumbnails: Front, Side Outdoor, Back, Fabric Zoom, Folded Look -->
         <div id="pmThumbnailsWrap" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:6px; margin-top:10px;">
-          <!-- Injected dynamically for this product photo -->
+          <!-- Dynamically generated Amazon 5-view thumbnails -->
         </div>
 
         <div style="display:flex; justify-content:space-around; margin-top:12px; font-size:11px; color:#555; font-weight:600;">
@@ -18136,64 +18152,79 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Enhanced zero-scroll Add to Cart
-  // Product Quick View / Details Modal Logic with 3D Multi-Angle Views of the SAME Product Photo
+  // Product Quick View / Details Modal Logic with Amazon-Style 5 Photos:
+  // 1. Front View (Studio)
+  // 2. Side Angle (Outdoor / Changed Background)
+  // 3. Back View (Fit & Cut)
+  // 4. Fabric Zoom (Close-up Detail)
+  // 5. Folded Look (Neatly Folded Flat-lay like Amazon)
   let currentPmProduct = null;
   let currentPmSize = 'M';
   let currentPmQty = 1;
   let currentPmImageIdx = 0;
+  let currentPmAmazonViews = [];
 
-  // 5 Real Photographic 3D Perspectives of the Product Photo: Front, Right Side, Left Side, Uper Se (Top), Niche Se (Bottom)
-  const PHOTO_3D_ANGLES = [
-    {
-      name: 'Front View',
-      label: 'Front',
-      badge: 'Front View (सामने से)',
-      transform: 'rotateY(0deg) rotateX(0deg) scale(1)',
-      shadow: '0 10px 25px rgba(0,0,0,0.18)',
-      light: 'transparent',
-      thumbTransform: 'scale(1)'
-    },
-    {
-      name: 'Right Side Angle',
-      label: 'Right Se',
-      badge: 'Right Side View (राइट से)',
-      transform: 'rotateY(-24deg) scale(0.94)',
-      shadow: '-22px 14px 35px rgba(0,0,0,0.28)',
-      light: 'linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 65%)',
-      thumbTransform: 'perspective(400px) rotateY(-20deg) scale(0.92)'
-    },
-    {
-      name: 'Left Side Angle',
-      label: 'Left Se',
-      badge: 'Left Side View (लेफ्ट से)',
-      transform: 'rotateY(24deg) scale(0.94)',
-      shadow: '22px 14px 35px rgba(0,0,0,0.28)',
-      light: 'linear-gradient(to left, rgba(0,0,0,0.2) 0%, transparent 65%)',
-      thumbTransform: 'perspective(400px) rotateY(20deg) scale(0.92)'
-    },
-    {
-      name: 'Top Angle (Uper Se)',
-      label: 'Uper Se',
-      badge: 'Top View (ऊपर से)',
-      transform: 'rotateX(22deg) scale(0.93)',
-      shadow: '0 25px 40px rgba(0,0,0,0.28)',
-      light: 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(0,0,0,0.18) 100%)',
-      thumbTransform: 'perspective(400px) rotateX(20deg) scale(0.92)'
-    },
-    {
-      name: 'Bottom Angle (Niche Se)',
-      label: 'Niche Se',
-      badge: 'Bottom View (नीचे से)',
-      transform: 'rotateX(-22deg) scale(0.93)',
-      shadow: '0 -15px 35px rgba(0,0,0,0.28)',
-      light: 'linear-gradient(to top, rgba(0,0,0,0.25) 0%, transparent 70%)',
-      thumbTransform: 'perspective(400px) rotateX(-20deg) scale(0.92)'
+  // Amazon-Style 5-View Sets per Category
+  const AMAZON_VIEW_SETS = {
+    // 1. GIRLS ETHNIC WEAR (Kurtis, Suits, Anarkalis)
+    ethnic: [
+      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Side Angle', badge: '2. Side Angle (Outdoor Background)', sub: 'Side Flare', url: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Back View', badge: '3. Back View (Drape & Fit)', sub: 'Rear Look', url: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Detail Zoom', badge: '4. Fabric & Embroidery Zoom', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Folded Look', badge: '5. Folded Product (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=80' }
+    ],
+    // 2. GIRLS TOPS & WESTERN
+    top: [
+      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Side Angle', badge: '2. Side Angle (Street Background)', sub: 'Profile', url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Back View', badge: '3. Back View (Cut & Fit)', sub: 'Rear Look', url: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Detail Zoom', badge: '4. Collar & Stitch Detail', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Folded Look', badge: '5. Folded Shirt (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80' }
+    ],
+    // 3. BRAND SHOES & SNEAKERS
+    shoes: [
+      { label: 'Front / 3/4', badge: '1. Front / 3/4 Angle (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Side Profile', badge: '2. Side Profile (Outdoor Background)', sub: 'Side View', url: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Back Heel', badge: '3. Back Heel & Collar View', sub: 'Rear View', url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Laces Zoom', badge: '4. Laces & Tongue Detail Zoom', sub: 'Top Laces', url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Sole / In-Box', badge: '5. Sole Tread & In-Box Display', sub: 'Sole / Box', url: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80' }
+    ],
+    // 4. T-SHIRTS & HOODIES / WINTER
+    tshirt: [
+      { label: 'Front', badge: '1. Front View (Studio)', sub: 'Main Look', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Side Angle', badge: '2. Side Angle (Street Background)', sub: 'Profile', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Back View', badge: '3. Back View (Rear Silhouette)', sub: 'Back Look', url: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Fabric Zoom', badge: '4. Chest Print & Fabric Texture', sub: 'Close-up', url: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80' },
+      { label: 'Folded Look', badge: '5. Folded T-Shirt (Amazon Flat-Lay)', sub: 'Folded', url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&auto=format&fit=crop&q=80' }
+    ]
+  };
+
+  function getAmazonViews(name, mainImage) {
+    const n = (name || '').toLowerCase();
+    let set = AMAZON_VIEW_SETS.ethnic;
+
+    if (/shoe|sneaker|nike|adidas|puma|converse|runner|boot|footwear/i.test(n)) {
+      set = AMAZON_VIEW_SETS.shoes;
+    } else if (/tee|t-shirt|hoodie|jacket|sweater|sweatshirt|pullover|coat|fleece/i.test(n)) {
+      set = AMAZON_VIEW_SETS.tshirt;
+    } else if (/top|crop|shirt|blouse/i.test(n)) {
+      set = AMAZON_VIEW_SETS.top;
     }
-  ];
+
+    return set.map((item, idx) => {
+      // Photo 1 is ALWAYS the product's primary photo
+      if (idx === 0 && mainImage) {
+        return { ...item, url: mainImage };
+      }
+      return item;
+    });
+  }
 
   function openProductModal(name, price, image) {
     currentPmProduct = { name: name, price: price, image: image };
     currentPmQty = 1;
+    currentPmAmazonViews = getAmazonViews(name, image);
     currentPmImageIdx = 0;
 
     const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
@@ -18201,8 +18232,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const modal = document.getElementById('ufProductModal');
     const imgEl = document.getElementById('pmImage');
-    const cardEl = document.getElementById('pm3dCard');
-    const lightEl = document.getElementById('pmLightLayer');
     const titleEl = document.getElementById('pmTitle');
     const priceEl = document.getElementById('pmPrice');
     const origPriceEl = document.getElementById('pmOriginalPrice');
@@ -18214,32 +18243,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     const badgeEl = document.getElementById('pmAngleBadge');
 
     if (imgEl) {
-      imgEl.src = image;
-    }
-    if (cardEl) {
-      cardEl.style.transform = PHOTO_3D_ANGLES[0].transform;
-      cardEl.style.boxShadow = PHOTO_3D_ANGLES[0].shadow;
-    }
-    if (lightEl) {
-      lightEl.style.background = PHOTO_3D_ANGLES[0].light;
+      imgEl.src = currentPmAmazonViews[0].url;
+      imgEl.style.opacity = '1';
     }
     if (counterEl) counterEl.textContent = '1 / 5';
-    if (badgeEl) badgeEl.textContent = PHOTO_3D_ANGLES[0].badge;
+    if (badgeEl) badgeEl.textContent = currentPmAmazonViews[0].badge;
     if (titleEl) titleEl.textContent = name;
     if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
     if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
     if (discEl) discEl.textContent = '67% OFF';
     if (qtyEl) qtyEl.textContent = '1';
 
-    // Render 5 Angle Thumbnails of this EXACT product photo
+    // Render 5 Amazon-Style Thumbnails
     if (thumbsWrap) {
-      thumbsWrap.innerHTML = PHOTO_3D_ANGLES.map((ang, i) => 
-        '<div onclick="selectPmAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; text-align:center;">' +
-          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8') + '; transition:all 0.25s ease; background:#f5f3ef; transform-style:preserve-3d;">' +
-            '<img src="' + image + '" alt="' + ang.name + '" style="width:100%; height:100%; object-fit:cover; display:block; transform:' + ang.thumbTransform + '; transition:transform 0.25s ease;" />' +
+      thumbsWrap.innerHTML = currentPmAmazonViews.map((item, i) => 
+        '<div onclick="selectPmAmazonView(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; text-align:center;">' +
+          '<div style="aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:' + (i === 0 ? '2px solid #4b0006' : '1.5px solid #ede8de') + '; box-shadow:' + (i === 0 ? '0 2px 6px rgba(75,0,6,0.3)' : 'none') + '; opacity:' + (i === 0 ? '1' : '0.8'); transition:all 0.2s ease; background:#f8f7f4;">' +
+            '<img src="' + item.url + '" alt="' + item.label + '" style="width:100%; height:100%; object-fit:cover; display:block;" />' +
           '</div>' +
-          '<div class="uf-thumb-lbl" style="font-size:10px; font-weight:700; color:' + (i === 0 ? '#4b0006' : '#666') + '; margin-top:4px; text-transform:uppercase; letter-spacing:0.3px;">' +
-            ang.label +
+          '<div class="uf-thumb-lbl" style="font-size:9.5px; font-weight:700; color:' + (i === 0 ? '#4b0006' : '#555') + '; margin-top:3px; text-transform:uppercase; letter-spacing:0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">' +
+            item.label +
           '</div>' +
         '</div>'
       ).join('');
@@ -18257,29 +18280,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (modal) modal.style.display = 'flex';
   }
 
-  function selectPmAngle(index) {
-    if (index < 0 || index >= PHOTO_3D_ANGLES.length) return;
+  function selectPmAmazonView(index) {
+    if (!currentPmAmazonViews || index < 0 || index >= currentPmAmazonViews.length) return;
     currentPmImageIdx = index;
-    const ang = PHOTO_3D_ANGLES[index];
+    const item = currentPmAmazonViews[index];
 
-    const cardEl = document.getElementById('pm3dCard');
-    const lightEl = document.getElementById('pmLightLayer');
+    const imgEl = document.getElementById('pmImage');
     const counterEl = document.getElementById('pmImageCounter');
     const badgeEl = document.getElementById('pmAngleBadge');
 
-    if (cardEl) {
-      cardEl.style.transform = ang.transform;
-      cardEl.style.boxShadow = ang.shadow;
-    }
-    if (lightEl) {
-      lightEl.style.background = ang.light;
+    if (imgEl) {
+      imgEl.style.opacity = '0.25';
+      setTimeout(() => {
+        imgEl.src = item.url;
+        imgEl.style.opacity = '1';
+      }, 70);
     }
 
     if (counterEl) {
-      counterEl.textContent = (index + 1) + ' / ' + PHOTO_3D_ANGLES.length;
+      counterEl.textContent = (index + 1) + ' / ' + currentPmAmazonViews.length;
     }
     if (badgeEl) {
-      badgeEl.textContent = ang.badge;
+      badgeEl.textContent = item.badge;
     }
 
     document.querySelectorAll('.uf-pm-thumb').forEach((thumb, i) => {
@@ -18298,19 +18320,23 @@ document.addEventListener('DOMContentLoaded', async () => {
           box.style.opacity = '0.8';
           box.style.boxShadow = 'none';
         }
-        if (lbl) lbl.style.color = '#666';
+        if (lbl) lbl.style.color = '#555';
       }
     });
   }
 
   // Alias
+  function selectPmAngle(index) {
+    selectPmAmazonView(index);
+  }
   function selectPmGalleryImage(index) {
-    selectPmAngle(index);
+    selectPmAmazonView(index);
   }
 
   function navigatePmImage(direction) {
-    const nextIdx = (currentPmImageIdx + direction + PHOTO_3D_ANGLES.length) % PHOTO_3D_ANGLES.length;
-    selectPmAngle(nextIdx);
+    if (!currentPmAmazonViews || currentPmAmazonViews.length <= 1) return;
+    const nextIdx = (currentPmImageIdx + direction + currentPmAmazonViews.length) % currentPmAmazonViews.length;
+    selectPmAmazonView(nextIdx);
   }
 
   function selectPmSize(size, el) {
