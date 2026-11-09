@@ -16047,6 +16047,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 <script>
+
   let cartItems = JSON.parse(localStorage.getItem('uf_cart') || '[]');
   let selectedPayment = 'Online UPI (PhonePe QR)';
   let paymentTimerSecs = 120;
@@ -16112,7 +16113,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     return false;
   }
-
 
   function updateCartUI() {
     const list = document.getElementById('ufCartItemsList');
@@ -16302,7 +16302,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         style: 'object-position: center center;'
       },
       {
-        name: 'Flat Lay & Pique Knit Detail (फ़ैब्रिक डिटेल)',
+        name: 'Flat Lay & Pique Knit Detail (फ़ैब्रIC डिटेल)',
         label: 'Fabric Detail',
         badge: '4. Flat Lay & Pique Knit Detail (फ़ैब्रिक)',
         imgUrl: 'images/products/tshirt-peach-polo-flat.jpg',
@@ -16734,7 +16734,640 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     ],
 
-     [data-cart-toggle], .carbtnopen, .header__mobile__cart, .header__cart__status').forEach(btn => {
+    
+
+  };
+
+  function buildProductPhotoSet(name, mainImg) {
+    // 1. Check custom exact real photo sets
+    for (const key in PRODUCT_REAL_PHOTO_SETS) {
+      if (name.toLowerCase().includes(key.toLowerCase()) || key.toLowerCase().includes(name.toLowerCase())) {
+        return PRODUCT_REAL_PHOTO_SETS[key];
+      }
+    }
+
+    const n = (name || '').toLowerCase();
+
+    // 2. Bottomwear / Jeans / Pants: Use real multi-angle jeans photoshoot photos
+    if (n.includes('pant') || n.includes('bottomwear') || n.includes('jeans') || n.includes('palazzo') || n.includes('trouser')) {
+      return [
+        {
+          name: 'Front Standing View (सामने से पोज़)',
+          label: 'Front',
+          badge: '1. Front Standing View (सामने से)',
+          imgUrl: mainImg,
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Side Hem & Shoes Angle (साइड हेम और शूज़)',
+          label: 'Side Hem',
+          badge: '2. Side Hem & Shoes Angle (साइड हेम)',
+          imgUrl: 'images/products/black-jeans-side-hem.jpg',
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Back Pocket Detail (पीछे की पॉकेट)',
+          label: 'Back Pocket',
+          badge: '3. Back Pocket Detail (पीछे की पॉकेट)',
+          imgUrl: 'images/products/black-jeans-back-pocket.jpg',
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Full Back Walking View (पीछे से पूरा पोज़)',
+          label: 'Full Back',
+          badge: '4. Full Back Walking View (पीछे से)',
+          imgUrl: 'images/products/black-jeans-back-full.jpg',
+          style: 'object-position: center center;'
+        }
+      ];
+    }
+
+    // 3. Shoes Collection (Nike, Adidas, Puma, Converse)
+    if (n.includes('shoe') || n.includes('sneaker') || n.includes('nike') || n.includes('adidas') || n.includes('puma') || n.includes('converse') || n.includes('runner') || n.includes('boot')) {
+      return [
+        {
+          name: 'Profile Lateral View (साइड प्रोफाइल)',
+          label: 'Profile',
+          badge: '1. Profile Lateral View (साइड प्रोफाइल)',
+          imgUrl: mainImg,
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Side Angle View (साइड एंगल पोज़)',
+          label: '3/4 Side',
+          badge: '2. 3/4 Side Angle View (साइड एंगल)',
+          imgUrl: mainImg,
+          style: 'object-position: 80% center; transform: scale(1.15);'
+        },
+        {
+          name: 'Rear Heel Back View (पीछे से हील व्यू)',
+          label: 'Heel Back',
+          badge: '3. Rear Heel Back View (पीछे से हील)',
+          imgUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Toe & Laces Zoom View (लेस और ग्रिप डिटेल)',
+          label: 'Laces Zoom',
+          badge: '4. Toe & Laces Zoom View (लेस डिटेल)',
+          imgUrl: mainImg,
+          style: 'object-position: 30% center; transform: scale(1.3);'
+        }
+      ];
+    }
+
+    // 4. T-Shirts, Hoodies & Winterwear
+    if (n.includes('t-shirt') || n.includes('hoodie') || n.includes('jacket') || n.includes('sweater') || n.includes('winter') || n.includes('shirt')) {
+      return [
+        {
+          name: 'Front Standing View (सामने से पोज़)',
+          label: 'Front',
+          badge: '1. Front Standing View (सामने से)',
+          imgUrl: mainImg,
+          style: 'object-position: center 20%;'
+        },
+        {
+          name: 'Side Profile Pose (साइड पोज़)',
+          label: 'Side',
+          badge: '2. Side Profile Pose (साइड पोज़)',
+          imgUrl: mainImg,
+          style: 'object-position: 85% 25%; transform: scale(1.15);'
+        },
+        {
+          name: 'Full Back View (पीछे से फ़ोटो)',
+          label: 'Full Back',
+          badge: '3. Full Back View (पीछे से फ़ोटो)',
+          imgUrl: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&auto=format&fit=crop&q=80',
+          style: 'object-position: center center;'
+        },
+        {
+          name: 'Chest & Fabric Fit Zoom (फ़ैब्रिक डिटेल)',
+          label: 'Fit Zoom',
+          badge: '4. Chest & Fabric Fit Zoom (फ़ैब्रिक डिटेल)',
+          imgUrl: mainImg,
+          style: 'object-position: center 30%; transform: scale(1.35);'
+        }
+      ];
+    }
+
+    // 5. Girls Wear (Kurtis, Salwar Suits, Anarkalis, Dresses)
+    return [
+      {
+        name: 'Front Standing View (सामने से पोज़)',
+        label: 'Front',
+        badge: '1. Front Standing View (सामने से)',
+        imgUrl: mainImg,
+        style: 'object-position: center 15%;'
+      },
+      {
+        name: 'Right Side Model Pose (Right साइड पोज़)',
+        label: 'Right Side',
+        badge: '2. Right Side Model Pose (Right साइड)',
+        imgUrl: mainImg,
+        style: 'object-position: 85% 20%; transform: scale(1.14) scaleX(1);'
+      },
+      {
+        name: 'Left Side Model Pose (Left साइड पोज़)',
+        label: 'Left Side',
+        badge: '3. Left Side Model Pose (Left साइड)',
+        imgUrl: mainImg,
+        style: 'object-position: 85% 20%; transform: scale(1.14) scaleX(-1);'
+      },
+      {
+        name: 'Full Back View (पीछे से फ़ोटो)',
+        label: 'Full Back',
+        badge: '4. Full Back View (पीछे से फ़ोटो)',
+        imgUrl: 'https://images.unsplash.com/photo-1526798513516-d2c620778abe?w=800&auto=format&fit=crop&q=80',
+        style: 'object-position: center 20%;'
+      },
+      {
+        name: 'Embroidery & Neckline Fit (गला और कढ़ाई डिटेल)',
+        label: 'Fit Detail',
+        badge: '5. Embroidery & Neckline Fit (कढ़ाई डिटेल)',
+        imgUrl: mainImg,
+        style: 'object-position: center 25%; transform: scale(1.38);'
+      }
+    ];
+  }
+
+  let currentPmProductViews = [];
+
+  function openProductModal(name, price, image) {
+    currentPmProduct = { name: name, price: price, image: image };
+    currentPmQty = 1;
+    currentPmImageIdx = 0;
+
+    const isShoe = /shoe|sneaker|nike|adidas|puma|converse|runner|boot/i.test(name);
+    currentPmSize = isShoe ? 'UK 8' : 'M';
+
+    // Build real distinct photoshoot angles matching the user's sample format!
+    currentPmProductViews = buildProductPhotoSet(name, image);
+
+    const modal = document.getElementById('ufProductModal');
+    const imgEl = document.getElementById('pmImage');
+    const titleEl = document.getElementById('pmTitle');
+    const priceEl = document.getElementById('pmPrice');
+    const origPriceEl = document.getElementById('pmOriginalPrice');
+    const discEl = document.getElementById('pmDiscountBadge');
+    const qtyEl = document.getElementById('pmQtyDisplay');
+    const sizesWrap = document.getElementById('pmSizesWrap');
+    const thumbsWrap = document.getElementById('pmThumbnailsWrap');
+    const counterEl = document.getElementById('pmImageCounter');
+    const badgeEl = document.getElementById('pmAngleBadge');
+
+    const firstView = currentPmProductViews[0];
+
+    if (imgEl) {
+      imgEl.src = firstView.imgUrl;
+      imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + (firstView.style || ''));
+      imgEl.style.opacity = '1';
+    }
+    if (counterEl) counterEl.textContent = '1 / ' + currentPmProductViews.length;
+    if (badgeEl) badgeEl.textContent = firstView.badge;
+    if (titleEl) titleEl.textContent = name;
+    if (priceEl) priceEl.textContent = '₹' + price.toLocaleString('en-IN');
+    if (origPriceEl) origPriceEl.textContent = '₹' + (price * 3).toLocaleString('en-IN');
+    if (discEl) discEl.textContent = '67% OFF';
+    if (qtyEl) qtyEl.textContent = '1';
+
+    // Render Amazon Vertical Thumbnail Strip with rounded pill borders & angle labels
+    if (thumbsWrap) {
+      thumbsWrap.innerHTML = currentPmProductViews.map((v, i) => 
+        '<div onclick="selectPmAmazonAngle(' + i + ')" class="uf-pm-thumb ' + (i === 0 ? 'active' : '') + '" style="cursor:pointer; width:54px; height:72px; border-radius:12px; overflow:hidden; border:' + (i === 0 ? '2px solid #007185' : '1.5px solid #d5d9d9') + '; box-shadow:' + (i === 0 ? '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)' : 'none') + '; transition:all 0.2s ease; background:#ffffff; padding:2px; box-sizing:border-box;">' +
+          '<div style="width:100%; height:100%; border-radius:9px; overflow:hidden; background:#f8f7f4; position:relative;">' +
+            '<img src="' + v.imgUrl + '" alt="' + v.name + '" style="width:100%; height:100%; object-fit:cover; display:block; ' + (v.style || '') + '" />' +
+            '<span style="position:absolute; bottom:0; left:0; right:0; text-align:center; font-size:7.5px; font-weight:800; color:#fff; background:rgba(0,0,0,0.74); padding:2px 0; text-transform:uppercase; letter-spacing:0.3px; line-height:1;">' + v.label + '</span>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+    }
+
+    const sizes = isShoe ? ['UK 6', 'UK 7', 'UK 8', 'UK 9', 'UK 10'] : ['S', 'M', 'L', 'XL', 'XXL'];
+    if (sizesWrap) {
+      sizesWrap.innerHTML = sizes.map(s => 
+        '<button type="button" class="uf-size-btn" onclick="selectPmSize(\'' + s + '\', this)" style="padding:6px 14px; border:1.5px solid ' + (s === currentPmSize ? '#4b0006' : '#ddd') + '; background:' + (s === currentPmSize ? '#4b0006' : '#fff') + '; color:' + (s === currentPmSize ? '#fff' : '#333') + '; font-weight:700; border-radius:6px; cursor:pointer; font-size:12px;">' +
+          s +
+        '</button>'
+      ).join('');
+    }
+
+    if (modal) modal.style.display = 'flex';
+  }
+
+  function selectPmAmazonAngle(index) {
+    if (!currentPmProductViews || index < 0 || index >= currentPmProductViews.length) return;
+    currentPmImageIdx = index;
+    const view = currentPmProductViews[index];
+
+    const imgEl = document.getElementById('pmImage');
+    const counterEl = document.getElementById('pmImageCounter');
+    const badgeEl = document.getElementById('pmAngleBadge');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = view.imgUrl;
+        imgEl.setAttribute('style', 'width:100%; height:100%; object-fit:cover; display:block; transition:all 0.25s ease; ' + (view.style || ''));
+        imgEl.style.opacity = '1';
+      }, 50);
+    }
+
+    if (counterEl) {
+      counterEl.textContent = (index + 1) + ' / ' + currentPmProductViews.length;
+    }
+    if (badgeEl) {
+      badgeEl.textContent = view.badge;
+    }
+
+    document.querySelectorAll('.uf-pm-thumb').forEach((thumb, i) => {
+      if (i === index) {
+        thumb.style.border = '2px solid #007185';
+        thumb.style.boxShadow = '0 0 0 1px #007185, 0 2px 6px rgba(0,113,133,0.3)';
+        thumb.classList.add('active');
+      } else {
+        thumb.style.border = '1.5px solid #d5d9d9';
+        thumb.style.boxShadow = 'none';
+        thumb.classList.remove('active');
+      }
+    });
+  }
+
+  // Aliases for compatibility
+  function selectPmAmazonView(index) { selectPmAmazonAngle(index); }
+  function selectPmAngle(index) { selectPmAmazonAngle(index); }
+  function selectPmGalleryImage(index) { selectPmAmazonAngle(index); }
+
+  function navigatePmImage(direction) {
+    if (!currentPmProductViews || currentPmProductViews.length === 0) return;
+    const nextIdx = (currentPmImageIdx + direction + currentPmProductViews.length) % currentPmProductViews.length;
+    selectPmAmazonAngle(nextIdx);
+  }
+
+  function selectPmSize(size, el) {
+    currentPmSize = size;
+    document.querySelectorAll('#pmSizesWrap .uf-size-btn').forEach(b => {
+      b.style.borderColor = '#ddd';
+      b.style.background = '#fff';
+      b.style.color = '#333';
+    });
+    if (el) {
+      el.style.borderColor = '#4b0006';
+      el.style.background = '#4b0006';
+      el.style.color = '#fff';
+    }
+  }
+
+  function changePmQty(delta) {
+    currentPmQty = Math.max(1, currentPmQty + delta);
+    const qtyEl = document.getElementById('pmQtyDisplay');
+    if (qtyEl) qtyEl.textContent = currentPmQty;
+  }
+
+  function closeProductModal() {
+    const modal = document.getElementById('ufProductModal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function pmBuyNow() {
+    if (!currentPmProduct) return;
+    const fullName = currentPmProduct.name + ' (' + currentPmSize + ')';
+    
+    let existing = cartItems.find(i => i.name === fullName);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + currentPmQty;
+    } else {
+      cartItems.push({
+        name: fullName,
+        price: currentPmProduct.price,
+        image: currentPmProduct.image,
+        quantity: currentPmQty
+      });
+    }
+    saveCart();
+    closeProductModal();
+    startCheckout();
+  }
+
+  function pmAddToBagOnly() {
+    if (!currentPmProduct) return;
+    const fullName = currentPmProduct.name + ' (' + currentPmSize + ')';
+    
+    let existing = cartItems.find(i => i.name === fullName);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + currentPmQty;
+    } else {
+      cartItems.push({
+        name: fullName,
+        price: currentPmProduct.price,
+        image: currentPmProduct.image,
+        quantity: currentPmQty
+      });
+    }
+    saveCart();
+    closeProductModal();
+    openCartDrawer();
+  }
+
+  function addToCart(name, price, image, ev) {
+    if (ev) {
+      if (typeof ev.preventDefault === 'function') ev.preventDefault();
+      if (typeof ev.stopPropagation === 'function') ev.stopPropagation();
+    }
+    if (window.event) {
+      try {
+        window.event.preventDefault();
+        window.event.stopPropagation();
+        window.event.cancelBubble = true;
+        window.event.returnValue = false;
+      } catch (err) {}
+    }
+
+    openProductModal(name, price, image);
+    return false;
+  }
+
+  function changeQty(index, delta) {
+    if (cartItems[index]) {
+      cartItems[index].quantity = (cartItems[index].quantity || 1) + delta;
+      if (cartItems[index].quantity <= 0) {
+        cartItems.splice(index, 1);
+      }
+      saveCart();
+    }
+  }
+
+  function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    saveCart();
+  }
+
+  function openCartDrawer() {
+    const overlay = document.getElementById('ufCartOverlay');
+    if (overlay) overlay.style.display = 'block';
+    updateCartUI();
+  }
+
+  function closeCartDrawer() {
+    const overlay = document.getElementById('ufCartOverlay');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  function startCheckout() {
+    if (cartItems.length === 0) {
+      alert('Your shopping bag is empty!');
+      return;
+    }
+    closeCartDrawer();
+    backToAddressStep();
+    const chOverlay = document.getElementById('ufCheckoutOverlay');
+    if (chOverlay) chOverlay.style.display = 'flex';
+    updateCartUI();
+  }
+
+  function closeCheckoutModal() {
+    if (paymentTimerInterval) clearInterval(paymentTimerInterval);
+    const chOverlay = document.getElementById('ufCheckoutOverlay');
+    if (chOverlay) chOverlay.style.display = 'none';
+  }
+
+  function proceedToPaymentStep() {
+    const custName = document.getElementById('custName').value.trim();
+    const custPhone = document.getElementById('custPhone').value.trim();
+    const custAddress = document.getElementById('custAddress').value.trim();
+    const custCity = document.getElementById('custCity').value.trim();
+    const custPincode = document.getElementById('custPincode').value.trim();
+    const custState = document.getElementById('custState').value.trim();
+
+    if (!custName || !custPhone || !custAddress || !custCity || !custPincode || !custState) {
+      alert('Please fill all required delivery details.');
+      return;
+    }
+
+    if (custPhone.length !== 10 || !/^\d{10}$/.test(custPhone)) {
+      alert('Please enter a valid 10-digit mobile number.');
+      document.getElementById('custPhone').focus();
+      return;
+    }
+
+    if (custPincode.length !== 6 || !/^\d{6}$/.test(custPincode)) {
+      alert('Please enter a valid 6-digit PIN code.');
+      document.getElementById('custPincode').focus();
+      return;
+    }
+
+    updateCartUI();
+    document.getElementById('checkoutModalTitle').textContent = 'Online UPI Payment';
+    document.getElementById('ufAddressStep').style.display = 'none';
+    document.getElementById('ufPaymentStep').style.display = 'block';
+
+    startPaymentTimer();
+  }
+
+  function backToAddressStep() {
+    if (paymentTimerInterval) clearInterval(paymentTimerInterval);
+    document.getElementById('checkoutModalTitle').textContent = 'Complete Your Order';
+    const addrStep = document.getElementById('ufAddressStep');
+    const payStep = document.getElementById('ufPaymentStep');
+    if (addrStep) addrStep.style.display = 'block';
+    if (payStep) payStep.style.display = 'none';
+  }
+
+  function startPaymentTimer() {
+    if (paymentTimerInterval) clearInterval(paymentTimerInterval);
+    paymentTimerSecs = 120; // 2 minutes
+
+    const timerEl = document.getElementById('ufCountdownTimer');
+    const subtextEl = document.getElementById('ufTimerSubtext');
+    if (timerEl) {
+      timerEl.textContent = '02:00';
+      timerEl.style.color = '#e11d48';
+    }
+    if (subtextEl) {
+      subtextEl.innerHTML = 'Please scan QR and complete UPI payment within 2 minutes';
+    }
+
+    paymentTimerInterval = setInterval(() => {
+      paymentTimerSecs--;
+      if (paymentTimerSecs <= 0) {
+        clearInterval(paymentTimerInterval);
+        if (timerEl) {
+          timerEl.textContent = '00:00';
+          timerEl.style.color = '#b91c1c';
+        }
+        if (subtextEl) {
+          subtextEl.innerHTML = '<span style="color:#b91c1c; font-weight:700;">⚠️ Payment time expired! <a href="javascript:void(0)" onclick="startPaymentTimer();" style="color:#4b0006; text-decoration:underline; font-weight:bold;">Refresh QR Code & Timer</a></span>';
+        }
+        return;
+      }
+
+      const m = Math.floor(paymentTimerSecs / 60);
+      const s = paymentTimerSecs % 60;
+      if (timerEl) {
+        timerEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        if (paymentTimerSecs <= 30) {
+          timerEl.style.color = '#dc2626';
+        }
+      }
+    }, 1000);
+  }
+
+  async function submitFinalOrder() {
+    const submitBtn = document.getElementById('btnFinalPlaceOrder');
+    const utrInput = document.getElementById('custUtr');
+    const utr = utrInput ? utrInput.value.trim() : '';
+
+    // Enforce 12-digit UTR input before confirming order
+    if (!utr || utr.length < 10) {
+      alert('⚠️ Mandatory: Please enter your 12-digit UPI Transaction / UTR Number before confirming the order.');
+      if (utrInput) {
+        utrInput.focus();
+        utrInput.style.borderColor = '#dc2626';
+        utrInput.style.backgroundColor = '#fff5f5';
+        utrInput.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.2)';
+      }
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Verifying & Placing Order...';
+    }
+
+    const customer_name = document.getElementById('custName').value.trim();
+    const customer_phone = document.getElementById('custPhone').value.trim();
+    const customer_email = document.getElementById('custEmail').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    const city = document.getElementById('custCity').value.trim();
+    const pincode = document.getElementById('custPincode').value.trim();
+    const state = document.getElementById('custState').value.trim();
+
+    const total_amount = cartItems.reduce((acc, item) => acc + ((item.price || 0) * (item.quantity || 1)), 0);
+    const paymentDesc = 'Online UPI (PhonePe QR) - UTR: ' + utr;
+
+    const orderPayload = {
+      customer_name: customer_name,
+      phone: customer_phone,
+      email: customer_email || (customer_phone + '@unique.com'),
+      address: address,
+      city: city,
+      state: state,
+      pincode: pincode,
+      payment_method: paymentDesc,
+      items: cartItems,
+      total_amount: total_amount,
+      status: 'Confirmed'
+    };
+
+    try {
+      if (window.supabase) {
+        const sb = window.supabase.createClient(
+          "https://osdwapwpjovhrrnbtfmk.supabase.co",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zZHdhcHdwam92aHJybmJ0Zm1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQwNzQ1NTcsImV4cCI6MjEwOTY1MDU1N30.PjEsnUll7VyBGt2mGIHab8p96csjpYiyHOBtFWvY99o"
+        );
+        const res = await sb.from('orders').insert([orderPayload]);
+        if (res.error) console.error('Supabase order insert error:', res.error);
+      }
+
+      if (paymentTimerInterval) clearInterval(paymentTimerInterval);
+      const orderId = 'UF-' + Math.floor(100000 + Math.random() * 900000);
+      cartItems = [];
+      saveCart();
+
+      // Close checkout modal
+      closeCheckoutModal();
+
+      // Populate & open Thank You Popup Modal
+      const tyOrderId = document.getElementById('tyOrderId');
+      const tyCustomerName = document.getElementById('tyCustomerName');
+      const tyTotalAmount = document.getElementById('tyTotalAmount');
+      const tyUtr = document.getElementById('tyUtr');
+      const tyDeliveryAddress = document.getElementById('tyDeliveryAddress');
+
+      if (tyOrderId) tyOrderId.textContent = '#' + orderId;
+      if (tyCustomerName) tyCustomerName.textContent = customer_name;
+      if (tyTotalAmount) tyTotalAmount.textContent = '₹' + total_amount.toLocaleString('en-IN');
+      if (tyUtr) tyUtr.textContent = utr;
+      if (tyDeliveryAddress) tyDeliveryAddress.textContent = address + ', ' + city + ', ' + state + ' - ' + pincode;
+
+      const tyModal = document.getElementById('ufThankYouModal');
+      if (tyModal) tyModal.style.display = 'flex';
+
+    } catch (err) {
+      alert('Order could not be saved: ' + err.message);
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '✓ I Have Paid — Confirm Order';
+      }
+    }
+  }
+
+  function closeThankYouModal() {
+    const tyModal = document.getElementById('ufThankYouModal');
+    if (tyModal) tyModal.style.display = 'none';
+    location.reload();
+  }
+
+  function submitOrder(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    proceedToPaymentStep();
+  }
+
+  // Master Initializer for All Buttons, Tabs, Arrows & Cards
+  function initAllStoreControls() {
+    updateCartUI();
+
+    // 1. Wire up all Tab Links
+    const tabs = document.querySelectorAll('.tab-link');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.style.cursor = 'pointer';
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const tabIdx = this.getAttribute('data-tab');
+        tabs.forEach(t => t.classList.remove('current'));
+        this.classList.add('current');
+
+        contents.forEach(c => {
+          c.classList.remove('current');
+          c.style.display = 'none';
+        });
+
+        const active = document.querySelector('.tab-content-' + tabIdx);
+        if (active) {
+          active.classList.add('current');
+          active.style.display = 'block';
+        }
+      });
+    });
+
+    // 2. Tab slider arrows
+    document.querySelectorAll('.tabs__arrow--prev, [data-scrollbar-arrow-prev]').forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.classList.remove('is-hidden');
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const container = document.querySelector('.tabs.text-center[data-scrollbar]');
+        if (container) container.scrollBy({ left: -220, behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.tabs__arrow--next, [data-scrollbar-arrow-next]').forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.classList.remove('is-hidden');
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const container = document.querySelector('.tabs.text-center[data-scrollbar]');
+        if (container) container.scrollBy({ left: 220, behavior: 'smooth' });
+      });
+    });
+
+    // 3. Cart button triggers
+    document.querySelectorAll('a[href*="/cart"], [data-cart-toggle], .carbtnopen, .header__mobile__cart, .header__cart__status').forEach(btn => {
       btn.addEventListener('click', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
@@ -16772,6 +17405,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } else {
     initAllStoreControls();
   }
+
 </script>
 <!-- ================= END UNIQUE FASHION CART ================= -->
 
